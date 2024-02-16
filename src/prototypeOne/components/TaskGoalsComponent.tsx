@@ -14,7 +14,7 @@ export default function TaskGoalsComponent() {
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
                             <DraftsIcon />
-                            <Box ml={1}> sup</Box>
+                            <Box ml={1}> sup</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     
