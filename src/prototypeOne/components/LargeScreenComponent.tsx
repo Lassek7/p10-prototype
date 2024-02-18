@@ -5,10 +5,10 @@ import InfoBoxComponent from './InfoBoxComponent';
 export default function LargeScreenComponent() {
     return (
         <Card sx={Styles.largeScreen}>  
-            <CardMedia component="img" sx={{ height: '70%', objectFit: 'cover' }} image="https://source.unsplash.com/random" alt='Image' /> 
-            <Divider />
+                <CardMedia component="img" sx={{ height: '80.59%' }} image="https://source.unsplash.com/random" alt='Image' /> 
+                <Divider />
             <CardContent >
-              <InfoBoxComponent />  
+              <InfoBoxComponent showButtons/>  
             </CardContent>
         </Card>
     )
