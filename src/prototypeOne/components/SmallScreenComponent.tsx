@@ -15,7 +15,7 @@ interface detectionsProps {
 
 export default function SmallScreenComponent( detectionsProps: detectionsProps) {
     return (
-        <Card  sx={{...Styles.smallScreen, border: detectionsProps.isSelected ? '1px solid red' : 'none'}} >  
+        <Card  sx={{...Styles.smallScreen, border: detectionsProps.isSelected ? '3px solid red' : 'none'}} >  
             <CardMedia component="img" sx={{height: '72.4%', objectFit: 'cover' }} image={detectionsProps.imageUrl} alt='Image' /> 
             <Divider />
             <CardContent >

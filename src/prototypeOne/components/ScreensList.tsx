@@ -1,4 +1,4 @@
-import { Grid, Card, Box, CardContent, CardHeader, Typography, Divider } from '@mui/material'
+import { Grid, Card, Box, CardHeader, Divider } from '@mui/material'
 import SmallScreenComponent from './SmallScreenComponent'
 import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { detections } from './mockDataDetections'
@@ -66,7 +66,7 @@ export default function ScreensList() {
                 </Grid>
                 <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll", justifyContent:"space-between"}}>
                         {detections.map((detections) => (
-                           <Box onClick={() => handleScreenClick(detections.imageId)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", marginTop: "1.56%" }}>
+                           <Box onClick={() => handleScreenClick(detections.imageId)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", borderRadius: "16px" , marginTop: isSelected === detections.imageId ? "0.84%" :  "1.56%"}}>
                         <SmallScreenComponent  imageUrl={detections.imageUrl} imageId={detections.imageId} imageIcon={detections.imageIcon} imageDetectionContext={detections.imageDetectionContext} imageDetectionTime={detections.imageDetectionTime} ImageDetectionDate={detections.ImageDetectionDate} timeSinceDetection={detections.timeSinceDetection} isSelected={detections.imageId === isSelected}/>
                        </Box>
                          ))}
