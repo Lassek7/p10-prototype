@@ -2,8 +2,9 @@
 const smallScreen = {
     width: '11vw',
     height: '14vh',
+    boxSizing: 'border-box',
     borderRadius: "16px",   // border radius can also be made as BorderTopLeftRadius, BorderTopRightRadius, BorderBottomLeftRadius, BorderBottomRightRadius
-    boxShadow: "0px 0px 3px 0px #000000" // horizontal, vertical, blur, spread, color 
+    boxShadow: "0px 0px 3px 0px #000000", // horizontal, vertical, blur, spread, color 
 }
 
 const largeScreen = {
