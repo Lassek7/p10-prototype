@@ -3,8 +3,9 @@ import {Box, Button, Grid, Typography } from '@mui/material';
 import Styles from '../prototypeOneStyles/styles';
 
 
-interface detectionsProps {
+interface detection {
     showButtons?: boolean
+    prototypeOne?: boolean
     imageId: string,
     imageIcon: JSX.Element,
     imageDetectionContext?: string,
@@ -13,8 +14,8 @@ interface detectionsProps {
     timeSinceDetection?: string,
 }
 
-export function LargeScreenInfoBoxComponent( detectionProps: detectionsProps) {
-    const { imageId, imageIcon, imageDetectionContext, imageDetectionTime, ImageDetectionDate, timeSinceDetection } = detectionProps;
+export function LargeScreenInfoBoxComponent( detection: detection) {
+    const { imageId, imageIcon, imageDetectionContext, imageDetectionTime, ImageDetectionDate, timeSinceDetection } = detection;
     return (
         <Box sx={Styles.screenInfoBox}>
             <Grid container direction="row" justifyContent="space-between" alignItems="start" >
@@ -25,19 +26,27 @@ export function LargeScreenInfoBoxComponent( detectionProps: detectionsProps) {
                                 {imageId}
                             </Typography>
                         </Grid>
+                        {!detection.prototypeOne && (
                         <Grid item >
                             <Typography align="left">
                                 {imageIcon} {imageDetectionContext}
                             </Typography>
                         </Grid>
+                        )}
                     </Grid>
                 </Grid>
-                {detectionProps.showButtons && (
-                <Grid item container justifyContent="center" xs={6} md={6}>
-                    <Button variant="outlined" sx={{ width: '8.17vw', height: '5.5vh', borderRadius: '100px', mr: "1.56vw"}}>Investigate</Button>
-                    <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh',borderRadius: '100px'}}>Delete</Button>
-                </Grid>
+                {!detection.prototypeOne ? (
+                    <Grid item container justifyContent="center" xs={6} md={6}>
+                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', mr: "1.56vw", color: '#0A84FF', borderColor: '#343323'}}>Investigate</Button>
+                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', color: '#0A84FF', borderColor: '#343323'}}>Delete</Button>
+                    </Grid>
+                    ) : (
+                    <Grid item container justifyContent="center" xs={11} md={11}>
+                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', mr: "1.56vw", color: '#0A84FF', borderColor: '#343323'}}>Investigate</Button>
+                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', color: '#0A84FF', borderColor: '#343323'}}>Delete</Button>
+                    </Grid>
                 )}
+                {!detection.prototypeOne && (
                 <Grid item xs={3} md={3} >
                     <Grid container direction="column" justifyContent="flex-end">
                         <Grid item xs={12} md={12}>
@@ -56,14 +65,15 @@ export function LargeScreenInfoBoxComponent( detectionProps: detectionsProps) {
                             </Typography>
                         </Grid>
                     </Grid>   
-                </Grid>     
+                </Grid>   
+                )}  
             </Grid>
         </Box>
     )
 }
 
-export function SmallScreenInfoBoxComponent( detectionProps: detectionsProps) {
-    const { imageId, imageIcon, imageDetectionTime, ImageDetectionDate } = detectionProps;
+export function SmallScreenInfoBoxComponent( detection: detection) {
+    const { imageId, imageIcon, imageDetectionTime, ImageDetectionDate } = detection;
     return (
         <Box >
             <Grid container direction="row" justifyContent="space-between" alignItems="start" >
@@ -72,11 +82,14 @@ export function SmallScreenInfoBoxComponent( detectionProps: detectionsProps) {
                         {imageId}
                     </Typography>
                 </Grid>
+                {!detection.prototypeOne && (
                 <Grid item >
                     <Typography align="center">
                         {imageIcon}
                     </Typography>
                 </Grid>
+                )}
+                {!detection.prototypeOne && (
                 <Grid item >
                     <Grid container direction="column" justifyContent="flex-end">
                         <Grid item xs={12} md={12}>
@@ -89,8 +102,9 @@ export function SmallScreenInfoBoxComponent( detectionProps: detectionsProps) {
                                 {ImageDetectionDate}
                             </Typography>
                         </Grid>
-                    </Grid>   
-                </Grid>     
+                    </Grid>         
+                </Grid>  
+                )}
             </Grid>
         </Box>
     )

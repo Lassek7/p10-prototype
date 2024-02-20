@@ -2,7 +2,7 @@ import Styles from '../prototypeOneStyles/styles';
 import { Card, CardMedia, CardContent, Button, Typography,Divider } from '@mui/material';
 import {SmallScreenInfoBoxComponent} from './InfoBoxComponent';
 
-interface detectionsProps {
+interface smallScreenProps {
     imageId: string,
     imageUrl: string, //image: image1
     imageIcon: JSX.Element,
@@ -11,15 +11,16 @@ interface detectionsProps {
     ImageDetectionDate: string,
     timeSinceDetection: string,
     isSelected?: boolean,
+    prototypeOne?: boolean
 }
 
-export default function SmallScreenComponent( detectionsProps: detectionsProps) {
+export default function SmallScreenComponent( smallScreenProps: smallScreenProps) {
     return (
-        <Card  sx={{...Styles.smallScreen, border: detectionsProps.isSelected ? '3px solid red' : 'none'}} >  
-            <CardMedia component="img" sx={{height: '72.4%', objectFit: 'cover' }} image={detectionsProps.imageUrl} alt='Image' /> 
+        <Card  sx={{...Styles.smallScreen, border: smallScreenProps.isSelected ? '3px solid red' : 'none'}} >  
+            <CardMedia component="img" sx={{height: '72.4%', objectFit: 'cover' }} image={smallScreenProps.imageUrl} alt='Image' /> 
             <Divider />
             <CardContent >
-              <SmallScreenInfoBoxComponent  imageId={detectionsProps.imageId} imageIcon={detectionsProps.imageIcon} imageDetectionTime={detectionsProps.imageDetectionTime} ImageDetectionDate={detectionsProps.ImageDetectionDate}/>  
+              <SmallScreenInfoBoxComponent  prototypeOne={smallScreenProps.prototypeOne} imageId={smallScreenProps.imageId} imageIcon={smallScreenProps.imageIcon} imageDetectionTime={smallScreenProps.imageDetectionTime} ImageDetectionDate={smallScreenProps.ImageDetectionDate}/>  
             </CardContent>
         </Card>
     )
