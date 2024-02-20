@@ -4,7 +4,7 @@ import { Container,  Box } from '@mui/material'
 import { useState } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
-export default function PrototypeOne() {
+export default function PrototypeTwo() {
 
     interface detection {
         imageId: string,
@@ -13,8 +13,7 @@ export default function PrototypeOne() {
         imageDetectionContext: string,
         imageDetectionTime: string,
         ImageDetectionDate: string,
-        timeSinceDetection: string,
-        filterID: string
+        timeSinceDetection: string
     }
 
     const [selectedScreenIndex, setScreenIndex] = useState<number | null>(null);
@@ -23,9 +22,6 @@ export default function PrototypeOne() {
     const handleLargescreenSwap = (imageIndex: number) => {
         setScreenIndex(imageIndex)
     }
-    const handleDeleteDetection = (imageId: string) => {
-    }
-
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
         <Container>
@@ -33,10 +29,10 @@ export default function PrototypeOne() {
                 <TaskGoalsComponent />
             </Box>
             <Box sx={{ position: 'absolute', top: "5.55vh", left: "39.47vw", width: '45.26vw', height: '57.2vh'}}>            
-                <LargeScreenComponent prototypeOne={true} imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
+                <LargeScreenComponent imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
             </Box>
             <Box sx={{ position: 'absolute', top: "71.55vh", left: "1.56vw", right: '1.56vw', heigh: '11vh'}}>            
-                <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
+                <ScreensList setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
             </Box>
     </Container>
     )}
@@ -50,10 +46,10 @@ needs to b e made with a grid system but needs some adjusting to make it work an
         <TaskGoalsComponent />
     </Grid>
     <Grid item xs={12} md={6}>
-        <LargeScreenComponent prototypeOne={true} imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
+        <LargeScreenComponent imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
     </Grid>
     <Grid item xs={12}>
-        <ScreensList prototypeOne={false} setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
+        <ScreensList setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
     </Grid>
     </Grid>
 </Container> 
@@ -63,10 +59,10 @@ needs to b e made with a grid system but needs some adjusting to make it work an
         <TaskGoalsComponent />
     </Box>
     <Box sx={{ position: 'absolute', top: "5.55vh", left: "39.47vw", width: '45.26vw', height: '57.2vh'}}>            
-        <LargeScreenComponent prototypeOne={true} imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
+        <LargeScreenComponent imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
     </Box>
     <Box sx={{ position: 'absolute', top: "71.55vh", left: "1.56vw", right: '1.56vw', heigh: '11vh'}}>            
-        <ScreensList prototypeOne={false} setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
+        <ScreensList setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
     </Box>
 </Container>
 

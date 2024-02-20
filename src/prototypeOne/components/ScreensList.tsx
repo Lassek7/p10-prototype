@@ -3,6 +3,7 @@ import SmallScreenComponent from './SmallScreenComponent'
 import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
 import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
+import Styles from '../prototypeOneStyles/styles'
 
 interface detection {
     imageId: string,
@@ -11,7 +12,8 @@ interface detection {
     imageDetectionContext: string,
     imageDetectionTime: string,
     ImageDetectionDate: string,
-    timeSinceDetection: string
+    timeSinceDetection: string,
+    filterID: string
 }
 interface ScreensListProps {
     detectionsList: Array<detection>,
@@ -24,6 +26,14 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
     const [scrollDirection, setScrollDirection] = useState<'leftOnce' | 'rightOnce' |'left' | 'right' | null>(null);
     const timeoutId = useRef<number | null>(null);
     const [isSelected, setIsSelected] = useState<string| null>(null);
+    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detectionsList);
+    const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
+        {
+            Vehicle: true,
+            Person: true,
+            Item: true
+        }
+    );
 
     const handleScreenClick = (imageId: string, imageIndex: number) => {
         setIsSelected(imageId)
@@ -56,6 +66,7 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
             }
         }
     }
+    
     useEffect(() => {
         let scrollInterval: number | null = null;
         if (scrollDirection) {
@@ -68,6 +79,12 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
         }
     }, [scrollDirection]);
 
+    // Add a useEffect hook to filter the detections list
+useEffect(() => {
+    const newRenderedDetectionList = detectionsList.filter(detection => filterChoices[detection.filterID]);
+    setRenderedDetectionList(newRenderedDetectionList);
+}, [filterChoices, detectionsList]);
+
     return (
         <Card sx={{borderRadius: "16px"}}>
             <Grid container >
@@ -77,27 +94,29 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
                         <CardHeader title="All detections" align="left" />
                     </Grid>
                     <Grid item xs={1.5} md={1.5}>
-                        <Button variant='outlined' sx={{width: '9.8vw', height: '3.7vh', borderRadius: '100px', color: '#343323', borderColor: '#343323', fontSize: '10px'}}>
+                        <Button variant={filterChoices.Vehicle ? 'contained' : 'outlined'} sx={{...Styles.filterButtons, color: filterChoices.Vehicle ? '#FFFFFF' : '#343323'}} onClick={() => setFilterChoices(prev => ({...prev, Vehicle: !prev.Vehicle}))}>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Person sx={{ mr: 1 }}/>
+                                <DirectionsCar sx={{ mr: 1 }}/>
                                 Vehicle
                             </Box>
                         </Button>
                     </Grid>
                     <Grid item xs={1.5} md={1.5}>
-                        <Button variant='outlined' sx={{width: '9.8vw', height: '3.7vh', borderRadius: '100px', color: '#343323', borderColor: '#343323', fontSize: '10px'}}>
+                        <Button variant={filterChoices.Item ? 'contained' : 'outlined'} sx={{...Styles.filterButtons, color: filterChoices.Item ? '#FFFFFF' : '#343323'}} onClick={() => setFilterChoices(prev => ({...prev, Item: !prev.Item}))}>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <DryCleaning sx={{ mr: 1 }}/>
-                                Vehicle
+                                Personal item
                             </Box>
-                        </Button>                    </Grid>
+                        </Button>                    
+                    </Grid>
                     <Grid item xs={1.5} md={1.5}>
-                        <Button variant='outlined' sx={{width: '9.8vw', height: '3.7vh', borderRadius: '100px', color: '#343323', borderColor: '#343323', fontSize: '10px'}}>
+                        <Button variant={filterChoices.Person ? 'contained' : 'outlined'} sx={{...Styles.filterButtons, color: filterChoices.Person ? '#FFFFFF' : '#343323'}} onClick={() => setFilterChoices(prev => ({...prev, Person: !prev.Person}))}>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <DirectionsCar sx={{ mr: 1 }}/>
-                                Vehicle
+                                <Person sx={{ mr: 1 }}/>
+                                Person
                             </Box>
-                        </Button>                    </Grid>
+                        </Button>                    
+                    </Grid>
                     <Grid item xs={12} md={12}>
                     <Divider sx={{borderBottomWidth: 3}}/>
                     </Grid>
@@ -109,12 +128,12 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
                     </Grid>
                 )}    
                 <Grid item xs={12} md={0.4} sx={{display: 'flex'}}>
-                    <ArrowComponentLeft  onMouseDown={() => { scrollListOnce('leftOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('left'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }}  />
+                    <ArrowComponentLeft  onMouseDown={() => { scrollListOnce('leftOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('left'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
                 </Grid>
-                <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll", justifyContent:"space-between"}}>
-                        {detectionsList.map((detectionsList, index) => (
-                           <Box onClick={() => handleScreenClick(detectionsList.imageId, index)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", borderRadius: "16px" , marginTop: isSelected === detectionsList.imageId ? "0.84%" :  "1.56%"}}>
-                        <SmallScreenComponent prototypeOne={prototypeOne} imageUrl={detectionsList.imageUrl} imageId={detectionsList.imageId} imageIcon={detectionsList.imageIcon} imageDetectionContext={detectionsList.imageDetectionContext} imageDetectionTime={detectionsList.imageDetectionTime} ImageDetectionDate={detectionsList.ImageDetectionDate} timeSinceDetection={detectionsList.timeSinceDetection} isSelected={detectionsList.imageId === isSelected}/>
+                <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll"}}>
+                        {renderedDetectionList.map((renderedDetectionList, index) => (
+                           <Box onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", borderRadius: "16px" , marginTop: isSelected === renderedDetectionList.imageId ? "1%" :  "2.16%"}}>
+                        <SmallScreenComponent prototypeOne={prototypeOne} imageUrl={renderedDetectionList.imageUrl} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionContext={renderedDetectionList.imageDetectionContext} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} timeSinceDetection={renderedDetectionList.timeSinceDetection} isSelected={renderedDetectionList.imageId === isSelected}/>
                        </Box>
                          ))}
                 </Grid>

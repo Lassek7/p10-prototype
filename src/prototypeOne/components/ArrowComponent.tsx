@@ -1,6 +1,7 @@
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { Card } from '@mui/material';
+import Styles from '../prototypeOneStyles/styles';
 
 interface ArrowComponentProps {
     onMouseDown: () => void;
@@ -10,7 +11,7 @@ interface ArrowComponentProps {
 
 export function ArrowComponentLeft({onMouseDown, onMouseUp }: ArrowComponentProps) {
     return (
-        <Card  onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{height: '19.83vh', width: '3.125vw', display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: "1px 1px 4px 0px #909090", borderRadius: "0px" }}> 
+        <Card  onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{...Styles.ArrowComponent,boxShadow: "1px 1px 4px 0px #909090"}}> 
             <KeyboardDoubleArrowLeftIcon fontSize='large' sx={{color: '#343323', alignItems: 'center'}}/>
         </Card>
     )
@@ -19,7 +20,7 @@ export function ArrowComponentLeft({onMouseDown, onMouseUp }: ArrowComponentProp
 
 export  function ArrowComponentRight({  onMouseDown, onMouseUp }: ArrowComponentProps) {
     return (
-        <Card onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{height: '19.83vh', width: '3.125vw', display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: "-1px 1px 4px 0px #909090", borderRadius: "0px" }}> 
+        <Card onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{...Styles.ArrowComponent, boxShadow: "-1px 1px 4px 0px #909090"}}> 
             <KeyboardDoubleArrowRightIcon fontSize='large' sx={{color: '#343323', alignItems: 'center'}}/>
         </Card>
     )

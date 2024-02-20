@@ -19,16 +19,16 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
     return (
         <Box sx={Styles.screenInfoBox}>
             <Grid container direction="row" justifyContent="space-between" alignItems="start" >
-                <Grid item xs={3} md={3}>
+                <Grid item xs={!detection.prototypeOne ? 3 : 1} md={!detection.prototypeOne ? 3 : 1}> 
                     <Grid container direction="column" justifyContent="start">
                         <Grid item >
-                            <Typography fontWeight={700} fontSize={10} align="left">
+                            <Typography align="left" sx={{fontWeight: 700, fontSize: 15}}>
                                 {imageId}
                             </Typography>
                         </Grid>
                         {!detection.prototypeOne && (
                         <Grid item >
-                            <Typography align="left">
+                            <Typography align="left" sx={{fontWeight: 700, fontSize: 15}}>
                                 {imageIcon} {imageDetectionContext}
                             </Typography>
                         </Grid>
@@ -37,30 +37,30 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
                 </Grid>
                 {!detection.prototypeOne ? (
                     <Grid item container justifyContent="center" xs={6} md={6}>
-                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', mr: "1.56vw", color: '#0A84FF', borderColor: '#343323'}}>Investigate</Button>
-                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', color: '#0A84FF', borderColor: '#343323'}}>Delete</Button>
+                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
+                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
                     </Grid>
                     ) : (
                     <Grid item container justifyContent="center" xs={11} md={11}>
-                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', mr: "1.56vw", color: '#0A84FF', borderColor: '#343323'}}>Investigate</Button>
-                        <Button variant="outlined" sx={{width: '8.17vw', height: '5.5vh', borderRadius: '100px', color: '#0A84FF', borderColor: '#343323'}}>Delete</Button>
+                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
+                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
                     </Grid>
                 )}
                 {!detection.prototypeOne && (
                 <Grid item xs={3} md={3} >
                     <Grid container direction="column" justifyContent="flex-end">
                         <Grid item xs={12} md={12}>
-                            <Typography fontWeight={700} fontSize={10} align="right">
+                            <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
                                 {imageDetectionTime}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Typography fontWeight={700} fontSize={10} align="right">
+                            <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
                                 {ImageDetectionDate}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Typography fontWeight={700} fontSize={10} align="right">
+                            <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
                                 {timeSinceDetection}
                             </Typography>
                         </Grid>
@@ -93,12 +93,12 @@ export function SmallScreenInfoBoxComponent( detection: detection) {
                 <Grid item >
                     <Grid container direction="column" justifyContent="flex-end">
                         <Grid item xs={12} md={12}>
-                            <Typography fontWeight={700} fontSize={8} align="right">
+                            <Typography align="right" sx={{fontWeight: 700, fontSize: 8}}>
                                 {imageDetectionTime}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Typography fontWeight={700} fontSize={8} align="right">
+                            <Typography align="right" sx={{fontWeight: 700, fontSize: 8}}>
                                 {ImageDetectionDate}
                             </Typography>
                         </Grid>
