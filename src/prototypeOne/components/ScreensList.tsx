@@ -4,7 +4,7 @@ import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
 import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
-
+// current issue: filtering is selected when not shown
 interface detection {
     imageId: string,
     imageUrl: string,
@@ -13,15 +13,16 @@ interface detection {
     imageDetectionTime: string,
     ImageDetectionDate: string,
     timeSinceDetection: string,
-    filterID: string
+    filterID: string,
 }
 interface ScreensListProps {
-    detectionsList: Array<detection>,
+    detectionsList: Array<detection>, 
     setScreenIndex: (imageIndex: number) => void
     prototypeOne?: boolean
+    selectedScreenIndex: number | 0 
 }
 
-export default function ScreensList({ prototypeOne,detectionsList, setScreenIndex }: ScreensListProps) {
+export default function ScreensList({ prototypeOne,detectionsList, setScreenIndex, selectedScreenIndex }: ScreensListProps) {
     const listRef = useRef<HTMLDivElement>(null);
     const [scrollDirection, setScrollDirection] = useState<'leftOnce' | 'rightOnce' |'left' | 'right' | null>(null);
     const timeoutId = useRef<number | null>(null);
@@ -29,16 +30,11 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detectionsList);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
         {
-            Vehicle: true,
-            Person: true,
-            Item: true
-        }
-    );
+            Vehicle: false,
+            Person: false,
+            Item: false
+        });
 
-    const handleScreenClick = (imageId: string, imageIndex: number) => {
-        setIsSelected(imageId)
-        setScreenIndex(imageIndex)
-    }
     
     const scrollListOnce = (direction: 'leftOnce' | 'rightOnce') => {
         const scroll_distance = 317;
@@ -54,8 +50,8 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
                 });
             }
         }
-    }
-   
+    } 
+
     const continousScrollList = () => {
         if (listRef.current && scrollDirection) {
             const distance = 20; // Change this to the amount you want to scroll
@@ -66,7 +62,7 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
             }
         }
     }
-    
+
     useEffect(() => {
         let scrollInterval: number | null = null;
         if (scrollDirection) {
@@ -78,12 +74,27 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
             }
         }
     }, [scrollDirection]);
+   
+    const handleScreenClick = (imageId: string, imageIndex: number) => {
+        if (imageIndex != null && imageId != null) {
+            setIsSelected(imageId)
+            setScreenIndex(imageIndex)
+        } else {
+            setScreenIndex(0)
+            setIsSelected(null)
+        }
 
-    // Add a useEffect hook to filter the detections list
-useEffect(() => {
-    const newRenderedDetectionList = detectionsList.filter(detection => filterChoices[detection.filterID]);
-    setRenderedDetectionList(newRenderedDetectionList);
-}, [filterChoices, detectionsList]);
+    }   
+
+
+    useEffect(() => {
+        const newRenderedDetectionList = detectionsList.filter(detection => filterChoices[detection.filterID]);
+        setRenderedDetectionList(newRenderedDetectionList);
+        if (!filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item) {
+            setRenderedDetectionList(detectionsList);
+        }
+        setIsSelected(detectionsList[selectedScreenIndex].imageId)
+    }, [filterChoices, detectionsList]);
 
     return (
         <Card sx={{borderRadius: "16px"}}>

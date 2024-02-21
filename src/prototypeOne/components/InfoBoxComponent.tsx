@@ -4,18 +4,29 @@ import Styles from '../prototypeOneStyles/styles';
 
 
 interface detection {
-    showButtons?: boolean
-    prototypeOne?: boolean
+    showButtons?: boolean,
+    prototypeOne?: boolean,
     imageId: string,
     imageIcon: JSX.Element,
     imageDetectionContext?: string,
     imageDetectionTime: string,
     ImageDetectionDate: string,
     timeSinceDetection?: string,
+    index: number,
+    onDeleteClick: (imageIndex: number) => void,
+    onInvestigateClick: (imageIndex: number) => void,
 }
+
+
 
 export function LargeScreenInfoBoxComponent( detection: detection) {
     const { imageId, imageIcon, imageDetectionContext, imageDetectionTime, ImageDetectionDate, timeSinceDetection } = detection;
+    const handleDeleteClick = (imageIndex: number) => {
+        detection.onDeleteClick(imageIndex)
+    }
+    const handleInvestigateClick = (imageIndex: number) => {
+        detection.onInvestigateClick(imageIndex)
+    }
     return (
         <Box sx={Styles.screenInfoBox}>
             <Grid container direction="row" justifyContent="space-between" alignItems="start" >
@@ -37,13 +48,13 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
                 </Grid>
                 {!detection.prototypeOne ? (
                     <Grid item container justifyContent="center" xs={6} md={6}>
-                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
-                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
+                        <Button onClick={() =>handleInvestigateClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
+                        <Button onClick={() =>handleDeleteClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
                     </Grid>
                     ) : (
                     <Grid item container justifyContent="center" xs={11} md={11}>
-                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
-                        <Button variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
+                        <Button onClick={() =>handleInvestigateClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
+                        <Button onClick={() =>handleDeleteClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
                     </Grid>
                 )}
                 {!detection.prototypeOne && (

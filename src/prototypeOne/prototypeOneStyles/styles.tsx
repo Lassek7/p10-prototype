@@ -36,7 +36,10 @@ const filterButtons: SxProps<Theme> = {
     height: '3.7vh', 
     borderRadius: '100px',
     borderColor: '#343323', 
-    fontSize: '10px'
+    fontSize: '10px',
+    '&:focus': {
+        outline: 'none',
+      },
 }
 // SmallScreen Styles
 const smallScreen: SxProps<Theme> = {
