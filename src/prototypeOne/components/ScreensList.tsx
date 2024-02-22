@@ -4,7 +4,7 @@ import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
 import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
-// current issue: filtering is selected when not shown
+// current issue: filtering is selected when not shown. crashes when out of bounds
 interface detection {
     imageId: string,
     imageUrl: string,
@@ -16,24 +16,21 @@ interface detection {
     filterID: string,
 }
 interface ScreensListProps {
-    detectionsList: Array<detection>, 
     setScreenIndex: (imageIndex: number) => void
     prototypeOne?: boolean
-    selectedScreenIndex: number | 0 
+    renderedDetectionList: Array<detection> 
+    setRenderedDetectionList: (detectionsList: Array<detection>) => void
+    filterChoices: {[key: string]: boolean}
+    setFilterChoices: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
+    setIsSelected: React.Dispatch<React.SetStateAction<string | null>>;
+    isSelected: string | null
+
 }
 
-export default function ScreensList({ prototypeOne,detectionsList, setScreenIndex, selectedScreenIndex }: ScreensListProps) {
+export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelected, isSelected, filterChoices, setFilterChoices, renderedDetectionList}: ScreensListProps) {
     const listRef = useRef<HTMLDivElement>(null);
     const [scrollDirection, setScrollDirection] = useState<'leftOnce' | 'rightOnce' |'left' | 'right' | null>(null);
     const timeoutId = useRef<number | null>(null);
-    const [isSelected, setIsSelected] = useState<string| null>(null);
-    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detectionsList);
-    const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
-        {
-            Vehicle: false,
-            Person: false,
-            Item: false
-        });
 
     
     const scrollListOnce = (direction: 'leftOnce' | 'rightOnce') => {
@@ -80,21 +77,11 @@ export default function ScreensList({ prototypeOne,detectionsList, setScreenInde
             setIsSelected(imageId)
             setScreenIndex(imageIndex)
         } else {
-            setScreenIndex(0)
             setIsSelected(null)
+            setScreenIndex(0)
         }
 
     }   
-
-
-    useEffect(() => {
-        const newRenderedDetectionList = detectionsList.filter(detection => filterChoices[detection.filterID]);
-        setRenderedDetectionList(newRenderedDetectionList);
-        if (!filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item) {
-            setRenderedDetectionList(detectionsList);
-        }
-        setIsSelected(detectionsList[selectedScreenIndex].imageId)
-    }, [filterChoices, detectionsList]);
 
     return (
         <Card sx={{borderRadius: "16px"}}>
