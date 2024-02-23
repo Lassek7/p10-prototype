@@ -30,8 +30,8 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
     return (
         <Box sx={Styles.screenInfoBox}>
             <Grid container direction="row" justifyContent="space-between" alignItems="start" >
-                <Grid item xs={!detection.prototypeOne ? 3 : 1} md={!detection.prototypeOne ? 3 : 1}> 
-                    <Grid container direction="column" justifyContent="start">
+                <Grid item xs={!detection.prototypeOne ? 3 : 1} md={!detection.prototypeOne ? 3 : 1} style={{height: "100%"}}> 
+                    <Grid container direction="column" justifyContent="space-between" style={{height: "150%"}}>
                         <Grid item >
                             <Typography align="left" sx={{fontWeight: 700, fontSize: 15}}>
                                 {imageId}
@@ -58,8 +58,8 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
                     </Grid>
                 )}
                 {!detection.prototypeOne && (
-                <Grid item xs={3} md={3} >
-                    <Grid container direction="column" justifyContent="flex-end">
+                <Grid item xs={3} md={3}  justifyContent={"space-between"} >
+                    <Grid container direction="column" justifyContent="space-between" style={{height: "100%"}}>
                         <Grid item xs={12} md={12}>
                             <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
                                 {imageDetectionTime}
@@ -70,7 +70,7 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
                                 {ImageDetectionDate}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} md={12}>
+                        <Grid item xs={12} md={12} >
                             <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
                                 {timeSinceDetection}
                             </Typography>

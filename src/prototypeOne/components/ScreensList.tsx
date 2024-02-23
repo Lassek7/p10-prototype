@@ -130,7 +130,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                 </Grid>
                 <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll"}}>
                         {renderedDetectionList.map((renderedDetectionList, index) => (
-                           <Box onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", borderRadius: "16px" , marginTop: isSelected === renderedDetectionList.imageId ? "1%" :  "2.16%"}}>
+                           <Box key={index} onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", borderRadius: "16px" , marginTop: isSelected === renderedDetectionList.imageId ? "1%" :  "2.16%"}}>
                         <SmallScreenComponent prototypeOne={prototypeOne} imageUrl={renderedDetectionList.imageUrl} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionContext={renderedDetectionList.imageDetectionContext} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} timeSinceDetection={renderedDetectionList.timeSinceDetection} isSelected={renderedDetectionList.imageId === isSelected}/>
                        </Box>
                          ))}

@@ -1,7 +1,7 @@
 import Styles from '../prototypeOneStyles/styles';
 import { Card, CardMedia, CardContent, Divider } from '@mui/material';
 import {LargeScreenInfoBoxComponent} from './InfoBoxComponent';
-import { detections } from './mockDataDetections';
+import { Person } from '@mui/icons-material';
 
 interface detection {
     imageId: string,
@@ -31,13 +31,28 @@ export default function LargeScreenComponent({prototypeOne, imageIndex, rendered
         onInvestigateClick(imageIndex)
     }
 
+    if (imageIndex === -1) {
+        imageIndex = 0;
+    }
+    const isEmpty = renderedDetectionsList.length === 0;
 
-    return (
+    return ( // change test parameters to what we want in the screen if its empty
         <Card sx={Styles.largeScreen}>  
-                <CardMedia component="img" sx={{ height: '80.59%' }} image={renderedDetectionsList[imageIndex].imageUrl} alt='Image' /> 
-                <Divider />
+            <CardMedia component="img" sx={{ height: '80.59%' }} image={isEmpty ? "https://source.unsplash.com/random" : renderedDetectionsList[imageIndex].imageUrl} alt='Image' /> 
+            <Divider />
             <CardContent >
-              <LargeScreenInfoBoxComponent onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} prototypeOne={prototypeOne} imageId={renderedDetectionsList[imageIndex].imageId} imageIcon={renderedDetectionsList[imageIndex].imageIcon} imageDetectionContext={renderedDetectionsList[imageIndex].imageDetectionContext} imageDetectionTime={renderedDetectionsList[imageIndex].imageDetectionTime} ImageDetectionDate={renderedDetectionsList[imageIndex].ImageDetectionDate} timeSinceDetection={renderedDetectionsList[imageIndex].timeSinceDetection} index={imageIndex} />  
+                <LargeScreenInfoBoxComponent 
+                    onDeleteClick={handleDeleteClick} 
+                    onInvestigateClick={handleInvestigateClick} 
+                    prototypeOne={prototypeOne} 
+                    imageId={isEmpty ? "test" : renderedDetectionsList[imageIndex].imageId} 
+                    imageIcon={isEmpty ? <Person /> : renderedDetectionsList[imageIndex].imageIcon} 
+                    imageDetectionContext={isEmpty ? "test" : renderedDetectionsList[imageIndex].imageDetectionContext} 
+                    imageDetectionTime={isEmpty ? "test" : renderedDetectionsList[imageIndex].imageDetectionTime} 
+                    ImageDetectionDate={isEmpty ? "test" : renderedDetectionsList[imageIndex].ImageDetectionDate} 
+                    timeSinceDetection={isEmpty ? "test" : renderedDetectionsList[imageIndex].timeSinceDetection} 
+                    index={imageIndex} 
+                />  
             </CardContent>
         </Card>
     )

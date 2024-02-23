@@ -1,7 +1,7 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
 import { Container,  Box } from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 export default function PrototypeOne() {
@@ -19,22 +19,51 @@ export default function PrototypeOne() {
 
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
+    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
+    const [isSelected, setIsSelected] = useState<string| null>(null);
+    const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
+        {
+            Vehicle: false,
+            Person: false,
+            Item: false
+        });
+
 
 
     const handleLargescreenSwap = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
     }
-    const handleDeleteClick = (imageIndex: number) => {
-        if (AllDetections.length === 1){
-            setAllDetections(detections) // modify for what we want it to do after no detections are left, if that happens. this avoids system crash if all detections are removed, currenlty crashes if the last item in the list is deleted unless it is the last of all. i think it is because it set the new index to the same position and if that does not exst.. dead
-        }
-        else{            
-            setAllDetections(AllDetections.filter((_, index) => index !== imageIndex))
-        }
+    const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
+        let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
+        let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
+        setRenderedDetectionList(newRenderedDetectionList);
+        setAllDetections(newAllDetections);
+        console.log(newRenderedDetectionList.length)
+        // If the selected index is out of bounds, sets it one lower
+        if (selectedScreenIndex >= newRenderedDetectionList.length ) {
+            setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
+        } 
     }
     const handleInvestigateClick = (imageIndex: number) => {
-        setAllDetections(AllDetections.filter((_, index) => index !== imageIndex))
+        let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
+        let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
+        setRenderedDetectionList(newRenderedDetectionList);
+        setAllDetections(newAllDetections);
+
+        // If the selected index is out of bounds:
+        if (selectedScreenIndex >= newRenderedDetectionList.length ) {
+            setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
+           // setSelectedScreenIndex(0); // set it to zero
+        } 
     }
+
+    useEffect(() => {
+        if (renderedDetectionList[selectedScreenIndex]) {
+            setIsSelected(renderedDetectionList[selectedScreenIndex].imageId)
+        } else {
+            setIsSelected(renderedDetectionList[0]?.imageId); // reset to position 1 if the list gets emptied and reset
+        }
+    }, [AllDetections]);
 
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
@@ -43,10 +72,10 @@ export default function PrototypeOne() {
                 <TaskGoalsComponent />
             </Box>
             <Box sx={{ position: 'absolute', top: "5.55vh", left: "39.47vw", width: '45.26vw', height: '57.2vh'}}>            
-                <LargeScreenComponent prototypeOne={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
+                <LargeScreenComponent prototypeOne={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
             </Box>
             <Box sx={{ position: 'absolute', top: "71.55vh", left: "1.56vw", right: '1.56vw', heigh: '11vh'}}>            
-                <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections} selectedScreenIndex={selectedScreenIndex} />
+                <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>
             </Box>
     </Container>
     )}
