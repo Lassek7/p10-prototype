@@ -39,10 +39,20 @@ export default function PrototypeTwo() {
         setRenderedDetectionList(newRenderedDetectionList);
         setAllDetections(newAllDetections);
         console.log(newRenderedDetectionList.length)
+
         // If the selected index is out of bounds, sets it one lower
         if (selectedScreenIndex >= newRenderedDetectionList.length ) {
-            setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
+            setSelectedScreenIndex(newRenderedDetectionList.length-1); // if the last item in the list is deleted, it set the selected index to the new last item (1 below previous index)
+            // setSelectedScreenIndex(0); // set it to zero
+
         } 
+        
+        if (newRenderedDetectionList.length === 0 && renderedDetectionList.length != AllDetections.length) { //ensures that if all detections in a filter are deleted, the remainder of the other detections are rendered, the last part of the condition ensures that the last item in the list is not displayed even though its supposed to be deleted
+            filterChoices.Vehicle = false
+            filterChoices.Person =false
+            filterChoices.Item = false
+            setRenderedDetectionList(AllDetections);
+        }
     }
     const handleInvestigateClick = (imageIndex: number) => {
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
@@ -55,9 +65,16 @@ export default function PrototypeTwo() {
             setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
            // setSelectedScreenIndex(0); // set it to zero
         } 
+                
+        if (newRenderedDetectionList.length === 0 && renderedDetectionList.length != AllDetections.length) {
+            filterChoices.Vehicle = false
+            filterChoices.Person =false
+            filterChoices.Item = false
+            setRenderedDetectionList(AllDetections);
+        }
     }
-    
-    useEffect(() => {
+
+    useEffect(() => { // controls filtering of the list
         const newRenderedDetectionList = AllDetections.filter(AllDetections => filterChoices[AllDetections.filterID]);
     
         // If no filter is selected, show all
@@ -92,7 +109,7 @@ export default function PrototypeTwo() {
             // Update renderedDetectionList after updating selectedScreenIndex and isSelected
             setRenderedDetectionList(newRenderedDetectionList);
         }
-    }, [filterChoices]);
+    }, [filterChoices]); // whenever the filterChoices change, this effect will run
 
     useEffect(() => {
         if (renderedDetectionList[selectedScreenIndex]) {
