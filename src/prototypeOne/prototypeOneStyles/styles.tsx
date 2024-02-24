@@ -26,7 +26,7 @@ const largeScreen: SxProps<Theme> = {
     display: 'flex', 
     flexDirection: 'column' 
 }
-const screenInfoBox: SxProps<Theme> = {
+const largeScreenInfoBox: SxProps<Theme> = {
     backgroundColor: '#F1F2F2',
     color: 'black',
     height: '100%',
@@ -82,18 +82,24 @@ const smallScreen = (isSelected: boolean): SxProps<Theme> => ({
      
 })
 
-const smallInfoBoxTextAlignment: SxProps<Theme> = { //change to adjust height of tex placement
-    marginTop: 0,
+const smallSceenInfoBox: SxProps<Theme> = { //change to adjust height of tex placement
+    color: 'black',
+    height: '100%',
+    Direction: 'row', 
+    alignItems: 'flex-start', 
+    justifyContent: 'space-between' 
 }
 
 const smallInfoBoxTypographyRight: SxProps<Theme> = { //might combine this and the left with a boolean
     fontSize: 8,
-    fontWeight: 700
+    fontWeight: 700,
+    
         
 }
 const smallInfoBoxTypographyLeft: SxProps<Theme> = {
     fontSize: 13,
-    fontWeight: 700
+    fontWeight: 700,
+    aliign: 'left'
         
 }
 
@@ -132,7 +138,7 @@ const ScreensList: SxProps<Theme> = {
 const Styles = {
     smallScreen: smallScreen,
     largeScreen: largeScreen,
-    screenInfoBox: screenInfoBox,
+    largeScreenInfoBox: largeScreenInfoBox,
     taskGoalCard: taskGoalCard,
     InfoBoxButton: InfoBoxButton,  
     ArrowComponent: ArrowComponent,
@@ -141,7 +147,7 @@ const Styles = {
     smallInfoBoxTypographyRight: smallInfoBoxTypographyRight,
     smallInfoBoxTypographyLeft: smallInfoBoxTypographyLeft,
     largeInfoBoxTypography: largeInfoBoxTypography,
-    smallInfoBoxTextAlignment: smallInfoBoxTextAlignment,
+    smallSceenInfoBox: smallSceenInfoBox,
     largeInfoBoxTypographyId: largeInfoBoxTypographyId
 
 }
