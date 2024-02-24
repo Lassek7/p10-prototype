@@ -1,19 +1,37 @@
 import { SxProps, Theme } from '@mui/system';
+import { createTheme } from '@mui/material/styles';
 
-// prototypeLayoutStyles
-const prototypeLayout: SxProps<Theme> = {
-    
-}
+const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,     // xs screens of 0px and up
+        sm: 600,   // sm screens of 600px and up
+        md: 900,   // md screens of 900px and up
+        lg: 1200,  // lg screens of 1200px and up
+        xl: 1920   // xl screens of 1920px and up
+      },
+    },
+  });
 
 // Large Screen Styles
 const largeScreen: SxProps<Theme> = {
     color: '#f5f5f5',
     backgroundColor: '#F1F2F2',
-    height: '100%',
-    width: '100%',
+    position: 'absolute', 
+    top: "5.55vh", 
+    left: "39.47vw",
+    width: '45.26vw', 
+    height: '57.268vh',
     borderRadius: "16px",
     display: 'flex', 
     flexDirection: 'column' 
+}
+const screenInfoBox: SxProps<Theme> = {
+    backgroundColor: '#F1F2F2',
+    color: 'black',
+    height: '100%',
+
+
 }
 const InfoBoxButton: SxProps<Theme> = {
     width: '8.17vw', 
@@ -30,56 +48,88 @@ const InfoBoxButton: SxProps<Theme> = {
         xl: '18px',  // font size for xl screens of 1920px and up
     },
 }
+const largeInfoBoxTypography: SxProps<Theme> = {
+    fontSize: 13,
+    fontWeight: 700, 
+     
+}
+const largeInfoBoxTypographyId: SxProps<Theme> = {
+    fontSize: 15,
+    fontWeight: 700
+}
+
 // Styles detectionList
 const filterButtons: SxProps<Theme> = {
-    width: '9.8vw', 
-    height: '3.7vh', 
+    width: '79.785%', // calculated by width of container / 12 * grid size alloted and then what percentage of the grid it covers.
     borderRadius: '100px',
-    borderColor: '#343323', 
+    borderColor: '#343323',
     fontSize: '10px',
     '&:focus': {
         outline: 'none',
       },
 }
 // SmallScreen Styles
-const smallScreen: SxProps<Theme> = {
-    width: '11vw',
-    height: '14vh',
+const smallScreen = (isSelected: boolean): SxProps<Theme> => ({ 
+    width: '11.71vw',
+    height: '14.26vh',
     boxSizing: 'border-box',
     borderRadius: "16px",   
-    boxShadow: "0px 0px 3px 0px #000000", // horizontal, vertical, blur, spread, color 
+    boxShadow: "0px 0px 3px 0px #000000", 
+    marginTop: isSelected ? "5.37%" : "10.75%",
+    border: isSelected ? '3px solid red' : 'none',
+    marginLeft: "0.84vw",
+    marginRight: "0.84vw",
+     
+})
+
+const smallInfoBoxTextAlignment: SxProps<Theme> = { //change to adjust height of tex placement
+    marginTop: 0,
 }
-const screenInfoBox: SxProps<Theme> = {
-    backgroundColor: '#F1F2F2',
-    color: 'black',
-    height: '100%',
-    width: '100%',
-    display: 'flex', 
-    flexDirection: 'row', 
-    justifyContent: 'space-between',
+
+const smallInfoBoxTypographyRight: SxProps<Theme> = { //might combine this and the left with a boolean
+    fontSize: 8,
+    fontWeight: 700
+        
 }
+const smallInfoBoxTypographyLeft: SxProps<Theme> = {
+    fontSize: 13,
+    fontWeight: 700
+        
+}
+
+
 // TaskGoal Card Styles
 const taskGoalCard: SxProps<Theme> = {
-    height: '100%',
-    width: '100%',
-    top: '50%',
-    left: '50%',
+    position: 'absolute', 
+    top: "1.56vh", 
+    left: "1.56vw", 
+    width: '22.69vw', 
+    height: '62.82vh',
     borderRadius: "16px",
 }
 // ArrowComponent Styles
 const ArrowComponent: SxProps<Theme> = {
-    height: '19.83vh', 
-    width: '3.125vw', 
+    height: '100%', 
+    width: '100%', 
     display: 'flex', 
     justifyContent: 'center', 
-    alignItems: 'center', 
+    alignItems: 'center',
+    borderRadius: "0px", 
+
 }
 
+const ScreensList: SxProps<Theme> = {
+    position: 'absolute', 
+    left: "1.56vw", 
+    right: '1.56vw', 
+    bottom: '2.77vh',
+    height: '26.06vh',
+    borderRadius: "16px",
+}
 
 
 // Styles export Object
 const Styles = {
-    prototypeLayout: prototypeLayout,
     smallScreen: smallScreen,
     largeScreen: largeScreen,
     screenInfoBox: screenInfoBox,
@@ -87,6 +137,13 @@ const Styles = {
     InfoBoxButton: InfoBoxButton,  
     ArrowComponent: ArrowComponent,
     filterButtons: filterButtons,
+    ScreensList: ScreensList,
+    smallInfoBoxTypographyRight: smallInfoBoxTypographyRight,
+    smallInfoBoxTypographyLeft: smallInfoBoxTypographyLeft,
+    largeInfoBoxTypography: largeInfoBoxTypography,
+    smallInfoBoxTextAlignment: smallInfoBoxTextAlignment,
+    largeInfoBoxTypographyId: largeInfoBoxTypographyId
+
 }
 
 

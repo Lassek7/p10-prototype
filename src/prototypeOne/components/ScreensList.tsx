@@ -1,8 +1,9 @@
-import { Grid, Card, Box, CardHeader, Divider, Button } from '@mui/material'
+import { Grid, Card, Box, CardHeader, Divider, Button, CardContent, Typography, CardActions, CardMedia, hexToRgb } from '@mui/material'
 import SmallScreenComponent from './SmallScreenComponent'
+import { SmallScreenInfoBoxComponent } from './InfoBoxComponent'
 import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
-import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
+import { DryCleaning, Person, DirectionsCar, Padding, Height } from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
 // current issue: filtering is selected when not shown. crashes when out of bounds
 interface detection {
@@ -84,11 +85,11 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
     }   
 
     return (
-        <Card sx={{borderRadius: "16px"}}>
-            <Grid container >
+        <Card sx={Styles.ScreensList}>
+            <Grid container sx={{height: '100%'}}>
             {!prototypeOne ? (
-                <Grid container justifyContent={'space-between'} alignItems={'center'} sx={{display: 'flex'}}>
-                    <Grid item xs={7.5} md={7.5}>
+                <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25.09%'}}>
+                    <Grid item xs={7.5} md={7.5} >
                         <CardHeader title="All detections" align="left" />
                     </Grid>
                     <Grid item xs={1.5} md={1.5}>
@@ -115,28 +116,38 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                             </Box>
                         </Button>                    
                     </Grid>
-                    <Grid item xs={12} md={12}>
-                    <Divider sx={{borderBottomWidth: 3}}/>
-                    </Grid>
+
                 </Grid>
                 ) : (
-                    <Grid item xs={12} md={12}>
-                        <CardHeader title="All detections" align="left" />
-                        <Divider sx={{borderBottomWidth: 3}}/>
+                    <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25.09%'}}>
+                        <Grid item xs={12} md={12} >
+                            <CardHeader title="All detections" align="left"  />
+                        </Grid>
                     </Grid>
-                )}    
-                <Grid item xs={12} md={0.4} sx={{display: 'flex'}}>
-                    <ArrowComponentLeft  onMouseDown={() => { scrollListOnce('leftOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('left'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
-                </Grid>
-                <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll"}}>
-                        {renderedDetectionList.map((renderedDetectionList, index) => (
-                           <Box key={index} onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{ marginLeft: "1.56%", marginBottom: ".84%", borderRadius: "16px" , marginTop: isSelected === renderedDetectionList.imageId ? "1%" :  "2.16%"}}>
-                        <SmallScreenComponent prototypeOne={prototypeOne} imageUrl={renderedDetectionList.imageUrl} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionContext={renderedDetectionList.imageDetectionContext} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} timeSinceDetection={renderedDetectionList.timeSinceDetection} isSelected={renderedDetectionList.imageId === isSelected}/>
-                       </Box>
-                         ))}
-                </Grid>
-                <Grid item xs={12} md={0.4} sx={{display: 'flex'}}>
-                    <ArrowComponentRight  onMouseDown={() => { scrollListOnce('rightOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('right'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
+                )}  
+                    <Grid item xs={12}  >
+                         <Divider sx={{borderBottomWidth: 3}}/>
+                    </Grid>  
+                <Grid container sx={{display: 'flex', height: '76.0%'}}>
+                    <Grid item xs={12} md={0.4} sx={{display: 'flex' }}>
+                        <ArrowComponentLeft  onMouseDown={() => { scrollListOnce('leftOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('left'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
+                    </Grid>
+                    <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll"}}>
+                            {renderedDetectionList.map((renderedDetectionList, index) => (
+                                <Box key={index} >
+                                    <Card onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{...Styles.smallScreen(isSelected === renderedDetectionList.imageId)}} >  
+                                        <CardMedia component="img" sx={{height: '72.4%', objectFit: 'cover' }} image={renderedDetectionList.imageUrl} alt='Image' /> 
+                                        <Divider />
+                                        <CardContent >
+                                             <SmallScreenInfoBoxComponent  prototypeOne={prototypeOne} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} index = {0} onDeleteClick={() => {}} onInvestigateClick={ () => {}}/>  
+                                        </CardContent>
+                                    </Card>
+                                </Box>
+                            ))}
+                    </Grid>
+                    <Grid item xs={12} md={0.4} >
+                        <ArrowComponentRight  onMouseDown={() => { scrollListOnce('rightOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('right'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
+                    </Grid>
                 </Grid>
             </Grid>
             <style>{`::-webkit-scrollbar { display: none; }`}</style>

@@ -27,5 +27,3 @@ export  function ArrowComponentRight({  onMouseDown, onMouseUp }: ArrowComponent
 }
 
 
-// component may or may not be needing a file of its own, but it might be a good idea to keep it here, incase a lot of code gets added with functionality.
-// shadow needs fixing, it goes above as well as right/left

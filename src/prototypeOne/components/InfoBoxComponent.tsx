@@ -28,18 +28,17 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
         detection.onInvestigateClick(imageIndex)
     }
     return (
-        <Box sx={Styles.screenInfoBox}>
-            <Grid container direction="row" justifyContent="space-between" alignItems="start" >
-                <Grid item xs={!detection.prototypeOne ? 3 : 1} md={!detection.prototypeOne ? 3 : 1} style={{height: "100%"}}> 
-                    <Grid container direction="column" justifyContent="space-between" style={{height: "150%"}}>
+            <Grid container sx={Styles.screenInfoBox}>
+                <Grid item xs={!detection.prototypeOne ? 3 : 1} >
+                    <Grid container  direction="column" justifyContent="space-between" alignItems="flex-start"  style={{  height: '100%'}}>
                         <Grid item >
-                            <Typography align="left" sx={{fontWeight: 700, fontSize: 15}}>
+                            <Typography sx={Styles.largeInfoBoxTypographyId}>
                                 {imageId}
                             </Typography>
                         </Grid>
                         {!detection.prototypeOne && (
-                        <Grid item >
-                            <Typography align="left" sx={{fontWeight: 700, fontSize: 15}}>
+                        <Grid item sx={{ marginBottom: -2}}>
+                            <Typography  sx={Styles.largeInfoBoxTypography}>
                                 {imageIcon} {imageDetectionContext}
                             </Typography>
                         </Grid>
@@ -47,49 +46,40 @@ export function LargeScreenInfoBoxComponent( detection: detection) {
                     </Grid>
                 </Grid>
                 {!detection.prototypeOne ? (
-                    <Grid item container justifyContent="center" xs={6} md={6}>
+                    <Grid item container sx={{ Direction: 'row', justifyContent:"center", alignItems:"center", marginTop: '1.5%'}}  xs={6} >
                         <Button onClick={() =>handleInvestigateClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
                         <Button onClick={() =>handleDeleteClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
                     </Grid>
                     ) : (
-                    <Grid item container justifyContent="center" xs={11} md={11}>
+                    <Grid item container sx={{ Direction: 'row', justifyContent:"center", alignItems:"center"}} xs={11} >
                         <Button onClick={() =>handleInvestigateClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Investigate</Button>
                         <Button onClick={() =>handleDeleteClick(detection.index)} variant="outlined" sx={Styles.InfoBoxButton}>Delete</Button>
                     </Grid>
                 )}
                 {!detection.prototypeOne && (
-                <Grid item xs={3} md={3}  justifyContent={"space-between"} >
-                    <Grid container direction="column" justifyContent="space-between" style={{height: "100%"}}>
-                        <Grid item xs={12} md={12}>
-                            <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
-                                {imageDetectionTime}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} md={12}>
-                            <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
-                                {ImageDetectionDate}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} md={12} >
-                            <Typography align="right" sx={{fontWeight: 700, fontSize: 15}}>
-                                {timeSinceDetection}
-                            </Typography>
-                        </Grid>
-                    </Grid>   
-                </Grid>   
+                    <Grid item xs={3}  sx={{  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end', marginBottom: -2}}>
+                        <Typography sx={Styles.largeInfoBoxTypography}>
+                            {imageDetectionTime}
+                        </Typography>
+                        <Typography  sx={Styles.largeInfoBoxTypography}>
+                            {ImageDetectionDate}
+                        </Typography>
+                        <Typography  sx={Styles.largeInfoBoxTypography}>
+                            {timeSinceDetection}
+                        </Typography>
+                    </Grid>
                 )}  
             </Grid>
-        </Box>
     )
 }
 
 export function SmallScreenInfoBoxComponent( detection: detection) {
     const { imageId, imageIcon, imageDetectionTime, ImageDetectionDate } = detection;
     return (
-        <Box >
-            <Grid container direction="row" justifyContent="space-between" alignItems="start" >
-                <Grid item >
-                    <Typography fontWeight={700} fontSize={13} align="left">
+        <Box sx={Styles.smallInfoBoxTextAlignment}>
+            <Grid container sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}  >
+                <Grid item>
+                    <Typography align="left" sx={Styles.smallInfoBoxTypographyLeft}>
                         {imageId}
                     </Typography>
                 </Grid>
@@ -102,14 +92,14 @@ export function SmallScreenInfoBoxComponent( detection: detection) {
                 )}
                 {!detection.prototypeOne && (
                 <Grid item >
-                    <Grid container direction="column" justifyContent="flex-end">
+                    <Grid container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right', justifyContent: 'center'}} direction="column">
                         <Grid item xs={12} md={12}>
-                            <Typography align="right" sx={{fontWeight: 700, fontSize: 8}}>
+                            <Typography align="right" sx={Styles.smallInfoBoxTypographyRight}>
                                 {imageDetectionTime}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Typography align="right" sx={{fontWeight: 700, fontSize: 8}}>
+                            <Typography align="right" sx={Styles.smallInfoBoxTypographyRight}>
                                 {ImageDetectionDate}
                             </Typography>
                         </Grid>

@@ -1,6 +1,6 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
-import { Container,  Box } from '@mui/material'
+import { Container,  Box, Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
@@ -122,46 +122,17 @@ export default function PrototypeTwo() {
 
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
-        <Container>
-            <Box sx={{position: 'absolute', top: "1.56vh", left: "1.56vw", width: '22.69vw', height: '62.8%'}}> 
+        <Grid container>
+            <Grid item xs={12} md={6}>
                 <TaskGoalsComponent />
-            </Box>
-            <Box sx={{ position: 'absolute', top: "5.55vh", left: "39.47vw", width: '45.26vw', height: '57.2vh'}}>            
+            </Grid>
+            <Grid item xs={12} md={6}>
                 <LargeScreenComponent onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
-            </Box>
-            <Box sx={{ position: 'absolute', top: "71.55vh", left: "1.56vw", right: '1.56vw', heigh: '11vh'}}>            
-                <ScreensList setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>
-            </Box>
-    </Container>
-    )}
+            </Grid>
+            <Grid item xs={12}>
+                <ScreensList setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
+            </Grid>
+        </Grid>
+    )
+}
     
-
-/* 
-needs to b e made with a grid system but needs some adjusting to make it work and look the same         
-
-<Container>
-    <Grid item xs={12} md={6}>
-        <TaskGoalsComponent />
-    </Grid>
-    <Grid item xs={12} md={6}>
-        <LargeScreenComponent imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
-    </Grid>
-    <Grid item xs={12}>
-        <ScreensList setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
-    </Grid>
-    </Grid>
-</Container> 
-
-<Container>
-    <Box sx={{position: 'absolute', top: "1.56vh", left: "1.56vw", width: '22.69vw', height: '62.8%'}}>
-        <TaskGoalsComponent />
-    </Box>
-    <Box sx={{ position: 'absolute', top: "5.55vh", left: "39.47vw", width: '45.26vw', height: '57.2vh'}}>            
-        <LargeScreenComponent imageIndex={selectedScreenIndex} detectionsList={AllDetections}/>
-    </Box>
-    <Box sx={{ position: 'absolute', top: "71.55vh", left: "1.56vw", right: '1.56vw', heigh: '11vh'}}>            
-        <ScreensList setScreenIndex={handleLargescreenSwap} detectionsList={AllDetections}/>
-    </Box>
-</Container>
-
-*/
