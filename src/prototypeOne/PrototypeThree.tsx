@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import AlertBox from './components/AlertBox'
+import PersonIcon from '@mui/icons-material/Person';
+
 export default function PrototypeThree() {
 
     interface detection {
@@ -29,8 +31,6 @@ export default function PrototypeThree() {
             Person: false,
             Item: false
         });
-
-
 
     const handleLargescreenSwap = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
@@ -116,13 +116,58 @@ export default function PrototypeThree() {
     useEffect(() => {
         if (renderedDetectionList[selectedScreenIndex]) {
             setIsSelected(renderedDetectionList[selectedScreenIndex].imageId)
+            setRenderedDetectionList(AllDetections.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         } else {
             setIsSelected(renderedDetectionList[0]?.imageId); // reset to position 1 if the list gets emptied and reset
         }
     }, [AllDetections]);
 
+const addNewItem= () => {
+    // Add new items to the array
+    const newItem = {
+        imageId: "#21",
+        imageUrl: 'https://source.unsplash.com/random', //image: image1
+        imageIcon: <PersonIcon fontSize='small'/> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+        imageDetectionContext: 'percentage match: 90%',
+        imageDetectionTime: '01:30:40',
+        ImageDetectionDate: '2021-10-10',
+        timeSinceDetection: '2 hours ago',
+        filterID: 'Person',
+        investigateRecommended: true,
+    
+    };
+    setAllDetections(prevDetections => [...prevDetections, newItem].sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
+};
+const addNewItem2= () => {
+    // Add new items to the array
+    const newItem = {
+        imageId: "#22",
+        imageUrl: 'https://source.unsplash.com/random', //image: image1
+        imageIcon: <PersonIcon fontSize='small'/> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+        imageDetectionContext: 'percentage match: 90%',
+        imageDetectionTime: '01:30:40',
+        ImageDetectionDate: '2021-10-10',
+        timeSinceDetection: '2 hours ago',
+        filterID: 'Person',
+        investigateRecommended: true,
+    
+    };
+    setAllDetections(prevDetections => [...prevDetections, newItem]);
+};
+// Use useEffect to call addNewItem after 1 minutes
+useEffect(() => {
+    const timer = setTimeout(addNewItem, 1 * 60 * 10); // 1 minutes in milliseconds
+    const timer2 = setTimeout(addNewItem2, 2 * 60 * 10); // 2 minutes in milliseconds
 
-    // use the styles data in the following for the actuan components then make this to a grid system
+
+    // Clear the timer when the component is unmounted
+    return () => {
+        clearTimeout(timer);
+        clearTimeout(timer2);
+      };
+}, []);
+
+
     return(
         <Grid container>
             <Grid item xs={4} md={4}>

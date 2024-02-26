@@ -54,7 +54,8 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, imag
                     ImageDetectionDate={isEmpty ? "test" : renderedDetectionsList[imageIndex].ImageDetectionDate} 
                     timeSinceDetection={isEmpty ? "test" : renderedDetectionsList[imageIndex].timeSinceDetection} 
                     index={imageIndex}
-                    prototypeThree={prototypeThree} investigateRecommended={renderedDetectionsList[imageIndex].investigateRecommended} 
+                    prototypeThree={prototypeThree} 
+                    investigateRecommended={ isEmpty ? false : renderedDetectionsList[imageIndex].investigateRecommended} 
                 />  
             </CardContent>
         </Card>
