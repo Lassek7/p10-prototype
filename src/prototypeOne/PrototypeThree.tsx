@@ -1,10 +1,11 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
-import { Container,  Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
-export default function PrototypeTwo() {
+import AlertBox from './components/AlertBox'
+export default function PrototypeThree() {
 
     interface detection {
         imageId: string,
@@ -15,7 +16,7 @@ export default function PrototypeTwo() {
         ImageDetectionDate: string,
         timeSinceDetection: string,
         filterID: string,
-        investigateRecommended: boolean
+        investigateRecommended: boolean,
     }
 
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
@@ -37,7 +38,7 @@ export default function PrototypeTwo() {
     const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
-        setRenderedDetectionList(newRenderedDetectionList);
+        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         setAllDetections(newAllDetections);
         console.log(newRenderedDetectionList.length)
 
@@ -52,13 +53,13 @@ export default function PrototypeTwo() {
             filterChoices.Vehicle = false
             filterChoices.Person =false
             filterChoices.Item = false
-            setRenderedDetectionList(AllDetections);
+            setRenderedDetectionList(AllDetections.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         }
     }
     const handleInvestigateClick = (imageIndex: number) => {
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
-        setRenderedDetectionList(newRenderedDetectionList);
+        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         setAllDetections(newAllDetections);
 
         // If the selected index is out of bounds:
@@ -71,7 +72,7 @@ export default function PrototypeTwo() {
             filterChoices.Vehicle = false
             filterChoices.Person =false
             filterChoices.Item = false
-            setRenderedDetectionList(AllDetections);
+            setRenderedDetectionList(AllDetections.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         }
     }
 
@@ -91,7 +92,7 @@ export default function PrototypeTwo() {
                 setIsSelected(AllDetections[0]?.imageId);
 
             }
-            setRenderedDetectionList(AllDetections);
+            setRenderedDetectionList(AllDetections.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         } else {
             // Check if the currently selected item is in the new list
             const currentSelectedImageId = renderedDetectionList[selectedScreenIndex]?.imageId; // Add optional chaining here
@@ -108,7 +109,7 @@ export default function PrototypeTwo() {
             }
     
             // Update renderedDetectionList after updating selectedScreenIndex and isSelected
-            setRenderedDetectionList(newRenderedDetectionList);
+            setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
         }
     }, [filterChoices]); // whenever the filterChoices change, this effect will run
 
@@ -124,11 +125,14 @@ export default function PrototypeTwo() {
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
         <Grid container>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={4} md={4}>
                 <TaskGoalsComponent />
             </Grid>
-            <Grid item xs={12} md={6}>
-                <LargeScreenComponent prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
+            <Grid item xs={4} md={4}>
+                <LargeScreenComponent prototypeThree={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
+            </Grid>
+            <Grid item xs={4}>
+                <AlertBox />
             </Grid>
             <Grid item xs={12}>
                 <ScreensList setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    

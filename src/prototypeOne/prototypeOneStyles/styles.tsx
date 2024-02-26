@@ -12,20 +12,36 @@ const theme = createTheme({
       },
     },
   });
+//Alert Box Styles
+const alertBox: SxProps<Theme> = {
+    color: '#343323',
+    backgroundColor: '#F1F2F2',
+    position: 'absolute', 
+    top: "5.55vh", 
+    right: "6.12vw", 
+    width: '15.10vw', 
+    height: '26.136vh',
+    borderRadius: "16px",
+    display: 'flex',
+    flexDirection: 'column'
+}
+
+
 
 // Large Screen Styles
-const largeScreen: SxProps<Theme> = {
+const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
     color: '#f5f5f5',
     backgroundColor: '#F1F2F2',
     position: 'absolute', 
     top: "5.55vh", 
-    left: "39.47vw",
+    left: isPrototypeThree ? "30.47vw" : "39.47vw",
     width: '45.26vw', 
     height: '57.268vh',
     borderRadius: "16px",
     display: 'flex', 
     flexDirection: 'column' 
-}
+})
+
 const largeScreenInfoBox: SxProps<Theme> = {
     backgroundColor: '#F1F2F2',
     color: 'black',
@@ -33,13 +49,13 @@ const largeScreenInfoBox: SxProps<Theme> = {
 
 
 }
-const InfoBoxButton: SxProps<Theme> = {
+const infoBoxButton= (isPrototypeThree: boolean, investigateRecommended?: boolean): SxProps<Theme> => ({
     width: '8.17vw', 
     height: '5.5vh', 
     borderRadius: '100px', 
     mr: "1.56vw", 
-    color: '#0A84FF', 
-    borderColor: '#343323',
+    color: isPrototypeThree && investigateRecommended ? '#f5f5f5' : '#0A84FF', 
+    borderColor: isPrototypeThree && investigateRecommended ? '#0A84FF' : '#343323',
     fontSize: {
         xs: '10px',  // font size for xs screens of 0px and up
         sm: '12px',  // font size for sm screens of 600px and up
@@ -47,15 +63,17 @@ const InfoBoxButton: SxProps<Theme> = {
         lg: '16px',  // font size for lg screens of 1200px and up
         xl: '18px',  // font size for xl screens of 1920px and up
     },
-}
-const largeInfoBoxTypography: SxProps<Theme> = {
+})
+const largeInfoBoxTypography = (isPrototypeThree?: boolean): SxProps<Theme> => ({
     fontSize: 13,
     fontWeight: 700, 
+    color: isPrototypeThree ? '#0A84FF' : '#343323',
      
-}
+})
 const largeInfoBoxTypographyId: SxProps<Theme> = {
     fontSize: 15,
-    fontWeight: 700
+    fontWeight: 700,
+    color: '#343323',
 }
 
 // Styles detectionList
@@ -114,7 +132,7 @@ const taskGoalCard: SxProps<Theme> = {
     borderRadius: "16px",
 }
 // ArrowComponent Styles
-const ArrowComponent: SxProps<Theme> = {
+const arrowComponent: SxProps<Theme> = {
     height: '100%', 
     width: '100%', 
     display: 'flex', 
@@ -124,7 +142,7 @@ const ArrowComponent: SxProps<Theme> = {
 
 }
 
-const ScreensList: SxProps<Theme> = {
+const screensList: SxProps<Theme> = {
     position: 'absolute', 
     left: "1.56vw", 
     right: '1.56vw', 
@@ -140,15 +158,16 @@ const Styles = {
     largeScreen: largeScreen,
     largeScreenInfoBox: largeScreenInfoBox,
     taskGoalCard: taskGoalCard,
-    InfoBoxButton: InfoBoxButton,  
-    ArrowComponent: ArrowComponent,
+    infoBoxButton: infoBoxButton,  
+    arrowComponent: arrowComponent,
     filterButtons: filterButtons,
-    ScreensList: ScreensList,
+    screensList: screensList,
     smallInfoBoxTypographyRight: smallInfoBoxTypographyRight,
     smallInfoBoxTypographyLeft: smallInfoBoxTypographyLeft,
     largeInfoBoxTypography: largeInfoBoxTypography,
     smallSceenInfoBox: smallSceenInfoBox,
-    largeInfoBoxTypographyId: largeInfoBoxTypographyId
+    largeInfoBoxTypographyId: largeInfoBoxTypographyId,
+    alertBox: alertBox
 
 }
 

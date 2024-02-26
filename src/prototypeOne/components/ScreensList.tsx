@@ -15,6 +15,7 @@ interface detection {
     ImageDetectionDate: string,
     timeSinceDetection: string,
     filterID: string,
+    investigateRecommended: boolean
 }
 interface ScreensListProps {
     setScreenIndex: (imageIndex: number) => void
@@ -85,7 +86,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
     }   
 
     return (
-        <Card sx={Styles.ScreensList}>
+        <Card sx={Styles.screensList}>
             <Grid container sx={{height: '100%'}}>
             {!prototypeOne ? (
                 <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25.09%'}}>
@@ -136,10 +137,10 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                             {renderedDetectionList.map((renderedDetectionList, index) => (
                                 <Box key={index} >
                                     <Card onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{...Styles.smallScreen(isSelected === renderedDetectionList.imageId)}} >  
-                                        <CardMedia component="img" sx={{height: '72.4%', objectFit: 'cover' }} image={renderedDetectionList.imageUrl} alt='Image' /> 
+                                        <CardMedia component="img" sx={{height: '72.4%', objectFit: 'fit' }} image={renderedDetectionList.imageUrl} alt='Image' /> 
                                         <Divider />
                                         <CardContent >
-                                             <SmallScreenInfoBoxComponent  prototypeOne={prototypeOne} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} index = {0} onDeleteClick={() => {}} onInvestigateClick={ () => {}}/>  
+                                             <SmallScreenInfoBoxComponent  prototypeOne={prototypeOne} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} />  
                                         </CardContent>
                                     </Card>
                                 </Box>

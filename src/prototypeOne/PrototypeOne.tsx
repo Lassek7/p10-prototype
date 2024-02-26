@@ -1,6 +1,6 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
-import { Container,  Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
@@ -14,7 +14,8 @@ export default function PrototypeOne() {
         imageDetectionTime: string,
         ImageDetectionDate: string,
         timeSinceDetection: string,
-        filterID: string
+        filterID: string,
+        investigateRecommended: boolean
     }
 
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
@@ -72,7 +73,7 @@ export default function PrototypeOne() {
                 <TaskGoalsComponent />
             </Grid>
             <Grid item xs={12} md={6}>
-                <LargeScreenComponent prototypeOne={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
+                <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
             </Grid>
             <Grid item xs={12}>
                 <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    

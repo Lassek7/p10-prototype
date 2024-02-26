@@ -12,6 +12,8 @@ interface detection {
     ImageDetectionDate: string,
     timeSinceDetection: string,
     filterID: string,
+    investigateRecommended: boolean
+
 }
 
 interface detectionsProps {
@@ -19,11 +21,11 @@ interface detectionsProps {
     renderedDetectionsList: Array<detection>, // might need to make this default something else
     onDeleteClick: (imageIndex: number) => void,
     onInvestigateClick: (imageIndex: number) => void,
-    prototypeOne?: boolean
+    prototypeOne?: boolean,
+    prototypeThree: boolean,
 }
 
-export default function LargeScreenComponent({prototypeOne, imageIndex, renderedDetectionsList, onDeleteClick, onInvestigateClick}: detectionsProps) {
-
+export default function LargeScreenComponent({prototypeOne, prototypeThree, imageIndex, renderedDetectionsList, onDeleteClick, onInvestigateClick}: detectionsProps) {
     const handleDeleteClick = (imageIndex: number) => {
         onDeleteClick(imageIndex)
     }
@@ -37,7 +39,7 @@ export default function LargeScreenComponent({prototypeOne, imageIndex, rendered
     const isEmpty = renderedDetectionsList.length === 0;
 
     return ( // change test parameters to what we want in the screen if its empty
-        <Card sx={Styles.largeScreen}>  
+        <Card sx={Styles.largeScreen(prototypeThree)}>  
             <CardMedia component="img" sx={{ height: '80.59%' }} image={isEmpty ? "https://source.unsplash.com/random" : renderedDetectionsList[imageIndex].imageUrl} alt='Image' /> 
             <Divider />
             <CardContent >
@@ -51,7 +53,8 @@ export default function LargeScreenComponent({prototypeOne, imageIndex, rendered
                     imageDetectionTime={isEmpty ? "test" : renderedDetectionsList[imageIndex].imageDetectionTime} 
                     ImageDetectionDate={isEmpty ? "test" : renderedDetectionsList[imageIndex].ImageDetectionDate} 
                     timeSinceDetection={isEmpty ? "test" : renderedDetectionsList[imageIndex].timeSinceDetection} 
-                    index={imageIndex} 
+                    index={imageIndex}
+                    prototypeThree={prototypeThree} investigateRecommended={renderedDetectionsList[imageIndex].investigateRecommended} 
                 />  
             </CardContent>
         </Card>
