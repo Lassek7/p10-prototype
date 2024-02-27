@@ -15,7 +15,9 @@ interface detection {
     ImageDetectionDate: string,
     timeSinceDetection: string,
     filterID: string,
-    investigateRecommended: boolean
+    investigateRecommended: boolean,
+    detectionWeight: number,
+    isUnseen: boolean
 }
 interface ScreensListProps {
     setScreenIndex: (imageIndex: number) => void
@@ -78,6 +80,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
         if (imageIndex != null && imageId != null) {
             setIsSelected(imageId)
             setScreenIndex(imageIndex)
+            renderedDetectionList[imageIndex].isUnseen = false
         } else {
             setIsSelected(null)
             setScreenIndex(0)

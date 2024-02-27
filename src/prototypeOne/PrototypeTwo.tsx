@@ -1,6 +1,6 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
-import { Container,  Box, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
@@ -15,7 +15,9 @@ export default function PrototypeTwo() {
         ImageDetectionDate: string,
         timeSinceDetection: string,
         filterID: string,
-        investigateRecommended: boolean
+        investigateRecommended: boolean,
+        detectionWeight: number,
+        isUnseen: boolean
     }
 
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
@@ -82,12 +84,10 @@ export default function PrototypeTwo() {
         if (!filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item) {
             if (isSelected != null) {
                 setSelectedScreenIndex(AllDetections.findIndex(detection => detection.imageId === isSelected));
-                console.log("no more items again")
 
             }
             console.log(isSelected)
             if (isSelected === undefined || isSelected === null) {
-                console.log("no more items")
                 setIsSelected(AllDetections[0]?.imageId);
 
             }
@@ -125,7 +125,7 @@ export default function PrototypeTwo() {
     return(
         <Grid container>
             <Grid item xs={12} md={6}>
-                <TaskGoalsComponent />
+                <TaskGoalsComponent  prototypeThree={false} renderedDetectionsList={renderedDetectionList} imageIndex={selectedScreenIndex}/>
             </Grid>
             <Grid item xs={12} md={6}>
                 <LargeScreenComponent prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>

@@ -13,7 +13,6 @@ interface detection {
     timeSinceDetection: string,
     filterID: string,
     investigateRecommended: boolean
-
 }
 
 interface detectionsProps {

@@ -15,7 +15,9 @@ export default function PrototypeOne() {
         ImageDetectionDate: string,
         timeSinceDetection: string,
         filterID: string,
-        investigateRecommended: boolean
+        investigateRecommended: boolean,
+        detectionWeight: number,
+        isUnseen: boolean
     }
 
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
@@ -70,7 +72,7 @@ export default function PrototypeOne() {
     return(
         <Grid container>
             <Grid item xs={12} md={6}>
-                <TaskGoalsComponent />
+                <TaskGoalsComponent prototypeThree={false} renderedDetectionsList={renderedDetectionList} imageIndex={selectedScreenIndex}/>
             </Grid>
             <Grid item xs={12} md={6}>
                 <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>

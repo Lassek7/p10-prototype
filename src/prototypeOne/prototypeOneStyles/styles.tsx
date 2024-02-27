@@ -25,6 +25,18 @@ const alertBox: SxProps<Theme> = {
     display: 'flex',
     flexDirection: 'column'
 }
+const alertBoxEmpty: SxProps<Theme> = {
+    color: '#343323',
+    backgroundColor: '#F1F2F2',
+    position: 'absolute', 
+    top: "5.55vh", 
+    right: "6.12vw", 
+    width: '15.10vw', 
+    height: '6.136vh',
+    borderRadius: "16px",
+    display: 'flex',
+    flexDirection: 'column'
+}
 
 
 
@@ -46,9 +58,8 @@ const largeScreenInfoBox: SxProps<Theme> = {
     backgroundColor: '#F1F2F2',
     color: 'black',
     height: '100%',
-
-
 }
+
 const infoBoxButton= (isPrototypeThree: boolean, investigateRecommended?: boolean): SxProps<Theme> => ({
     width: '8.17vw', 
     height: '5.5vh', 
@@ -63,6 +74,9 @@ const infoBoxButton= (isPrototypeThree: boolean, investigateRecommended?: boolea
         lg: '16px',  // font size for lg screens of 1200px and up
         xl: '18px',  // font size for xl screens of 1920px and up
     },
+    '&:focus': {
+        outline: 'none',
+      },
 })
 const largeInfoBoxTypography = (isPrototypeThree?: boolean): SxProps<Theme> => ({
     fontSize: 13,
@@ -167,7 +181,8 @@ const Styles = {
     largeInfoBoxTypography: largeInfoBoxTypography,
     smallSceenInfoBox: smallSceenInfoBox,
     largeInfoBoxTypographyId: largeInfoBoxTypographyId,
-    alertBox: alertBox
+    alertBox: alertBox,
+    alertBoxEmpty: alertBoxEmpty,
 
 }
 
