@@ -1,9 +1,8 @@
-import { Grid, Card, Box, CardHeader, Divider, Button, CardContent, Typography, CardActions, CardMedia, hexToRgb } from '@mui/material'
-import SmallScreenComponent from './SmallScreenComponent'
+import { Grid, Card, Box, CardHeader, Divider, Button, CardContent, CardMedia } from '@mui/material'
 import { SmallScreenInfoBoxComponent } from './InfoBoxComponent'
 import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
-import { DryCleaning, Person, DirectionsCar, Padding, Height } from '@mui/icons-material';
+import { DryCleaning, Person, DirectionsCar} from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
 // current issue: filtering is selected when not shown. crashes when out of bounds
 interface detection {

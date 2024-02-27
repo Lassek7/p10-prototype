@@ -17,15 +17,22 @@ interface detection {
 
 interface alertBoxProps {
     allDetections: Array<detection>,
-    currentWeight: number
+    currentWeight: number,
+    onAlertClick: (imageId: string) => void
 
 }
 
-export default function AlertBox( {allDetections, currentWeight}: alertBoxProps) {
+
+export default function AlertBox({ onAlertClick, allDetections, currentWeight}: alertBoxProps) {
+   
+    const handleAlertClick = (imageId: string) => {
+        onAlertClick(imageId)
+    }
+   
     const inactiveList = allDetections.filter((detection) => detection.isUnseen === true && detection.detectionWeight < currentWeight && currentWeight != undefined).sort((a, b) => a.detectionWeight - b.detectionWeight);
     if (inactiveList.length > 0) {
     return (
-        <Card sx={Styles.alertBox} >
+        <Card onClick = {() => handleAlertClick(inactiveList[0].imageId)} sx={Styles.alertBox} >
             <Grid container sx={{direction: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%'}} >
                 <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{ height: '25.09%'}}>
                     <Grid item xs={6}>

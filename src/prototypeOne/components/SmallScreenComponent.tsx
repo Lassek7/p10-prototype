@@ -1,5 +1,5 @@
 import Styles from '../prototypeOneStyles/styles';
-import { Card, CardMedia, CardContent, Button, Typography,Divider } from '@mui/material';
+import { Card, CardMedia, CardContent, Divider } from '@mui/material';
 import {SmallScreenInfoBoxComponent} from './InfoBoxComponent';
 
 interface smallScreenProps {

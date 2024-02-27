@@ -34,9 +34,16 @@ export default function PrototypeThree() {
             Item: false
         });
 
-    const handleLargescreenSwap = (imageIndex: number) => {
+    const handleSmallScreenClick = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
     }
+
+    const handleAlertClick = (imageId: string) => {
+        const imageIndex = AllDetections.findIndex(detection => detection.imageId === imageId);
+        setSelectedScreenIndex(imageIndex);
+        setIsSelected(imageId);
+    }
+
     const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
@@ -196,10 +203,10 @@ useEffect(() => {
                 <LargeScreenComponent prototypeThree={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
             </Grid>
             <Grid item xs={4}>
-                <AlertBox allDetections={AllDetections} currentWeight={renderedDetectionList[selectedScreenIndex]?.detectionWeight} /> 
+                <AlertBox onAlertClick={handleAlertClick} allDetections={AllDetections} currentWeight={renderedDetectionList[selectedScreenIndex]?.detectionWeight} /> 
             </Grid>
             <Grid item xs={12}>
-                <ScreensList setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
+                <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
             </Grid>
         </Grid>
     )

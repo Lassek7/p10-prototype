@@ -1,8 +1,6 @@
 import Styles from '../prototypeOneStyles/styles';
 import { Box, Card, CardContent, CardHeader, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
 import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
-import PersonIcon from '@mui/icons-material/Person';
-
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 interface detection {
