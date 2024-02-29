@@ -66,7 +66,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
     useEffect(() => {
         let scrollInterval: number | null = null;
         if (scrollDirection) {
-            scrollInterval = setInterval(continousScrollList, 20);
+            scrollInterval = window.setInterval(continousScrollList, 20);
         }
         return () => {
             if (scrollInterval) {

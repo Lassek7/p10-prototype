@@ -1,17 +1,5 @@
 import { SxProps, Theme } from '@mui/system';
-import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
-    breakpoints: {
-      values: {
-        xs: 0,     // xs screens of 0px and up
-        sm: 600,   // sm screens of 600px and up
-        md: 900,   // md screens of 900px and up
-        lg: 1200,  // lg screens of 1200px and up
-        xl: 1920   // xl screens of 1920px and up
-      },
-    },
-  });
 //Alert Box Styles
 const alertBox: SxProps<Theme> = {
     color: '#343323',

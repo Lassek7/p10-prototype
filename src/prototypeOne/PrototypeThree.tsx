@@ -22,7 +22,9 @@ export default function PrototypeThree() {
         detectionWeight: number,
         isUnseen: boolean
     }
-
+    const fs = require('fs');
+    const path = require('path');
+    const Papa = require('papaparse');
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -166,19 +168,32 @@ const addNewItem2= () => {
     setAllDetections(prevDetections => [...prevDetections, newItem]);
 };
 
-/* function saveToFile(AllDetections: Array<detection>) { //for browser environment
-    const a = document.createElement("a");
-    const file = new Blob([JSON.stringify(AllDetections, null, 2)], {type: 'application/json'});
-    
-    a.href= URL.createObjectURL(file);
-    a.download = 'AllDetections.json';
-    a.click();
-
-    URL.revokeObjectURL(a.href);
-} */ 
 
 
+function saveToFile(AllDetections: Array<detection>) {
+    const csv = Papa.unparse(AllDetections);
+    const filePath = path.join(__dirname, 'AllDetections.csv');
+    fs.writeFile(filePath, csv, (err: any) => {
+      if (err) {
+        console.error('Error writing file', err);
+      } else {
+        console.log('Successfully wrote file');
+      }
+    });
+  }
 
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        saveToFile(AllDetections);
+      }, 30000); // 0.5 minutes
+  
+      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
+    }, []);
+  
+    // Rest of your component
+
+
+  
 // Use useEffect to call addNewItem after 1 minutes
 useEffect(() => {
     const timer = setTimeout(addNewItem, 1 * 60 * 1000); // 1 minutes in milliseconds

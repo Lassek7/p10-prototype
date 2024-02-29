@@ -19,7 +19,6 @@ interface alertBoxProps {
     allDetections: Array<detection>,
     currentWeight: number,
     onAlertClick: (imageId: string) => void
-
 }
 
 

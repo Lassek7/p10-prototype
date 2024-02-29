@@ -1,13 +1,13 @@
 import './App.css'
-import PrototypeOne from './prototypeOne/PrototypeOne'
-import PrototypeTwo from './prototypeOne/PrototypeTwo';
+import { Box } from '@mui/system'
 import PrototypeThree from './prototypeOne/PrototypeThree'
-import AlertBox from './prototypeOne/components/AlertBox'
 
 function App() {
 
   return (
-    <PrototypeThree />
+    <Box sx={{ maxWidth: '2112px !important', margin: '0 auto' }}>
+          <PrototypeThree />
+    </Box>
   );
 }
 
