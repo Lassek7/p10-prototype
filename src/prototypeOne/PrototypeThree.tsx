@@ -22,9 +22,9 @@ export default function PrototypeThree() {
         detectionWeight: number,
         isUnseen: boolean
     }
-    const fs = require('fs');
-    const path = require('path');
-    const Papa = require('papaparse');
+//    const fs = require('fs');
+//    const path = require('path');
+//    const Papa = require('papaparse');
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -46,7 +46,7 @@ export default function PrototypeThree() {
         setIsSelected(imageId);
     }
 
-    const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
+    const handleDeleteClick = (imageIndex: number) => { 
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
@@ -169,7 +169,7 @@ const addNewItem2= () => {
 };
 
 
-
+/*
 function saveToFile(AllDetections: Array<detection>) {
     const csv = Papa.unparse(AllDetections);
     const filePath = path.join(__dirname, 'AllDetections.csv');
@@ -189,22 +189,19 @@ function saveToFile(AllDetections: Array<detection>) {
   
       return () => clearTimeout(timer); // This will clear the timer when the component unmounts
     }, []);
-  
-    // Rest of your component
-
+  */
 
   
 // Use useEffect to call addNewItem after 1 minutes
 useEffect(() => {
     const timer = setTimeout(addNewItem, 1 * 60 * 1000); // 1 minutes in milliseconds
     const timer2 = setTimeout(addNewItem2, 2 * 60 * 1000); // 2 minutes in milliseconds
-   // const timer3 = setTimeout(() => saveToFile(AllDetections), 1 * 60 * 1000); // 1 minutes in milliseconds
+   
 
     // Clear the timer when the component is unmounted
     return () => {
         clearTimeout(timer);
         clearTimeout(timer2);
-   //     clearTimeout(timer3);
       };
 }, []);
 

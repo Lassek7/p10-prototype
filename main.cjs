@@ -6,8 +6,8 @@ const path = require('path')
 
 function createWindow () {
   const dpi = screen.getPrimaryDisplay().scaleFactor * 96; // DPI for primary display
-  const widthInInches = 8; // Desired width in inches
-  const heightInInches = 7; // Desired height in inches
+  const widthInInches = 16; // Desired width in inches
+  const heightInInches = 9; // Desired height in inches
 
   const widthInPixels = Math.round(widthInInches * dpi);
   const heightInPixels = Math.round(heightInInches * dpi);
