@@ -13,6 +13,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Person',
     investigateRecommended: true,
+    deletePoints: 0,
+    investigatePoints: 1,
     detectionWeight: 10,
     isUnseen: true,
     
@@ -30,6 +32,8 @@ export const detections = [
     timeSinceDetection: '3 hours ago',
     filterID: 'Person',
     investigateRecommended: false,
+    deletePoints: 1,
+    investigatePoints: 0,
     detectionWeight: 0,
     isUnseen: false
 
@@ -45,6 +49,8 @@ export const detections = [
     timeSinceDetection: '4 hours ago',
     filterID: 'Item',
     investigateRecommended: true,
+    deletePoints: 0,
+    investigatePoints: 1,
     detectionWeight: 14,
     isUnseen: true
 
@@ -60,6 +66,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Vehicle',
     investigateRecommended: true,
+    deletePoints: 0,
+    investigatePoints: 0,
     detectionWeight: 20,
     isUnseen: true
 
@@ -75,6 +83,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Vehicle',
     investigateRecommended: true,
+    deletePoints: 0,
+    investigatePoints: 0,
     detectionWeight: 33,
     isUnseen: true
 
@@ -90,6 +100,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Vehicle',
     investigateRecommended: true,
+    deletePoints: 0,
+    investigatePoints: 0,
     detectionWeight: 1,
     isUnseen: true
 
@@ -105,6 +117,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Vehicle',
     investigateRecommended: false,
+    deletePoints: 1,
+    investigatePoints: 1,
     detectionWeight: 14,
     isUnseen: true
 }
@@ -119,6 +133,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Person',
     investigateRecommended: false,
+    deletePoints: 0,
+    investigatePoints: 0,
     detectionWeight: 99,
     isUnseen: true
 }
@@ -133,6 +149,8 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Person',
     investigateRecommended: false,
+    deletePoints: 0,
+    investigatePoints: 1,
     detectionWeight: 100,
     isUnseen: true
 }
@@ -147,20 +165,22 @@ export const detections = [
     timeSinceDetection: '2 hours ago',
     filterID: 'Item',
     investigateRecommended: true,
+    deletePoints: 0,
+    investigatePoints: 0,
     detectionWeight: 9,
     isUnseen: true
 }
     ,
-    { imageId: "#11", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '16:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: true, detectionWeight: 10, isUnseen: true }, 
-    { imageId: "#12", imageUrl: 'https://source.unsplash.com/random', imageIcon: <PersonIcon fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '07:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Person', investigateRecommended: false, detectionWeight: 56, isUnseen: true }, 
-    { imageId: "#13", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DryCleaning fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '03:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Item', investigateRecommended: false, detectionWeight: 10, isUnseen: true }, 
-    { imageId: "#14", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DryCleaning fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '18:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Item', investigateRecommended: false, detectionWeight: 36, isUnseen: true }, 
-    { imageId: "#15", imageUrl: 'https://source.unsplash.com/random', imageIcon: <PersonIcon fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '12:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Person', investigateRecommended: false, detectionWeight: 22, isUnseen: true }, 
-    { imageId: "#16", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DryCleaning fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '12:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Item', investigateRecommended: true, detectionWeight: 78, isUnseen: true }, 
-    { imageId: "#17", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '00:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: true, detectionWeight: 49, isUnseen: true }, 
-    { imageId: "#18", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '13:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: false, detectionWeight: 23, isUnseen: true }, 
-    { imageId: "#19", imageUrl: 'https://source.unsplash.com/random', imageIcon: <PersonIcon fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '14:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Person', investigateRecommended: true, detectionWeight: 78, isUnseen: true }, 
-    { imageId: "#20", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '15:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: false, detectionWeight: 32, isUnseen: true }
+    { imageId: "#11", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '16:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: true, deletePoints: 1, investigatePoints: 0, detectionWeight: 10, isUnseen: true }, 
+    { imageId: "#12", imageUrl: 'https://source.unsplash.com/random', imageIcon: <PersonIcon fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '07:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Person', investigateRecommended: false, deletePoints: 0, investigatePoints: 1, detectionWeight: 56, isUnseen: true }, 
+    { imageId: "#13", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DryCleaning fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '03:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Item', investigateRecommended: false, deletePoints: 0, investigatePoints: 0, detectionWeight: 10, isUnseen: true }, 
+    { imageId: "#14", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DryCleaning fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '18:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Item', investigateRecommended: false, deletePoints: 1, investigatePoints: 0, detectionWeight: 36, isUnseen: true }, 
+    { imageId: "#15", imageUrl: 'https://source.unsplash.com/random', imageIcon: <PersonIcon fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '12:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Person', investigateRecommended: false, deletePoints: 1, investigatePoints: 0, detectionWeight: 22, isUnseen: true }, 
+    { imageId: "#16", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DryCleaning fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '12:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Item', investigateRecommended: true, deletePoints: 1, investigatePoints: 0, detectionWeight: 78, isUnseen: true }, 
+    { imageId: "#17", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '00:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: true, deletePoints: 1, investigatePoints: 0, detectionWeight: 49, isUnseen: true }, 
+    { imageId: "#18", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '13:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: false, deletePoints: 1, investigatePoints: 0, detectionWeight: 23, isUnseen: true }, 
+    { imageId: "#19", imageUrl: 'https://source.unsplash.com/random', imageIcon: <PersonIcon fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '14:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Person', investigateRecommended: true, deletePoints: 1, investigatePoints: 0, detectionWeight: 78, isUnseen: true }, 
+    { imageId: "#20", imageUrl: 'https://source.unsplash.com/random', imageIcon: <DirectionsCar fontSize='small'/>, imageDetectionContext: 'percentage match: 90%', imageDetectionTime: '15:30:40', ImageDetectionDate: '2021-10-10', timeSinceDetection: '2 hours ago', filterID: 'Vehicle', investigateRecommended: false, deletePoints: 1, investigatePoints: 0, detectionWeight: 32, isUnseen: true }
 
 
 

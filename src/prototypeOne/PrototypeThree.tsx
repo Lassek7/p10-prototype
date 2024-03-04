@@ -1,11 +1,13 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
-import { Grid } from '@mui/material'
+import {Grid, Typography} from '@mui/material'
 import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import AlertBox from './components/AlertBox'
 import PersonIcon from '@mui/icons-material/Person';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Styles from './prototypeOneStyles/styles'
 
 export default function PrototypeThree() {
 
@@ -19,12 +21,26 @@ export default function PrototypeThree() {
         timeSinceDetection: string,
         filterID: string,
         investigateRecommended: boolean,
+        deletePoints: number,
+        investigatePoints: number,
         detectionWeight: number,
         isUnseen: boolean
     }
-//    const fs = require('fs');
-//    const path = require('path');
-//    const Papa = require('papaparse');
+    interface ArrayToSave {
+        imageId: string,
+        points: number,
+        chosenAction: string,
+
+    }
+
+    const location = useLocation()
+    const userdata = location.state
+    const userName = userdata.participantId
+/*
+    const fs = require('fs');
+    const path = require('path');
+    const Papa = require('papaparse');
+*/
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -35,9 +51,28 @@ export default function PrototypeThree() {
             Person: false,
             Item: false
         });
+    const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([]); // used to save the list to a file
+    const [seconds, setSeconds] = useState(300000);
+    const navigate = useNavigate();
+
+    useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
+        if (seconds > 0) {
+            const timerId = setTimeout(() => {
+                setSeconds(seconds - 1);
+            }, 1000);
+            return () => clearTimeout(timerId); // This will clear the timer if the component is unmounted before the timer finishes
+        }
+        if (seconds === 0) {
+            navigate('/prototypeTwo', {state: userdata}); //Change to Questionnaire
+        } 
+    }, [seconds]);
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
 
     const handleSmallScreenClick = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
+
     }
 
     const handleAlertClick = (imageId: string) => {
@@ -47,6 +82,13 @@ export default function PrototypeThree() {
     }
 
     const handleDeleteClick = (imageIndex: number) => { 
+        const saveDetectionAction = {
+            imageId: renderedDetectionList[imageIndex].imageId,
+            points: renderedDetectionList[imageIndex].deletePoints,
+            chosenAction: 'Delete'
+        }
+        setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
+        
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
@@ -65,6 +107,13 @@ export default function PrototypeThree() {
         }
     }
     const handleInvestigateClick = (imageIndex: number) => {
+        const saveDetectionAction = {
+            imageId: renderedDetectionList[imageIndex].imageId,
+            points: renderedDetectionList[imageIndex].investigatePoints,
+            chosenAction: 'Investigate'
+        }
+        setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
+        
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
@@ -131,7 +180,7 @@ export default function PrototypeThree() {
 
     }, [AllDetections]);
 
-const addNewItem= () => {
+const addNewItem= () => { //remove when actually adding new items
     // Add new items to the array
     const newItem = {
         imageId: "#21",
@@ -142,14 +191,16 @@ const addNewItem= () => {
         ImageDetectionDate: '2021-10-10',
         timeSinceDetection: '2 hours ago',
         filterID: 'Person',
-        investigateRecommended: true,
+        investigateRecommended: false,
+        deletePoints: 0,
+        investigatePoints: 1,
         detectionWeight: 2,
         isUnseen: true
     
     };
     setAllDetections(prevDetections => [...prevDetections, newItem].sort((a, b) => a.detectionWeight - b.detectionWeight));
 };
-const addNewItem2= () => {
+const addNewItem2= () => { //remove when actually adding new items
     // Add new items to the array
     const newItem = {
         imageId: "#22",
@@ -160,7 +211,9 @@ const addNewItem2= () => {
         ImageDetectionDate: '2021-10-10',
         timeSinceDetection: '2 hours ago',
         filterID: 'Person',
-        investigateRecommended: true,
+        investigateRecommended: false,
+        deletePoints: 0,
+        investigatePoints: 1,
         detectionWeight: 10,
         isUnseen: true 
     
@@ -168,31 +221,6 @@ const addNewItem2= () => {
     setAllDetections(prevDetections => [...prevDetections, newItem]);
 };
 
-
-/*
-function saveToFile(AllDetections: Array<detection>) {
-    const csv = Papa.unparse(AllDetections);
-    const filePath = path.join(__dirname, 'AllDetections.csv');
-    fs.writeFile(filePath, csv, (err: any) => {
-      if (err) {
-        console.error('Error writing file', err);
-      } else {
-        console.log('Successfully wrote file');
-      }
-    });
-  }
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        saveToFile(AllDetections);
-      }, 30000); // 0.5 minutes
-  
-      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
-    }, []);
-  */
-
-  
-// Use useEffect to call addNewItem after 1 minutes
 useEffect(() => {
     const timer = setTimeout(addNewItem, 1 * 60 * 1000); // 1 minutes in milliseconds
     const timer2 = setTimeout(addNewItem2, 2 * 60 * 1000); // 2 minutes in milliseconds
@@ -205,6 +233,32 @@ useEffect(() => {
       };
 }, []);
 
+/*
+function saveToFile(arrayToSave: Array<detection>) {1
+    const csv = Papa.unparse(arrayToSave);
+    const filePath = path.join(__dirname, userName + 'PrototypeThree.csv');
+    fs.writeFile(filePath, csv, (err: any) => {
+      if (err) {
+        console.error('Error writing file', err);
+      } else {
+        console.log('Successfully wrote file');
+      }
+    });
+  }
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        saveToFile(arrayToSave);
+      }, 30000); // 0.5 minutes
+  
+      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
+    }, []);
+ */ 
+
+  
+// Use useEffect to call addNewItem after 1 minutes
+
+
 
     return(
         <Grid container>
@@ -214,8 +268,11 @@ useEffect(() => {
             <Grid item xs={4} md={4}>
                 <LargeScreenComponent prototypeThree={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item >
                 <AlertBox onAlertClick={handleAlertClick} allDetections={AllDetections} currentWeight={renderedDetectionList[selectedScreenIndex]?.detectionWeight} /> 
+                <Typography sx={Styles.timer}>
+                        {minutes}:{remainingSeconds} 
+                </Typography>                
             </Grid>
             <Grid item xs={12}>
                 <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    

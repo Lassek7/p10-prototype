@@ -26,7 +26,13 @@ const alertBoxEmpty: SxProps<Theme> = {
     flexDirection: 'column'
 }
 
-
+//Timer Styles
+const timer: SxProps<Theme> = {
+    color: '#343323', 
+    position: 'absolute', 
+    top: "1.55vh", 
+    right: "6.5vw"
+}
 
 // Large Screen Styles
 const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
@@ -171,6 +177,7 @@ const Styles = {
     largeInfoBoxTypographyId: largeInfoBoxTypographyId,
     alertBox: alertBox,
     alertBoxEmpty: alertBoxEmpty,
+    timer: timer,
 
 }
 

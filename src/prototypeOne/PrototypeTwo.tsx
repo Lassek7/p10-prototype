@@ -4,6 +4,8 @@ import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
+import { useNavigate, useLocation } from 'react-router-dom'
+
 export default function PrototypeTwo() {
 
     interface detection {
@@ -16,10 +18,25 @@ export default function PrototypeTwo() {
         timeSinceDetection: string,
         filterID: string,
         investigateRecommended: boolean,
+        deletePoints: number,
+        investigatePoints: number,
         detectionWeight: number,
         isUnseen: boolean
     }
 
+    interface ArrayToSave {
+        imageId: string,
+        points: number,
+        chosenAction: string,
+    }
+    const location = useLocation()
+    const userdata = location.state
+    const userName = userdata.participantId
+/*
+    const fs = require('fs');
+    const path = require('path');
+    const Papa = require('papaparse');
+*/
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -30,18 +47,39 @@ export default function PrototypeTwo() {
             Person: false,
             Item: false
         });
+    const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([]); // used to save the list to a file
+    const [seconds, setSeconds] = useState(300);
+    const navigate = useNavigate();
 
+
+    useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
+        if (seconds > 0) {
+            const timerId = setTimeout(() => {
+                setSeconds(seconds - 1);
+            }, 1000);
+            return () => clearTimeout(timerId); // This will clear the timer if the component is unmounted before the timer finishes
+        }
+        if (seconds === 0) {
+            navigate('/prototypeTwo', {state: userdata}); //Change to Questionnaire
+        }
+    }, [seconds]);
 
 
     const handleLargescreenSwap = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
     }
     const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
+        const saveDetectionAction = {
+            imageId: renderedDetectionList[imageIndex].imageId,
+            points: renderedDetectionList[imageIndex].deletePoints,
+            chosenAction: 'Delete'
+        }
+        setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
+
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList);
         setAllDetections(newAllDetections);
-        console.log(newRenderedDetectionList.length)
 
         // If the selected index is out of bounds, sets it one lower
         if (selectedScreenIndex >= newRenderedDetectionList.length ) {
@@ -58,6 +96,13 @@ export default function PrototypeTwo() {
         }
     }
     const handleInvestigateClick = (imageIndex: number) => {
+        const saveDetectionAction = {
+            imageId: renderedDetectionList[imageIndex].imageId,
+            points: renderedDetectionList[imageIndex].deletePoints,
+            chosenAction: 'Delete'
+        }
+        setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
+        
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList);
@@ -86,7 +131,6 @@ export default function PrototypeTwo() {
                 setSelectedScreenIndex(AllDetections.findIndex(detection => detection.imageId === isSelected));
 
             }
-            console.log(isSelected)
             if (isSelected === undefined || isSelected === null) {
                 setIsSelected(AllDetections[0]?.imageId);
 
@@ -120,6 +164,27 @@ export default function PrototypeTwo() {
         }
     }, [AllDetections]);
 
+/*
+function saveToFile(arrayToSave: Array<detection>) {1
+    const csv = Papa.unparse(arrayToSave);
+    const filePath = path.join(__dirname, userName + 'PrototypeTwo.csv');
+    fs.writeFile(filePath, csv, (err: any) => {
+      if (err) {
+        console.error('Error writing file', err);
+      } else {
+        console.log('Successfully wrote file');
+      }
+    });
+  }
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        saveToFile(arrayToSave);
+      }, 30000); // 0.5 minutes
+  
+      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
+    }, []);
+ */ 
 
     // use the styles data in the following for the actuan components then make this to a grid system
     return(

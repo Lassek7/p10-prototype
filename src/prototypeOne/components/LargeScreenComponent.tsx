@@ -12,7 +12,7 @@ interface detection {
     ImageDetectionDate: string,
     timeSinceDetection: string,
     filterID: string,
-    investigateRecommended: boolean
+    investigateRecommended: boolean,
 }
 
 interface detectionsProps {
@@ -54,7 +54,7 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, imag
                     timeSinceDetection={isEmpty ? "test" : renderedDetectionsList[imageIndex].timeSinceDetection} 
                     index={imageIndex}
                     prototypeThree={prototypeThree} 
-                    investigateRecommended={ isEmpty ? false : renderedDetectionsList[imageIndex].investigateRecommended} 
+                    investigateRecommended={ isEmpty ? false : renderedDetectionsList[imageIndex].investigateRecommended}
                 />  
             </CardContent>
         </Card>

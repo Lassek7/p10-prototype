@@ -25,7 +25,7 @@ interface largeScreen {
     onDeleteClick: (imageIndex: number) => void,
     onInvestigateClick: (imageIndex: number) => void,
     prototypeThree: boolean,
-    investigateRecommended: boolean
+    investigateRecommended: boolean,
 }
 
 

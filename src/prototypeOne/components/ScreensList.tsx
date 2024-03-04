@@ -15,6 +15,8 @@ interface detection {
     timeSinceDetection: string,
     filterID: string,
     investigateRecommended: boolean,
+    deletePoints: number,
+    investigatePoints: number,
     detectionWeight: number,
     isUnseen: boolean
 }

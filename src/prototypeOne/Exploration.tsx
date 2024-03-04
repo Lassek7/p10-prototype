@@ -5,8 +5,11 @@ import { useState, useEffect } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { Typography } from '@mui/material'
+import Styles from './prototypeOneStyles/styles'
+import TaskIntro from './components/TaskIntro'
 
-export default function PrototypeOne() {
+export default function Exploration() {
 
     interface detection {
         imageId: string,
@@ -23,21 +26,11 @@ export default function PrototypeOne() {
         detectionWeight: number,
         isUnseen: boolean
     }
-    interface ArrayToSave {
-        imageId: string,
-        points: number,
-        chosenAction: string,
-
-    }
-   
+ 
+    
     const location = useLocation()
     const userdata = location.state
     const userName = userdata.participantId
-/*
-    const fs = require('fs');
-    const path = require('path');
-    const Papa = require('papaparse');
-*/
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -48,8 +41,7 @@ export default function PrototypeOne() {
             Person: false,
             Item: false
         });
-    const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([]); // used to save the list to a file
-    const [seconds, setSeconds] = useState(300);
+    const [seconds, setSeconds] = useState(30);
     const navigate = useNavigate();
 
     
@@ -61,22 +53,19 @@ export default function PrototypeOne() {
             return () => clearTimeout(timerId); // This will clear the timer if the component is unmounted before the timer finishes
         }
         if (seconds === 0) {
-            navigate('/prototypeTwo', {state: userdata}); //Change to Questionnaire
+            navigate('/prototypeOne', {state: userdata}); //Change to task description
         }
     }, [seconds]);
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
 
 
     const handleLargescreenSwap = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
     }
     const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
-        const saveDetectionAction = {
-            imageId: renderedDetectionList[imageIndex].imageId,
-            points: renderedDetectionList[imageIndex].deletePoints,
-            chosenAction: 'Delete'
-        }
-        setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
-        
+
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList);
@@ -86,15 +75,13 @@ export default function PrototypeOne() {
         if (selectedScreenIndex >= newRenderedDetectionList.length ) {
             setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
         } 
+        
+        if (AllDetections.length === 1) {
+            navigate('/prototypeOne', {state: userdata}); //Change to task description
+        }
     }
     const handleInvestigateClick = (imageIndex: number) => {
-        const saveDetectionAction = {
-            imageId: renderedDetectionList[imageIndex].imageId,
-            points: renderedDetectionList[imageIndex].investigatePoints,
-            chosenAction: 'Investigate'
-        }
-        setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
-        
+
         let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
         let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
         setRenderedDetectionList(newRenderedDetectionList);
@@ -105,6 +92,9 @@ export default function PrototypeOne() {
             setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
            // setSelectedScreenIndex(0); // set it to zero
         } 
+        if (AllDetections.length === 1) {
+            navigate('/prototypeOne', {state: userdata}); //Change to task description
+        }
     }
 
     useEffect(() => {
@@ -115,36 +105,18 @@ export default function PrototypeOne() {
         }
     }, [AllDetections]);
 
-    /*
-function saveToFile(arrayToSave: Array<detection>) {1
-    const csv = Papa.unparse(arrayToSave);
-    const filePath = path.join(__dirname, userName + 'Baseline.csv');
-    fs.writeFile(filePath, csv, (err: any) => {
-      if (err) {
-        console.error('Error writing file', err);
-      } else {
-        console.log('Successfully wrote file');
-      }
-    });
-  }
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        saveToFile(arrayToSave);
-      }, 30000); // 0.5 minutes
-  
-      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
-    }, []);
- */ 
-
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
+        
         <Grid container>
             <Grid item xs={12} md={6}>
                 <TaskGoalsComponent prototypeThree={false} renderedDetectionsList={renderedDetectionList} imageIndex={selectedScreenIndex}/>
             </Grid>
             <Grid item xs={12} md={6}>
                 <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
+                <Typography sx={Styles.timer}>
+                        {minutes}:{remainingSeconds} 
+                </Typography>   
             </Grid>
             <Grid item xs={12}>
                 <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
