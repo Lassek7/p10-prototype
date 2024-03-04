@@ -26,13 +26,34 @@ const alertBoxEmpty: SxProps<Theme> = {
     flexDirection: 'column'
 }
 
-//Timer Styles
+// Timer Styles
 const timer: SxProps<Theme> = {
     color: '#343323', 
     position: 'absolute', 
     top: "1.55vh", 
     right: "6.5vw"
 }
+
+// Slider Styles
+const slider: SxProps<Theme> = {   
+    '& .MuiSlider-mark:nth-of-type(5n-3)': { 
+        borderRadius: '50%', 
+        backgroundColor: '#0A84FF',
+        transform: 'scale(7)'
+
+      },
+    '& .MuiSlider-mark': { 
+        top: '14px',
+        borderRadius: '50%', 
+        backgroundColor: '#0A84FF',
+        transform: 'scale(5)'
+      },
+      '& .MuiSlider-valueLabel': {
+        backgroundColor: '#0A84FF', 
+        color: 'white', 
+        borderRadius: '8px'
+      }
+    };
 
 // Large Screen Styles
 const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
@@ -178,6 +199,7 @@ const Styles = {
     alertBox: alertBox,
     alertBoxEmpty: alertBoxEmpty,
     timer: timer,
+    slider: slider,
 
 }
 

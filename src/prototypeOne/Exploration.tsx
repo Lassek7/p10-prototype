@@ -8,6 +8,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import Styles from './prototypeOneStyles/styles'
 import TaskIntro from './components/TaskIntro'
+import './prototypeOneStyles/blur.css'
+import Questionnaire from './components/Questionnnaire'
 
 export default function Exploration() {
 
@@ -27,10 +29,12 @@ export default function Exploration() {
         isUnseen: boolean
     }
  
-    
     const location = useLocation()
-    const userdata = location.state
-    const userName = userdata.participantId
+    const userData = location.state
+
+    const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
+    const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
+    const [startTest, setStartTest] = useState<boolean>(false)
     const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -41,25 +45,31 @@ export default function Exploration() {
             Person: false,
             Item: false
         });
-    const [seconds, setSeconds] = useState(30);
+    const [seconds, setSeconds] = useState(10);
     const navigate = useNavigate();
+
 
     
     useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
-        if (seconds > 0) {
+        if (seconds > 0 && startTest) {
             const timerId = setTimeout(() => {
                 setSeconds(seconds - 1);
             }, 1000);
             return () => clearTimeout(timerId); // This will clear the timer if the component is unmounted before the timer finishes
         }
         if (seconds === 0) {
-            navigate('/prototypeOne', {state: userdata}); //Change to task description
+            setOpenQuestionnaire(true);
         }
-    }, [seconds]);
+    }, [seconds, startTest]);
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
 
+    useEffect(() => {
+        if (questionnaireCompleted) {
+            navigate('/prototypeOne', {state: userData}); //Change to task description
+        }
+    },[questionnaireCompleted])
 
     const handleLargescreenSwap = (imageIndex: number) => {
         setSelectedScreenIndex(imageIndex)
@@ -77,7 +87,7 @@ export default function Exploration() {
         } 
         
         if (AllDetections.length === 1) {
-            navigate('/prototypeOne', {state: userdata}); //Change to task description
+            navigate('/prototypeOne', {state: userData}); //Change to task description
         }
     }
     const handleInvestigateClick = (imageIndex: number) => {
@@ -93,7 +103,7 @@ export default function Exploration() {
            // setSelectedScreenIndex(0); // set it to zero
         } 
         if (AllDetections.length === 1) {
-            navigate('/prototypeOne', {state: userdata}); //Change to task description
+            navigate('/prototypeOne', {state: userData}); //Change to task description
         }
     }
 
@@ -107,9 +117,9 @@ export default function Exploration() {
 
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
-        
-        <Grid container>
-            <Grid item xs={12} md={6}>
+        <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
+            <TaskIntro taskId={0} setStartTest={setStartTest}/>
+            <Grid item xs={12} md={6} >
                 <TaskGoalsComponent prototypeThree={false} renderedDetectionsList={renderedDetectionList} imageIndex={selectedScreenIndex}/>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -121,6 +131,7 @@ export default function Exploration() {
             <Grid item xs={12}>
                 <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
             </Grid>
+            <Questionnaire questionnaireId={0} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
         </Grid>
     )
 }

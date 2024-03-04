@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.blur {
+  filter: blur(2px);
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

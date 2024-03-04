@@ -1,0 +1,11 @@
+.container {
+    /* Adjust these as needed */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+  }
+
+.blur-effect {
+  filter: blur(2px);
+}

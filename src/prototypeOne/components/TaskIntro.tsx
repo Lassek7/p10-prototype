@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button} from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { mockTaskDescriptions } from './mockTaskDescriptions';
     
     interface taskDescription {
         taskId: number,
+        setStartTest: React.Dispatch<React.SetStateAction<boolean>>,
     }
 
 export default function TaskIntro(taskDescription: taskDescription) {
@@ -13,11 +14,13 @@ export default function TaskIntro(taskDescription: taskDescription) {
    
     const handleClose = () => {
     setOpen(false);
+    taskDescription.setStartTest(true);
   };
 
     return (
         <div>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog disableEscapeKeyDown open={open} onClose={(_, reason) => 
+        {if (reason !== 'backdropClick') { handleClose()}}}>
             <DialogContent>
                 <DialogTitle>
                 {mockTaskDescriptions[taskDescription.taskId].taskName}
@@ -29,9 +32,9 @@ export default function TaskIntro(taskDescription: taskDescription) {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Close
-            </Button>
+                <Button onClick={handleClose} color="primary">
+                Start
+                </Button>
             </DialogActions>
         </Dialog>
       </div>

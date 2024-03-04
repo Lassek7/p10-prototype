@@ -1,6 +1,6 @@
 import './App.css'
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField, Grid, Slider, Box } from '@mui/material';
+import { Button, TextField, Grid } from '@mui/material';
 import { useState } from 'react';
 
 function App() {
@@ -21,7 +21,7 @@ const loginClick = (version: number) => {
   if (version === 1) {
     navigate('/Exploration', {state: userData});
   } else {
-    navigate('/prototypeThree', {state: userData});
+    navigate('/Exploration', {state: userData});
   }
 }
 
@@ -41,12 +41,6 @@ const loginClick = (version: number) => {
       </Grid>
       <Grid item xs={12}>
         <Button onClick={()=>{loginClick(2)}} variant="contained" color="primary" > Prototype v2.0</Button>
-      </Grid>
-      <Grid item xs={12}>
-        <Box >
-            <Slider defaultValue={1} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={{ '& .MuiSlider-mark': { width: '10px', height: '10px', borderRadius: '100%', backgroundColor: '#0A84FF'},
-    '& .MuiSlider-valueLabel': {backgroundColor: '#0A84FF', color: 'white', borderRadius:"8px"}}}/>
-        </Box>
       </Grid>
     </Grid>
   );
