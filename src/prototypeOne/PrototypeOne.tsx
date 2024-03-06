@@ -1,7 +1,7 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
 import { Grid, Typography } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -40,14 +40,16 @@ export default function PrototypeOne() {
     const path = require('path');
     const Papa = require('papaparse');
 */
+    const [pauseTest, setPauseTest] = useState<boolean>(false)
+    const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
     const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
     const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [testSetup, _] = useState<number>(userData.version)
     const [startTest, setStartTest] = useState<boolean>(false)
-    const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
-    const [isSelected, setIsSelected] = useState<string| null>(null);
+    const [isSelected, setIsSelected] = useState<string| null>(detections[0].imageId);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
         {
             Vehicle: false,
@@ -63,7 +65,7 @@ export default function PrototypeOne() {
 
     
     useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
-        if (seconds > 0 && startTest) {
+        if (seconds > 0 && startTest && !pauseTest) {
             const timerId = setTimeout(() => {
                 setSeconds(seconds - 1);
             }, 1000);
@@ -72,10 +74,24 @@ export default function PrototypeOne() {
         if (seconds === 0) {
             setOpenQuestionnaire(true);
         }
-    }, [seconds, startTest]);
+    }, [seconds, startTest, pauseTest]);
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
+
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key === '9') {
+                setPauseTest(prevPauseTest => !prevPauseTest)
+            }
+        };
+        // Add the event listener when the component mounts
+        window.addEventListener('keydown', handleKeyPress);
+        // Remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []); 
 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
@@ -87,54 +103,58 @@ export default function PrototypeOne() {
         }
     },[questionnaireCompleted])
 
-    const handleLargescreenSwap = (imageIndex: number) => {
-        setSelectedScreenIndex(imageIndex)
-    }
-    const handleDeleteClick = (imageIndex: number) => { //move this into Screenslist. so the deletion happens in there and based on the renderlist
+    const handleSmallScreenClick = useCallback((imageId: string) => {
+        const index = AllDetections.findIndex(detection => detection.imageId === imageId);
+        setSelectedDetection(AllDetections[index])
+    }, [AllDetections]);
+
+    const handleDeleteClick = useCallback((imageId: string) => {
+        const removedDetection = AllDetections.filter(detection => detection.imageId === imageId)
+        setRecentlyDeleted(removedDetection)        
+        
+        let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
+        setAllDetections(newAllDetections);
         const saveDetectionAction = {
-            imageId: renderedDetectionList[imageIndex].imageId,
-            points: renderedDetectionList[imageIndex].deletePoints,
+            imageId: removedDetection[0].imageId,
+            points: removedDetection[0].deletePoints,
             chosenAction: 'Delete'
         }
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
-        
-        let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
-        let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
-        setRenderedDetectionList(newRenderedDetectionList);
-        setAllDetections(newAllDetections);
+    }, [AllDetections]);
 
-        // If the selected index is out of bounds, sets it one lower
-        if (selectedScreenIndex >= newRenderedDetectionList.length ) {
-            setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
-        } 
-    }
-    const handleInvestigateClick = (imageIndex: number) => {
+    const handleInvestigateClick= useCallback((imageId: string) => {
+        const removedDetection = AllDetections.filter(detection => detection.imageId === imageId)
+        setRecentlyDeleted(removedDetection)
+
+        let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
+        setAllDetections(newAllDetections);
         const saveDetectionAction = {
-            imageId: renderedDetectionList[imageIndex].imageId,
-            points: renderedDetectionList[imageIndex].investigatePoints,
+            imageId: removedDetection[0].imageId,
+            points: removedDetection[0].deletePoints,
             chosenAction: 'Investigate'
         }
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
-        
-        let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
-        let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
-        setRenderedDetectionList(newRenderedDetectionList);
-        setAllDetections(newAllDetections);
-
-        // If the selected index is out of bounds:
-        if (selectedScreenIndex >= newRenderedDetectionList.length ) {
-            setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
-           // setSelectedScreenIndex(0); // set it to zero
-        } 
-    }
+    }, [AllDetections]);
 
     useEffect(() => {
-        if (renderedDetectionList[selectedScreenIndex]) {
-            setIsSelected(renderedDetectionList[selectedScreenIndex].imageId)
+        const newRenderedDetectionList = AllDetections
+
+        if(recentlyDeleted.length > 0 && newRenderedDetectionList.length > 0) {
+            //console.log("i crash here" )
+            const indexInOldList = renderedDetectionList.findIndex(detection => detection.imageId === recentlyDeleted[0]?.imageId) // finds the location of the old item
+
+            const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
+
+            setSelectedDetection(AllDetections[indexInNewList])
+            setIsSelected(AllDetections[indexInNewList].imageId)
         } else {
-            setIsSelected(renderedDetectionList[0]?.imageId); // reset to position 1 if the list gets emptied and reset
+            if (AllDetections.length > 0) {
+                setIsSelected(AllDetections[0].imageId)
+            }        
         }
-    }, [AllDetections]);
+        setRenderedDetectionList(newRenderedDetectionList);
+
+    },[AllDetections])
 
     /*
 function saveToFile(arrayToSave: Array<detection>) {1
@@ -151,23 +171,27 @@ function saveToFile(arrayToSave: Array<detection>) {1
  */ 
 
     // use the styles data in the following for the actuan components then make this to a grid system
-    return(
-        <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
+    if(startTest) {
+        return(
+            <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
+                <Grid item xs={12} md={6}>
+                    <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection}/>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
+                    <Typography sx={Styles.timer}>
+                            {minutes}:{remainingSeconds} 
+                    </Typography>   
+                </Grid>
+                <Grid item xs={12}>
+                    <ScreensList prototypeOne={true} setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
+                </Grid>
+                <Questionnaire questionnaireId={1} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
+            </Grid>
+    )} else {
+        return(
             <TaskIntro taskId={1} setStartTest={setStartTest}/>
-            <Grid item xs={12} md={6}>
-                <TaskGoalsComponent prototypeThree={false} renderedDetectionsList={renderedDetectionList} imageIndex={selectedScreenIndex}/>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
-                <Typography sx={Styles.timer}>
-                        {minutes}:{remainingSeconds} 
-                </Typography>   
-            </Grid>
-            <Grid item xs={12}>
-                <ScreensList prototypeOne={true} setScreenIndex={handleLargescreenSwap} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
-            </Grid>
-            <Questionnaire questionnaireId={1} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
-        </Grid>
-    )
+        )
+    }
 }
     

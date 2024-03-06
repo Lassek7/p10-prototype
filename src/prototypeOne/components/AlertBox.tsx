@@ -29,6 +29,7 @@ export default function AlertBox({ onAlertClick, allDetections, currentWeight}: 
     }
    
     const inactiveList = allDetections.filter((detection) => detection.isUnseen === true && detection.detectionWeight < currentWeight && currentWeight != undefined).sort((a, b) => a.detectionWeight - b.detectionWeight);
+    
     if (inactiveList.length > 0) {
     return (
         <Card onClick = {() => handleAlertClick(inactiveList[0].imageId)} sx={Styles.alertBox} >

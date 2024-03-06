@@ -21,9 +21,8 @@ interface largeScreen {
     imageDetectionTime: string,
     ImageDetectionDate: string,
     timeSinceDetection?: string,
-    index: number,
-    onDeleteClick: (imageIndex: number) => void,
-    onInvestigateClick: (imageIndex: number) => void,
+    onDeleteClick: (ImageId: string) => void,
+    onInvestigateClick: (imageId: string) => void,
     prototypeThree: boolean,
     investigateRecommended: boolean,
 }
@@ -32,11 +31,11 @@ interface largeScreen {
 
 export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
 
-    const handleDeleteClick = (imageIndex: number) => {
-        largeScreen.onDeleteClick(imageIndex)
+    const handleDeleteClick = (imageId: string) => {
+        largeScreen.onDeleteClick(imageId)
     }
-    const handleInvestigateClick = (imageIndex: number) => {
-        largeScreen.onInvestigateClick(imageIndex)
+    const handleInvestigateClick = (imageId: string) => {
+        largeScreen.onInvestigateClick(imageId)
     }
     return (
         <Grid container sx={Styles.largeScreenInfoBox}>
@@ -63,13 +62,13 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
             </Grid>
             {!largeScreen.prototypeOne ? (
                 <Grid item container sx={{ Direction: 'row', justifyContent:"center", alignItems:"center", marginTop: '1.5%'}}  xs={6} >
-                    <Button onClick={() =>handleDeleteClick(largeScreen.index)} variant={largeScreen.prototypeThree &&  !largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree,  !largeScreen.investigateRecommended)}>Delete</Button>
-                    <Button onClick={() =>handleInvestigateClick(largeScreen.index)} variant={largeScreen.prototypeThree && largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.investigateRecommended)}>Investigate</Button>
+                    <Button onClick={() =>handleDeleteClick(largeScreen.imageId)} variant={largeScreen.prototypeThree &&  !largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree,  !largeScreen.investigateRecommended)}>Delete</Button>
+                    <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant={largeScreen.prototypeThree && largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.investigateRecommended)}>Investigate</Button>
                 </Grid>
                 ) : (
                 <Grid item container sx={{ Direction: 'row', justifyContent:"center", alignItems:"center"}} xs={11} >
-                    <Button onClick={() =>handleDeleteClick(largeScreen.index)}  variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Delete</Button>
-                    <Button onClick={() =>handleInvestigateClick(largeScreen.index)} variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Investigate</Button>
+                    <Button onClick={() =>handleDeleteClick(largeScreen.imageId)}  variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Delete</Button>
+                    <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Investigate</Button>
                 </Grid>
             )}
             {!largeScreen.prototypeOne && (

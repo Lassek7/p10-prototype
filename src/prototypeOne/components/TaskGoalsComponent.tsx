@@ -16,12 +16,11 @@ interface detection {
 }
 
 interface TaskGoalsProps {
-    imageIndex: number,
-    renderedDetectionsList: Array<detection>,
-    prototypeThree: boolean
+    prototypeThree: boolean,
+    selectedDetection: detection,
 }
 
-export default function TaskGoalsComponent({renderedDetectionsList, imageIndex, prototypeThree}: TaskGoalsProps) {
+export default function TaskGoalsComponent({selectedDetection, prototypeThree}: TaskGoalsProps) {
     return (
         <Card sx={Styles.taskGoalCard}>
             <CardHeader title="Task Goals" align="left" />
@@ -30,8 +29,8 @@ export default function TaskGoalsComponent({renderedDetectionsList, imageIndex, 
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
-                             <Person fontSize='large' sx={{color: renderedDetectionsList.length > 0 && prototypeThree && renderedDetectionsList[imageIndex]?.filterID === 'Person' ? '#0A84FF' : '#343323'}}/>
-                        <Box ml={1} sx={{ fontWeight: 700, color: renderedDetectionsList.length > 0 && prototypeThree && renderedDetectionsList[imageIndex]?.filterID === 'Person' ? '#0A84FF' : '#343323'}}> Person</Box> {/* l = margin left */}
+                             <Person fontSize='large' sx={{color: prototypeThree && selectedDetection.filterID === 'Person' ? '#0A84FF' : '#343323'}}/>
+                        <Box ml={1} sx={{ fontWeight: 700, color: prototypeThree && selectedDetection?.filterID === 'Person' ? '#0A84FF' : '#343323'}}> Person</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     
@@ -55,8 +54,8 @@ export default function TaskGoalsComponent({renderedDetectionsList, imageIndex, 
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
-                        <DryCleaning fontSize='large' sx={{color: renderedDetectionsList.length > 0 && prototypeThree && renderedDetectionsList[imageIndex]?.filterID === 'Item' ? '#0A84FF' : '#343323'}}/>
-                            <Box ml={1} sx={{ fontWeight: 700, color: renderedDetectionsList.length > 0 && prototypeThree && renderedDetectionsList[imageIndex]?.filterID === 'Item' ? '#0A84FF' : '#343323'}}> Personal Items</Box> {/* l = margin left */}
+                        <DryCleaning fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}/>
+                            <Box ml={1} sx={{ fontWeight: 700, color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}> Personal Items</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     
@@ -80,8 +79,8 @@ export default function TaskGoalsComponent({renderedDetectionsList, imageIndex, 
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
-                        <DirectionsCar fontSize='large' sx={{color: renderedDetectionsList.length > 0 && prototypeThree && renderedDetectionsList[imageIndex]?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}/>
-                            <Box ml={1} sx={{ fontWeight: 700, color: renderedDetectionsList.length > 0 && prototypeThree && renderedDetectionsList[imageIndex]?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Vehicle</Box> {/* l = margin left */}
+                        <DirectionsCar fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}/>
+                            <Box ml={1} sx={{ fontWeight: 700, color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Vehicle</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     

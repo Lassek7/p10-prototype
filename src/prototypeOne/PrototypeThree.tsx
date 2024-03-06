@@ -1,7 +1,7 @@
 import TaskGoalsComponent from './components/TaskGoalsComponent'
 import ScreensList from './components/ScreensList'
 import {Grid, Typography} from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import AlertBox from './components/AlertBox'
@@ -44,14 +44,16 @@ export default function PrototypeThree() {
     const path = require('path');
     const Papa = require('papaparse');
 */
+    const [pauseTest, setPauseTest] = useState<boolean>(false)
+    const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)[0])
     const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
     const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [testSetup, _] = useState<number>(userData.testSetup)
     const [startTest, setStartTest] = useState<boolean>(false)
-    const [selectedScreenIndex, setSelectedScreenIndex] = useState<number>(0);
-    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
+    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
-    const [isSelected, setIsSelected] = useState<string | null>(null);
+    const [isSelected, setIsSelected] = useState<string | null>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)[0].imageId);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
         {
             Vehicle: false,
@@ -62,12 +64,12 @@ export default function PrototypeThree() {
     const [seconds, setSeconds] = useState(300);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => { //temp to create electron file
         console.log(userData)
     }, [arrayToSave]);
 
     useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
-        if (seconds > 0 && startTest) {
+        if (seconds > 0 && startTest && !pauseTest) {
             const timerId = setTimeout(() => {
                 setSeconds(seconds - 1);
             }, 1000);
@@ -82,120 +84,109 @@ export default function PrototypeThree() {
     const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
 
     useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key === '9') {
+                setPauseTest(prevPauseTest => !prevPauseTest)
+            }
+        };
+        // Add the event listener when the component mounts
+        window.addEventListener('keydown', handleKeyPress);
+        // Remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []); 
+
+    useEffect(() => {
         if (testSetup === 2 && questionnaireCompleted) {
             //saveToFile(arrayToSave);
             navigate('/prototypeTwo', {state: userData}); //Change to task description
         }
     },[questionnaireCompleted])
 
-    const handleSmallScreenClick = (imageIndex: number) => {
-        setSelectedScreenIndex(imageIndex)
-    }
+    const handleSmallScreenClick = useCallback((ImageId: string) => {
+        const index = AllDetections.findIndex(detection => detection.imageId === ImageId);
+        setSelectedDetection(AllDetections[index])
+    }, [AllDetections]);
 
     const handleAlertClick = (imageId: string) => {
         const imageIndex = AllDetections.findIndex(detection => detection.imageId === imageId);
-        setSelectedScreenIndex(imageIndex);
+        setSelectedDetection(AllDetections[imageIndex])
         setIsSelected(imageId);
+        AllDetections[imageIndex].isUnseen = false  
     }
 
-    const handleDeleteClick = (imageIndex: number) => { 
+    const handleDeleteClick = useCallback((imageId: string) => {
+
+        const removedDetection = AllDetections.filter(detection => detection.imageId === imageId)
+        setRecentlyDeleted(removedDetection)
+
+        let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
+        setAllDetections(newAllDetections.sort((a, b) => a.detectionWeight - b.detectionWeight));
         const saveDetectionAction = {
-            imageId: renderedDetectionList[imageIndex].imageId,
-            points: renderedDetectionList[imageIndex].deletePoints,
+            imageId: removedDetection[0].imageId,
+            points: removedDetection[0].deletePoints,
             chosenAction: 'Delete'
         }
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
-        
-        let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
-        let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
-        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
-        setAllDetections(newAllDetections);
+    }, [AllDetections]);
 
-        // If the selected index is out of bounds, sets it one lower
-        if (selectedScreenIndex >= newRenderedDetectionList.length ) {
-            setSelectedScreenIndex(newRenderedDetectionList.length-1); // if the last item in the list is deleted, it set the selected index to the new last item (1 below previous index)
-        } 
+
+    const handleInvestigateClick= useCallback((imageId: string) => {
         
-        if (newRenderedDetectionList.length === 0 && renderedDetectionList.length != AllDetections.length) { //ensures that if all detections in a filter are deleted, the remainder of the other detections are rendered. The last part of the condition ensures that the last item in the list is not displayed again whenh its supposed to be deleted
-            filterChoices.Vehicle = false
-            filterChoices.Person =false
-            filterChoices.Item = false
-            setRenderedDetectionList(AllDetections.sort((a, b) => a.detectionWeight - b.detectionWeight));
-        }
-    }
-    const handleInvestigateClick = (imageIndex: number) => {
+        const removedDetection = AllDetections.filter(detection => detection.imageId === imageId)
+        setRecentlyDeleted(removedDetection)
+
+        let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
+        setAllDetections(newAllDetections.sort((a, b) => a.detectionWeight - b.detectionWeight));
+
         const saveDetectionAction = {
-            imageId: renderedDetectionList[imageIndex].imageId,
-            points: renderedDetectionList[imageIndex].investigatePoints,
+            imageId: removedDetection[0].imageId,
+            points: removedDetection[0].deletePoints,
             chosenAction: 'Investigate'
         }
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
-        
-        let newAllDetections = AllDetections.filter((_, index) => AllDetections[index].imageId !== renderedDetectionList[imageIndex].imageId);
-        let newRenderedDetectionList = renderedDetectionList.filter((_, index) => index !== imageIndex);
-        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
-        setAllDetections(newAllDetections);
-
-        // If the selected index is out of bounds:
-        if (selectedScreenIndex >= newRenderedDetectionList.length ) {
-            setSelectedScreenIndex(newRenderedDetectionList.length-1); // goes 1 below the max length
-           // setSelectedScreenIndex(0); // set it to zero
-        } 
-                
-        if (newRenderedDetectionList.length === 0 && renderedDetectionList.length != AllDetections.length) {
-            filterChoices.Vehicle = false
-            filterChoices.Person =false
-            filterChoices.Item = false
-            setRenderedDetectionList(AllDetections.sort((a, b) => a.imageDetectionTime.localeCompare(b.imageDetectionTime)));
-        }
-    }
-
+    }, [AllDetections]);
+    
     useEffect(() => { // controls filtering of the list
-        const newRenderedDetectionList = AllDetections.filter(AllDetections => filterChoices[AllDetections.filterID]);
-    
-        // If no filter is selected, show all
-        if (!filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item) {
-            if (isSelected != null) {
-                setSelectedScreenIndex(AllDetections.findIndex(detection => detection.imageId === isSelected));
-
-            }
-            if (isSelected === undefined || isSelected === null) {
-                setIsSelected(AllDetections[0]?.imageId);
-
-            }
-            setRenderedDetectionList(AllDetections.sort((a, b) => a.detectionWeight - b.detectionWeight));
-        } else {
-            // Check if the currently selected item is in the new list
-            const currentSelectedImageId = renderedDetectionList[selectedScreenIndex]?.imageId; 
-            const newIndex = newRenderedDetectionList.findIndex(detection => detection.imageId === currentSelectedImageId);
-    
-            if(newIndex !== -1) {
-                // If the currently selected item is in the new list, update the selectedScreenIndex to its new index
-                setSelectedScreenIndex(newIndex);
-                setIsSelected(newRenderedDetectionList[newIndex]?.imageId);
-            } else {
-                // If the currently selected item is not in the new list, reset the selectedScreenIndex to 0
-                setSelectedScreenIndex(0);
-                setIsSelected(newRenderedDetectionList[0]?.imageId);
-            }
-    
-            // Update renderedDetectionList after updating selectedScreenIndex and isSelected
-            setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
-        }
+        const newRenderedDetectionList = AllDetections.filter(AllDetections => !filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item  || filterChoices[AllDetections.filterID]);
+        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
     }, [filterChoices]); // whenever the filterChoices change, this effect will run
 
-    useEffect(() => { 
-        if (renderedDetectionList[selectedScreenIndex]) {
-            setIsSelected(renderedDetectionList[selectedScreenIndex].imageId)
-            setRenderedDetectionList(renderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));  
-            AllDetections[selectedScreenIndex].isUnseen = false; // change this if we only want the rendered to be in the alert count
+    useEffect(() => {
+        const newRenderedDetectionList = AllDetections.filter(AllDetections => !filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item  || filterChoices[AllDetections.filterID]);
+
+        if(filterChoices[recentlyDeleted[0]?.filterID] && recentlyDeleted.length > 0 && newRenderedDetectionList.length > 0 || !filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item && recentlyDeleted.length > 0 && newRenderedDetectionList.length > 0) {
+            const indexInOldList = renderedDetectionList.findIndex(detection => detection.imageId === recentlyDeleted[0]?.imageId) // finds the location of the old item
+
+            if (indexInOldList === -1) {
+                setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
+                return
+            }
+
+            const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
+
+            setSelectedDetection(AllDetections[indexInNewList])
+            setIsSelected(AllDetections[indexInNewList].imageId)            
+            AllDetections[indexInNewList].isUnseen = false
+
             
-        } else {
-            setIsSelected(renderedDetectionList[1]?.imageId); // reset to position 1 if the list gets emptied and reset
+        } else if (newRenderedDetectionList.length !== 0 && recentlyDeleted.length !== 0){
+            setIsSelected(newRenderedDetectionList[0].imageId)
+            setSelectedDetection(AllDetections[AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[0].imageId)])
+            AllDetections[0].isUnseen = false
+
+        } else if (recentlyDeleted.length !== 0) {
+            setFilterChoices({Vehicle: false, Person: false, Item: false})
+            setSelectedDetection(AllDetections[0])
+            setIsSelected(AllDetections[0].imageId)
+            AllDetections[0].isUnseen = false
         }
 
+         setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
 
-    }, [AllDetections]);
+    },[AllDetections])
+
 
 const addNewItem= () => { //remove when actually adding new items
     // Add new items to the array
@@ -239,16 +230,18 @@ const addNewItem2= () => { //remove when actually adding new items
 };
 
 useEffect(() => {
-    const timer = setTimeout(addNewItem, 1 * 60 * 1000); // 1 minutes in milliseconds
-    const timer2 = setTimeout(addNewItem2, 2 * 60 * 1000); // 2 minutes in milliseconds
-   
+    if (startTest) {
+        const timer = setTimeout(addNewItem, 1 * 10 * 1000); // 1 minutes in milliseconds
+        const timer2 = setTimeout(addNewItem2, 2 * 10 * 1000); // 2 minutes in milliseconds
+       
 
-    // Clear the timer when the component is unmounted
-    return () => {
-        clearTimeout(timer);
-        clearTimeout(timer2);
-      };
-}, []);
+        // Clear the timer when the component is unmounted
+        return () => {
+            clearTimeout(timer);
+            clearTimeout(timer2);
+          };
+    }
+}, [startTest]);
 
 /*
 function saveToFile(arrayToSave: Array<detection>) {1
@@ -264,26 +257,30 @@ function saveToFile(arrayToSave: Array<detection>) {1
   }
 
 */
-    return(
-        <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
+    if (startTest) {
+        return(
+            <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
+                <Grid item xs={4} md={4}>
+                    <TaskGoalsComponent  prototypeThree={true} selectedDetection={selectedDetection}/>
+                </Grid>
+                <Grid item xs={4} md={4}>
+                    <LargeScreenComponent prototypeThree={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
+                </Grid>
+                <Grid item >
+                    <AlertBox onAlertClick={handleAlertClick} allDetections={AllDetections} currentWeight={selectedDetection.detectionWeight} /> 
+                    <Typography sx={Styles.timer}>
+                            {minutes}:{remainingSeconds} 
+                    </Typography>                
+                </Grid>
+                <Grid item xs={12}>
+                    <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
+                </Grid>
+                <Questionnaire questionnaireId={3} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
+            </Grid>
+    )} else {
+        return(
             <TaskIntro taskId={3} setStartTest={setStartTest}/>
-            <Grid item xs={4} md={4}>
-                <TaskGoalsComponent  prototypeThree={true} renderedDetectionsList={renderedDetectionList} imageIndex={selectedScreenIndex}/>
-            </Grid>
-            <Grid item xs={4} md={4}>
-                <LargeScreenComponent prototypeThree={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} imageIndex={selectedScreenIndex} renderedDetectionsList={renderedDetectionList}/>
-            </Grid>
-            <Grid item >
-                <AlertBox onAlertClick={handleAlertClick} allDetections={AllDetections} currentWeight={renderedDetectionList[selectedScreenIndex]?.detectionWeight} /> 
-                <Typography sx={Styles.timer}>
-                        {minutes}:{remainingSeconds} 
-                </Typography>                
-            </Grid>
-            <Grid item xs={12}>
-                <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
-            </Grid>
-            <Questionnaire questionnaireId={0} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
-        </Grid>
-    )
+        )
+    }
 }
     

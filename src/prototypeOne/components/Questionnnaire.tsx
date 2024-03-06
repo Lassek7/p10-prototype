@@ -54,33 +54,113 @@ export default function Questionnaire(questionnaire: questionnaire) {
 
 
     return (
-        <Dialog disableEscapeKeyDown maxWidth={"md"}  
+        <Dialog disableEscapeKeyDown maxWidth={"sm"}  
         open={open} onClose={(_, reason) => 
         {if (reason !== 'backdropClick') { handleClose()}}}>
             <DialogContent>
-                <Grid container direction={"row"} rowSpacing={3} >
+                <Grid container direction={"row"} rowSpacing={4} >
                     <Grid item xs={12}>
                         <DialogTitle>
                         {mockQuestionnaire[questionnaire.questionnaireId].questionnnaireTitle}
                         </DialogTitle>
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField id='Q1' label={mockQuestionnaire[questionnaire.questionnaireId].question1} variant='outlined' multiline rows={3} fullWidth onChange={(e) => setquestion1(e.target.value)}/>   
-                    </Grid>
-                    <Grid item xs={6} mb={-3}>
+                    <Grid item xs={5} mb={-4}>
                         <Typography>Mental Demand</Typography>
                     </Grid>
-                    <Grid item xs={6} textAlign={"right"} mb={-3}>
+                    <Grid item xs={7} textAlign={"right"} mb={-4}>
                         <Typography>How mentally demanding was the task?</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
                     </Grid>
-                    <Grid item xs={6}  mt={-3}>
+                    <Grid item xs={6}  mt={-4}>
                         <Typography>Very Low</Typography>
                     </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-3}>
+                    <Grid item xs={6} textAlign={"right"} mt={-4}>
                         <Typography>Very High</Typography>
+                    </Grid>
+
+                    <Grid item xs={5} mb={-4}>
+                        <Typography>Physical Demand</Typography>
+                    </Grid>
+                    <Grid item xs={7} textAlign={"right"} mb={-4}>
+                        <Typography>How physically demanding was the task?</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                    </Grid>
+                    <Grid item xs={6}  mt={-4}>
+                        <Typography>Very Low</Typography>
+                    </Grid>
+                    <Grid item xs={6} textAlign={"right"} mt={-4}>
+                        <Typography>Very High</Typography>
+                    </Grid>
+
+                    <Grid item xs={5} mb={-4}>
+                        <Typography>Temporal Demand</Typography>
+                    </Grid>
+                    <Grid item xs={7} textAlign={"right"} mb={-4}>
+                        <Typography>How hurried or rushed was the pace of the task?</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                    </Grid>
+                    <Grid item xs={6}  mt={-4}>
+                        <Typography>Very Low</Typography>
+                    </Grid>
+                    <Grid item xs={6} textAlign={"right"} mt={-4}>
+                        <Typography>Very High</Typography>
+                    </Grid>
+
+                    <Grid item xs={5} mb={-4}>
+                        <Typography>Performance</Typography>
+                    </Grid>
+                    <Grid item xs={7} textAlign={"right"} mb={-4}>
+                        <Typography>How successful were you in accomplishing what you were asked to do?</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                    </Grid>
+                    <Grid item xs={6}  mt={-4}>
+                        <Typography>Very Low</Typography>
+                    </Grid>
+                    <Grid item xs={6} textAlign={"right"} mt={-4}>
+                        <Typography>Very High</Typography>
+                    </Grid>
+
+                    <Grid item xs={5} mb={-4}>
+                        <Typography>Effort</Typography>
+                    </Grid>
+                    <Grid item xs={7} textAlign={"right"} mb={-4}>
+                        <Typography>How hard did you have to work to accomplish your level of performance?</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                    </Grid>
+                    <Grid item xs={6}  mt={-4}>
+                        <Typography>Very Low</Typography>
+                    </Grid>
+                    <Grid item xs={6} textAlign={"right"} mt={-4}>
+                        <Typography>Very High</Typography>
+                    </Grid>
+
+                    <Grid item xs={5} mb={-4}>
+                        <Typography>Frustration</Typography>
+                    </Grid>
+                    <Grid item xs={7} textAlign={"right"} mb={-4}>
+                        <Typography>How insecure, discouraged, irritated, stressed, and annoyed wereyou?</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                    </Grid>
+                    <Grid item xs={6}  mt={-4}>
+                        <Typography>Very Low</Typography>
+                    </Grid>
+                    <Grid item xs={6} textAlign={"right"} mt={-4}>
+                        <Typography>Very High</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id='Q1' label={mockQuestionnaire[questionnaire.questionnaireId].question1} variant='outlined' multiline rows={3} fullWidth onChange={(e) => setquestion1(e.target.value)}/>   
                     </Grid>
                     <Grid item xs={12}>
                         <TextField id='Q2' label={mockQuestionnaire[questionnaire.questionnaireId].question1} variant='outlined' fullWidth onChange={(e) => setquestion2(e.target.value)}/>   

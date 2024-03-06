@@ -21,7 +21,7 @@ interface detection {
     isUnseen: boolean
 }
 interface ScreensListProps {
-    setScreenIndex: (imageIndex: number) => void
+    setScreenIndex: (imageIndex: string) => void
     prototypeOne?: boolean
     renderedDetectionList: Array<detection> 
     setRenderedDetectionList: (detectionsList: Array<detection>) => void
@@ -80,11 +80,8 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
     const handleScreenClick = (imageId: string, imageIndex: number) => {
         if (imageIndex != null && imageId != null) {
             setIsSelected(imageId)
-            setScreenIndex(imageIndex)
+            setScreenIndex(imageId)
             renderedDetectionList[imageIndex].isUnseen = false
-        } else {
-            setIsSelected(null)
-            setScreenIndex(0)
         }
 
     }   
