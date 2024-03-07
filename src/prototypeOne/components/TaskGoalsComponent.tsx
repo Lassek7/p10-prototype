@@ -2,6 +2,7 @@ import Styles from '../prototypeOneStyles/styles';
 import { Box, Card, CardContent, CardHeader, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
 import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+//import { mockTaskDescriptions } from './mockTaskDescriptions';
 
 interface detection {
     imageId: string,
@@ -18,9 +19,11 @@ interface detection {
 interface TaskGoalsProps {
     prototypeThree: boolean,
     selectedDetection: detection,
+    taskId: Number,
 }
 
-export default function TaskGoalsComponent({selectedDetection, prototypeThree}: TaskGoalsProps) {
+export default function TaskGoalsComponent({selectedDetection, prototypeThree, taskId}: TaskGoalsProps) {
+    console.log(taskId)
     return (
         <Card sx={Styles.taskGoalCard}>
             <CardHeader title="Task Goals" align="left" />

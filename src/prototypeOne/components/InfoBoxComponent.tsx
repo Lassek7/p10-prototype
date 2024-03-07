@@ -46,7 +46,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                             {largeScreen.imageId}
                         </Typography>
                     </Grid>
-                    {!largeScreen.prototypeOne && (
+                    {!largeScreen.prototypeOne ? (
                     <Grid item sx={{ marginBottom: -2,}}>
                         <Box display="flex" >
                             <Typography  sx={Styles.largeInfoBoxTypography(largeScreen.prototypeThree)}>
@@ -57,7 +57,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                             </Typography>
                         </Box>
                     </Grid>
-                    )}
+                    ):null}
                 </Grid>
             </Grid>
             {!largeScreen.prototypeOne ? (

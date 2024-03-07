@@ -1,13 +1,12 @@
-const { app, BrowserWindow, screen } = require('electron')
+const { app, BrowserWindow, screen, ipcMain } = require('electron')
 const path = require('path')
 
 
-
-
 function createWindow () {
+
   const dpi = screen.getPrimaryDisplay().scaleFactor * 96; // DPI for primary display
-  const widthInInches = 16; // Desired width in inches
-  const heightInInches = 9; // Desired height in inches
+  const widthInInches = 19; // Desired width in inches
+  const heightInInches = 11 ; // Desired height in inches
 
   const widthInPixels = Math.round(widthInInches * dpi);
   const heightInPixels = Math.round(heightInInches * dpi);
@@ -15,6 +14,8 @@ function createWindow () {
   const win = new BrowserWindow({
     width: widthInPixels,
     height: heightInPixels,
+    minWidth: widthInPixels,
+    minHeight: heightInPixels,
 
     webPreferences: {
       nodeIntegration: true,
@@ -24,6 +25,10 @@ function createWindow () {
   })
 
   win.loadFile(path.join(__dirname, '/dist/index.html'))
+
+  ipcMain.on('quit-app', () => {
+    app.quit();
+  });
 }
 
 app.whenReady().then(createWindow)

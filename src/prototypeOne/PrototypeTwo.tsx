@@ -9,6 +9,8 @@ import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
 import Styles from './prototypeOneStyles/styles'
 import Questionnaire from './components/Questionnnaire'
+import { saveToFile } from './globalFunctions.tsx/saveToFile'
+import Debriefing from './components/Debriefing'
 
 interface detection {
     imageId: string,
@@ -36,12 +38,6 @@ export default function PrototypeTwo() {
     
     const location = useLocation()
     const userData = location.state
-    //const userName = userData.participantId
-/*
-    const fs = require('fs');
-    const path = require('path');
-    const Papa = require('papaparse');
-*/
     const [pauseTest, setPauseTest] = useState<boolean>(false)
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
     const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
@@ -49,6 +45,7 @@ export default function PrototypeTwo() {
     const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [testSetup, _] = useState<number>(userData.version)
     const [startTest, setStartTest] = useState<boolean>(false)
+    const [startDebriefing, setStartDebriefing] = useState<boolean>(false)
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
     const [isSelected, setIsSelected] = useState<string | null>(detections[0].imageId);
@@ -59,12 +56,8 @@ export default function PrototypeTwo() {
             Item: false
         });
     const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([]); // used to save the list to a file
-    const [seconds, setSeconds] = useState(300);
+    const [seconds, setSeconds] = useState(240);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        console.log(userData)
-    }, [arrayToSave]);
 
     useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
         if (seconds > 0 && startTest && !pauseTest) {
@@ -85,6 +78,8 @@ export default function PrototypeTwo() {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === '9') {
                 setPauseTest(prevPauseTest => !prevPauseTest)
+            }else if (event.key === '8') {
+                setSeconds(10)
             }
         };
         // Add the event listener when the component mounts
@@ -96,8 +91,11 @@ export default function PrototypeTwo() {
     }, []); 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-        //    saveToFile(arrayToSave);
-            navigate('/prototypeThree', {state: userData}); //Change to task description
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            navigate('/prototypeThree', {state: userData}); 
+        } else if (testSetup === 2 && questionnaireCompleted) {
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            setStartDebriefing(true);
         }
     },[questionnaireCompleted])
 
@@ -167,24 +165,11 @@ export default function PrototypeTwo() {
 
     },[AllDetections])
 
-/*
-function saveToFile(arrayToSave: Array<detection>) {1
-    const csv = Papa.unparse(arrayToSave);
-    const filePath = path.join(__dirname, userName + 'PrototypeTwo.csv');
-    fs.writeFile(filePath, csv, (err: any) => {
-      if (err) {
-        console.error('Error writing file', err);
-      } else {
-        console.log('Successfully wrote file');
-      }
-    });
-  }
-*/
     if (startTest) {
         return(
             <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
                 <Grid item xs={12} md={6}>
-                    <TaskGoalsComponent  prototypeThree={false} selectedDetection={selectedDetection}/>
+                    <TaskGoalsComponent  prototypeThree={false} selectedDetection={selectedDetection} taskId={3}/>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <LargeScreenComponent prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
@@ -195,7 +180,9 @@ function saveToFile(arrayToSave: Array<detection>) {1
                 <Grid item xs={12}>
                     <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
                 </Grid>
-                <Questionnaire questionnaireId={2} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
+                <Questionnaire questionnaireName={"Prototype 2"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
+                {startDebriefing ? (<Debriefing userName={userData.participantId} debriefingActive/>) : null}
+
             </Grid>
     )} else {
         return(

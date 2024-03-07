@@ -3,174 +3,135 @@ import { Button, TextField, Grid, Typography} from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Slider } from '@mui/material';
 import { mockQuestionnaire } from './mockDataQuestionnaire';  
 import Styles from '../prototypeOneStyles/styles';  
+import { saveToFile } from '../globalFunctions.tsx/saveToFile';
 
-    interface ArrayToSave {
+    interface listOfQuestions {
         questionId: number,
-        questionnnaireTitle: string,
-        question1: string,
-        question2: string,
-    
+        question: string,
+        answer: string,   
     }
 
     interface questionnaire {
-        questionnaireId: number,
+        questionnaireName: string,
         setCompleted: React.Dispatch<React.SetStateAction<boolean>>,
         questionnaireActive: boolean,
+        userName: string,
     }
 
-export default function Questionnaire(questionnaire: questionnaire) {
-    const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([])
-    const [open, setOpen] = useState(false);
-    const [questionId] = useState<number>(questionnaire.questionnaireId);
-    const [questionnnaireTitle] = useState<string>(mockQuestionnaire[questionnaire.questionnaireId].questionnnaireTitle);
-    const [question1, setquestion1] = useState<string>('');
-    const [question2, setquestion2] = useState<string>('');
+export default function Questionnaire({questionnaireName, setCompleted, questionnaireActive, userName}: questionnaire) {
+    const [open, setOpen] = useState(false)
+    const [questionnnaireTitle] = useState<string>(questionnaireName)
+    const [listOfQuestions] = useState<Array<listOfQuestions>>(mockQuestionnaire)
+    const [arrayToSave, setArrayToSave] = useState<Array<listOfQuestions>>()
+
+
     
    
     useEffect(() => {
-        setOpen(questionnaire.questionnaireActive)
-    }, [questionnaire.questionnaireActive])
+        setOpen(questionnaireActive)
+    }, [questionnaireActive])
 
 
     const handleClose = () => {
-        const saveDataToArray = {
-            questionId: questionId,
-            questionnnaireTitle: questionnnaireTitle,
-            question1:question1,
-            question2: question2,
-        }
-        setArrayToSave([saveDataToArray]);
+        setArrayToSave(listOfQuestions);
         setOpen(false);
-        questionnaire.setCompleted(true);
+        setCompleted(true);
 
 
   };
-
   useEffect(() => {
-    console.log(arrayToSave)
-    //saveToFile(arrayToSave);
-  } , [arrayToSave])
+    if (arrayToSave) {
+        console.log(arrayToSave)
+        saveToFile(arrayToSave, userName, questionnnaireTitle+" Questionnaire");
+      }
+  },[arrayToSave]) 
 
 
 
+  const LabelTop = ({ text, align }: { text: string, align: 'left' | 'right' }) => (
+    <Grid item xs={align === "left" ? 5.8 : 5} mb={-5} sx={{ marginLeft: align === 'left' ? 6 : 0, marginRight: align === 'right' ? 2 : 0 }}>
+      <Typography textAlign={align}>{text}</Typography>
+    </Grid>
+  );
+
+  const LabelBottom = ({ text, align }: { text: string, align: 'left' | 'right' }) => (
+    <Grid item xs={align === "left" ? 5.8 : 5} mt={-5} sx={{ marginLeft: align === 'left' ? 6 : 0, marginRight: align === 'right' ? 2 : 0 }}>
+      <Typography textAlign={align}>{text}</Typography>
+    </Grid>
+  );
     return (
-        <Dialog disableEscapeKeyDown maxWidth={"sm"}  
+        <Dialog disableEscapeKeyDown maxWidth={"md"}  
         open={open} onClose={(_, reason) => 
         {if (reason !== 'backdropClick') { handleClose()}}}>
             <DialogContent>
-                <Grid container direction={"row"} rowSpacing={4} >
+                <Grid container direction={"row"} rowSpacing={5}>
                     <Grid item xs={12}>
                         <DialogTitle>
-                        {mockQuestionnaire[questionnaire.questionnaireId].questionnnaireTitle}
+                        {questionnnaireTitle}
                         </DialogTitle>
                     </Grid>
-                    <Grid item xs={5} mb={-4}>
-                        <Typography>Mental Demand</Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign={"right"} mb={-4}>
-                        <Typography>How mentally demanding was the task?</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
-                    </Grid>
-                    <Grid item xs={6}  mt={-4}>
-                        <Typography>Very Low</Typography>
-                    </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-4}>
-                        <Typography>Very High</Typography>
-                    </Grid>
 
-                    <Grid item xs={5} mb={-4}>
-                        <Typography>Physical Demand</Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign={"right"} mb={-4}>
-                        <Typography>How physically demanding was the task?</Typography>
-                    </Grid>
+                    <LabelTop text="Mental Demand" align="left" />
+                    <LabelTop text={listOfQuestions[0].question} align="right" />
                     <Grid item xs={12}>
-                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} onChange={(_, value) => listOfQuestions[0].answer = value+""}/>
                     </Grid>
-                    <Grid item xs={6}  mt={-4}>
-                        <Typography>Very Low</Typography>
-                    </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-4}>
-                        <Typography>Very High</Typography>
-                    </Grid>
+                    <LabelBottom text="Very Low" align="left" />
+                    <LabelBottom text="Very High" align="right" />
 
-                    <Grid item xs={5} mb={-4}>
-                        <Typography>Temporal Demand</Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign={"right"} mb={-4}>
-                        <Typography>How hurried or rushed was the pace of the task?</Typography>
-                    </Grid>
+                    <LabelTop text="Physical Demand" align="left" />
+                    <LabelTop text={listOfQuestions[1].question} align="right" />
                     <Grid item xs={12}>
-                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} onChange={(_, value) => listOfQuestions[1].answer = value+""}/>
                     </Grid>
-                    <Grid item xs={6}  mt={-4}>
-                        <Typography>Very Low</Typography>
-                    </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-4}>
-                        <Typography>Very High</Typography>
-                    </Grid>
+                    <LabelBottom text="Very Low" align="left" />
+                    <LabelBottom text="Very High" align="right" />
 
-                    <Grid item xs={5} mb={-4}>
-                        <Typography>Performance</Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign={"right"} mb={-4}>
-                        <Typography>How successful were you in accomplishing what you were asked to do?</Typography>
-                    </Grid>
+                    <LabelTop text="Temporal Demand" align="left" />
+                    <LabelTop text={listOfQuestions[2].question} align="right" />
                     <Grid item xs={12}>
-                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} onChange={(_, value) => listOfQuestions[2].answer = value+""}/>
                     </Grid>
-                    <Grid item xs={6}  mt={-4}>
-                        <Typography>Very Low</Typography>
-                    </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-4}>
-                        <Typography>Very High</Typography>
-                    </Grid>
+                    <LabelBottom text="Very Low" align="left" />
+                    <LabelBottom text="Very High" align="right" />
 
-                    <Grid item xs={5} mb={-4}>
-                        <Typography>Effort</Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign={"right"} mb={-4}>
-                        <Typography>How hard did you have to work to accomplish your level of performance?</Typography>
-                    </Grid>
+                    <LabelTop text="Performance" align="left" />
+                    <LabelTop text={listOfQuestions[3].question} align="right" />
                     <Grid item xs={12}>
-                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} onChange={(_, value) => listOfQuestions[3].answer = value+""}/>
                     </Grid>
-                    <Grid item xs={6}  mt={-4}>
-                        <Typography>Very Low</Typography>
-                    </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-4}>
-                        <Typography>Very High</Typography>
-                    </Grid>
+                    <LabelBottom text="Very Low" align="left" />
+                    <LabelBottom text="Very High" align="right" />
 
-                    <Grid item xs={5} mb={-4}>
-                        <Typography>Frustration</Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign={"right"} mb={-4}>
-                        <Typography>How insecure, discouraged, irritated, stressed, and annoyed wereyou?</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} />
-                    </Grid>
-                    <Grid item xs={6}  mt={-4}>
-                        <Typography>Very Low</Typography>
-                    </Grid>
-                    <Grid item xs={6} textAlign={"right"} mt={-4}>
-                        <Typography>Very High</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField id='Q1' label={mockQuestionnaire[questionnaire.questionnaireId].question1} variant='outlined' multiline rows={3} fullWidth onChange={(e) => setquestion1(e.target.value)}/>   
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField id='Q2' label={mockQuestionnaire[questionnaire.questionnaireId].question1} variant='outlined' fullWidth onChange={(e) => setquestion2(e.target.value)}/>   
-                    </Grid>
 
+                    <LabelTop text="Effort" align="left" />
+                    <LabelTop text={listOfQuestions[4].question} align="right" />
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} onChange={(_, value) => listOfQuestions[4].answer = value+""}/>
+                    </Grid>
+                    <LabelBottom text="Very Low" align="left" />
+                    <LabelBottom text="Very High" align="right" />
+
+                    <LabelTop text="Frustration" align="left" />
+                    <LabelTop text={listOfQuestions[5].question} align="right" />
+                    <Grid item xs={12}>
+                        <Slider defaultValue={10} aria-label="Default" step={1} marks min={1} max={20} valueLabelDisplay='auto' sx={Styles.slider} onChange={(_, value) => listOfQuestions[5].answer = value+""}/>
+                    </Grid>
+                    <LabelBottom text="Very Low" align="left" />
+                    <LabelBottom text="Very High" align="right" />
+
+                    <Grid item xs={12}>
+                        <TextField label={listOfQuestions[6].question} variant='outlined' multiline rows={3} sx={Styles.textField} onChange={(e) => listOfQuestions[6].answer = e.target.value}/>   
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField label={listOfQuestions[7].question} variant='outlined' multiline rows={3} sx={Styles.textField}  onChange={(e) => listOfQuestions[7].answer = e.target.value}/>   
+                    </Grid>
                 </Grid>
+
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color="primary">
-                Submit
+                Submit & Continue
                 </Button>
             </DialogActions>
         </Dialog>

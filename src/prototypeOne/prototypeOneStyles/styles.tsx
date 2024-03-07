@@ -36,6 +36,9 @@ const timer: SxProps<Theme> = {
 
 // Slider Styles
 const slider: SxProps<Theme> = {   
+    width: 
+    '84%', 
+    marginLeft:"8%", 
     '& .MuiSlider-mark:nth-of-type(5n-3)': { 
         borderRadius: '50%', 
         backgroundColor: '#0A84FF',
@@ -54,6 +57,12 @@ const slider: SxProps<Theme> = {
         borderRadius: '8px'
       }
     };
+
+// Textfield Questionnaire Styles
+const textField: SxProps<Theme> = {
+    width: '84%', 
+    marginLeft:"8%"
+}
 
 // Large Screen Styles
 const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
@@ -200,6 +209,7 @@ const Styles = {
     alertBoxEmpty: alertBoxEmpty,
     timer: timer,
     slider: slider,
+    textField: textField,
 
 }
 

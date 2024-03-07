@@ -1,29 +1,42 @@
 export const mockQuestionnaire = [
     {
         questionId: 1,
-        questionnnaireTitle: "Exploration",
-        question1: "How many?",
-        question2: "number",
+        question: "How mentally demanding was the task?",
+        answer: "10",
     },
-    
     {
-        questionnnaireTitle: "Prototype One",
         questionId: 2,
-        question1: "How much?",
-        question2: "number",
-    }
-    ,
+        question: "How physically demanding was the task?",
+        answer: "10",
+    },
     {
-        questionnnaireTitle: "Prototype Two",
         questionId: 3,
-        question1: "How many?",
-        question2: "number",
-    }
-    ,
+        question: "How hurried or rushed was the pace of the task?",
+        answer: "10",
+    },
     {
-        questionnnaireTitle: "Prototype Three",
         questionId: 4,
-        question1: "How many?",
-        question2: "number",
+        question: "How successful were you in accomplishing what you were asked to do?",
+        answer: "10",
+    },
+    {
+        questionId: 5,
+        question: "How hard did you have to work to accomplish your level of performance?",
+        answer: "10",
+    },
+    {
+        questionId: 6,
+        question: "How insecure, discouraged, irritated, stressed, and annoyed were you?",
+        answer: "10",
+    },
+    {
+        questionId: 7,
+        question: "Was there anything in particular you found for example stressful, helpful/useful, missing/lacking, or confusing? Do you have any ideas for improvements?",
+        answer: "",
+    },
+    {
+        questionId: 8,
+        question: " Do you have any ideas for improvements?",
+        answer: "",
     }
 ]

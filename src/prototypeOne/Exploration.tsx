@@ -5,11 +5,8 @@ import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Typography } from '@mui/material'
-import Styles from './prototypeOneStyles/styles'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
-import Questionnaire from './components/Questionnnaire'
 
 export default function Exploration() {
 
@@ -34,8 +31,6 @@ export default function Exploration() {
 
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
     const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
-    const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
-    const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [startTest, setStartTest] = useState<boolean>(false)
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -47,13 +42,6 @@ export default function Exploration() {
             Item: false
         });
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (questionnaireCompleted) {
-            navigate('/prototypeOne', {state: userData}); //Change to task description
-        }
-
-    },[questionnaireCompleted])
 
     const handleSmallScreenClick = useCallback((imageId: string) => {
         const index = AllDetections.findIndex(detection => detection.imageId === imageId);
@@ -68,7 +56,7 @@ export default function Exploration() {
         setAllDetections(newAllDetections);
 
         if (newAllDetections.length === 0) {
-            setOpenQuestionnaire(true);
+            navigate('/prototypeOne', {state: userData}); //Change to task description
         }
     }, [AllDetections]);
 
@@ -80,7 +68,7 @@ export default function Exploration() {
 
         console.log(AllDetections.length)
         if (AllDetections.length === 1) {
-            setOpenQuestionnaire(true);
+            navigate('/prototypeOne', {state: userData}); //Change to task description
         } 
 
     }, [AllDetections]);
@@ -108,10 +96,10 @@ export default function Exploration() {
 
     // use the styles data in the following for the actuan components then make this to a grid system
     return(
-        <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
+        <Grid container className={`container ${!startTest ? 'blur-effect' : ''}`}>
             <TaskIntro taskId={0} setStartTest={setStartTest}/>
             <Grid item xs={12} md={6} >
-                <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection}/>
+                <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} taskId={0}/>
             </Grid>
             <Grid item xs={12} md={6}>
                 <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
@@ -119,7 +107,6 @@ export default function Exploration() {
             <Grid item xs={12}>
                 <ScreensList prototypeOne={true} setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>     
             </Grid>
-            <Questionnaire questionnaireId={0} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} />
         </Grid>
     )
 }
