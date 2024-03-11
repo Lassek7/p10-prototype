@@ -6,7 +6,7 @@ export const detections = [
     {
     imageId: "#1",
     imageUrl: 'https://source.unsplash.com/random', //image: image1
-    imageIcon: <PersonIcon fontSize='small' /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+    imageIcon: <PersonIcon fontSize='medium' /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
     imageDetectionContext: 'percentage match: 90%',
     imageDetectionTime: '01:30:40',
     ImageDetectionDate: '2021-10-10',
@@ -96,7 +96,7 @@ export const detections = [
     {
     imageId: "#6",
     imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: <DirectionsCar fontSize='small'/> ,
+    imageIcon: <DirectionsCar fontSize='medium'/> ,
     imageDetectionContext: 'percentage match: 90%',
     imageDetectionTime: '05:30:40',
     ImageDetectionDate: '2021-10-10',

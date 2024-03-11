@@ -26,80 +26,57 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, t
     console.log(taskId)
     return (
         <Card sx={Styles.taskGoalCard}>
-            <CardHeader title="Task Goals" align="left" />
+            <CardHeader title="Task Goals" align="left" titleTypographyProps={{sx:{...Styles.TaskGoalText}}} />
             <Divider sx={{borderBottomWidth: 3}}/>
             <CardContent>
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
                              <Person fontSize='large' sx={{color: prototypeThree && selectedDetection.filterID === 'Person' ? '#0A84FF' : '#343323'}}/>
-                        <Box ml={1} sx={{ fontWeight: 700, color: prototypeThree && selectedDetection?.filterID === 'Person' ? '#0A84FF' : '#343323'}}> Person</Box> {/* l = margin left */}
+                        <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Person' ? '#0A84FF' : '#343323'}}> Person</Box>
                         </Box>
                     </ListSubheader>
                     
                     <ListItem sx={{ mt: -1.5, mb: -3 }}>
                         <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                            <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
+                            <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
                         </ListItemIcon>
-                        <ListItemText primary="Item x"  />
-                    </ListItem>
-                    
-                    <ListItem sx={{ mt: -2, mb: -2 }}>
-                        <ListItemIcon sx={{ ml: 2, minWidth: '25px'}}>
-                            <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="Item x" />
+                        <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText}}} primary="Itessdsdm x"  />
                     </ListItem>
                 </List>   
-            </CardContent>          
-            
-            <CardContent>
+
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
                         <DryCleaning fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}/>
-                            <Box ml={1} sx={{ fontWeight: 700, color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}> Personal Items</Box> {/* l = margin left */}
+                            <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}> Personal Items</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     
                     <ListItem sx={{ mt: -1.5, mb: -3 }}>
                         <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                            <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
+                            <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
                         </ListItemIcon>
-                        <ListItemText primary="Item x"  />
+                        <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText}}} primary="Item x"  />
                     </ListItem>
                     
-                    <ListItem sx={{ mt: -2, mb: -2 }}>
-                        <ListItemIcon sx={{ ml: 2, minWidth: '25px'}}>
-                            <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="Item x" />
-                    </ListItem>
                 </List>   
-            </CardContent>    
 
-            <CardContent>
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
                         <DirectionsCar fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}/>
-                            <Box ml={1} sx={{ fontWeight: 700, color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Vehicle</Box> {/* l = margin left */}
+                            <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Vehicle</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     
                     <ListItem sx={{ mt: -1.5, mb: -3 }}>
                         <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                            <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
+                            <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
                         </ListItemIcon>
-                        <ListItemText primary="Item x"  />
+                        <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText}}} primary="Item x"  />
                     </ListItem>
                     
-                    <ListItem sx={{ mt: -2, mb: -2 }}>
-                        <ListItemIcon sx={{ ml: 2, minWidth: '25px'}}>
-                            <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="Item x" />
-                    </ListItem>
                 </List>   
             </CardContent>    
          </Card>

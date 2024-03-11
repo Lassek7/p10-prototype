@@ -34,33 +34,33 @@ export default function AlertBox({ onAlertClick, allDetections, currentWeight}: 
     return (
         <Card onClick = {() => handleAlertClick(inactiveList[0].imageId)} sx={Styles.alertBox} >
             <Grid container sx={{direction: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%'}} >
-                <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{ height: '25.09%'}}>
+                <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{ height: '23%'}}>
                     <Grid item xs={6}>
-                        <Typography  textAlign={'left'} ml={"20%"} sx={{color: '#D61D1D'}}>
+                        <Typography sx={Styles.alertBoxTop}>
                             Alert
                         </Typography>
                     </Grid>
                     <Grid item xs={6}> 
-                        <Badge color="error" badgeContent={inactiveList.length} showZero>                     
+                        <Badge color="error" badgeContent={inactiveList.length} showZero sx={Styles.alertBoxBadge}>                     
                         </Badge>  
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sx={{height: '57.4%'}}>
+                <Grid item xs={12} sx={{height: '57%'}}>
                     <CardMedia component="img" sx={{ height: '100%', objectFit: 'fit' }} image={inactiveList[0].imageUrl} alt='Image' />
                 </Grid>
-                <Grid item xs={4}>
-                    <Typography >
+                <Grid item xs={4} sx={{ height: '20%', mt:"5%"}} >
+                    <Typography sx={Styles.alertBoxLeft}>
                         {inactiveList[0].imageId}     
                     </Typography>
                 </Grid>
-                <Grid item xs={4}>
-                    {inactiveList[0].imageIcon}
+                <Grid item xs={4} sx={{ height: '20%', mt:"7%"}}> 
+                    {inactiveList[0].imageIcon} 
                 </Grid>
-                <Grid item xs={4}>
-                    <Typography>
+                <Grid item xs={4} sx={{ height: '20%', mt:"4%"}}>
+                    <Typography sx={Styles.alertBoxRight}>
                         {inactiveList[0].imageDetectionTime}
                     </Typography>
-                    <Typography>
+                    <Typography sx={Styles.alertBoxRight}>
                         {inactiveList[0].ImageDetectionDate}
                     </Typography>
                 </Grid>
@@ -73,7 +73,7 @@ export default function AlertBox({ onAlertClick, allDetections, currentWeight}: 
             <Grid container sx={{direction: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%'}} >
                 <Grid container justifyContent={'space-between'}  alignItems={'center'}>
                     <Grid item xs={6}>
-                        <Typography  textAlign={'left'} ml={"20%"} sx={{color: '#343323'}}>
+                        <Typography  textAlign={'left'} ml={"20%"} sx={{...Styles.alertBoxTop, color: '#343323'}}>
                             Alert
                         </Typography>
                     </Grid>

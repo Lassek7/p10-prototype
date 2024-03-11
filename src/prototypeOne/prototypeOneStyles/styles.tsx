@@ -1,5 +1,17 @@
 import { SxProps, Theme } from '@mui/system';
+import { createTheme } from '@mui/material/styles';
 
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 1930,
+      lg: 2560,
+      xl: 3850,
+    },
+  },
+});
 //Alert Box Styles
 const alertBox: SxProps<Theme> = {
     color: '#343323',
@@ -25,6 +37,77 @@ const alertBoxEmpty: SxProps<Theme> = {
     display: 'flex',
     flexDirection: 'column'
 }
+const alertBoxRight: SxProps<Theme> = { //might combine this and the left with a boolean
+    textAlign: "right",
+    mr: "16.8%",
+    [theme.breakpoints.down('md')]: {
+        fontSize: 11,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 13,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 700,
+}}
+const alertBoxLeft: SxProps<Theme> = {
+    textAlign: "left",
+    ml: "20%",
+    [theme.breakpoints.down('md')]: {
+        fontSize: 18,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 21,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 700,
+}}
+const alertBoxTop: SxProps<Theme> = {
+    textAlign: "left",
+    ml: "20%",
+    color: '#D61D1D',
+    [theme.breakpoints.down('md')]: {
+        fontSize: 21,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 27,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 700,
+}}
+const alertBoxBadge: SxProps<Theme> = {
+    mr: "25%",
+    display: 'flex', 
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('md')]: {
+        '.MuiBadge-badge': {
+            height: '20px',
+            width: '20px',
+            fontSize: '0.75rem',
+          },
+    },
+    [theme.breakpoints.up('lg')]: {
+        '.MuiBadge-badge': {
+            height: '25px',
+            width: '25px',
+            borderRadius: '50%',
+            fontSize: '0.9rem',
+          },
+    },
+    [theme.breakpoints.up('xl')]: {
+        '.MuiBadge-badge': {
+            height: '20px',
+            width: '20px',
+            fontSize: '0.75rem',
+          },
+
+}}
+
 
 // Timer Styles
 const timer: SxProps<Theme> = {
@@ -78,52 +161,96 @@ const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
     flexDirection: 'column' 
 })
 
-const largeScreenInfoBox: SxProps<Theme> = {
-    backgroundColor: '#F1F2F2',
-    color: 'black',
-    height: '100%',
+const largeScreenInfoBoxRightTop: SxProps<Theme> = {
+    color: '#343323',
+    mr: "6%",
+    [theme.breakpoints.down('md')]: {
+        fontSize: 18,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 21,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+}}
+
+const largeScreenInfoBoxRightBottom: SxProps<Theme> = {
+    color: '#343323',
+    mr: "6%",
+    [theme.breakpoints.down('md')]: {
+        fontSize: 18,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 21,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+}}
+const largeScreenInfoBoxLeft = (isPrototypeThree?: boolean): SxProps<Theme> => ({
+    ml: "4px",
+    color: isPrototypeThree ? '#0A84FF' : '#343323',
+    [theme.breakpoints.down('md')]: {
+        fontSize: 18,
+        fontWeight: 600,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 21,
+        fontWeight: 600,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 600,
 }
+})
+const largeInfoBoxCardContent: SxProps<Theme> = { 
+    [theme.breakpoints.down('md')]: {
+        mt: "-10px" 
+    },
+    [theme.breakpoints.up('lg')]: {
+        mt: "-6px" 
+    },
+    [theme.breakpoints.up('xl')]: {
+        mt: "-10px" 
+}}
 
 const infoBoxButton= (isPrototypeThree: boolean, investigateRecommended?: boolean): SxProps<Theme> => ({
     width: '8.17vw', 
     height: '5.5vh', 
     borderRadius: '100px', 
-    mr: "1.56vw", 
+    mr: "1vw", 
+    textTransform: 'none',
     color: isPrototypeThree && investigateRecommended ? '#f5f5f5' : '#0A84FF', 
     borderColor: isPrototypeThree && investigateRecommended ? '#0A84FF' : '#343323',
-    fontSize: {
-        xs: '10px',  // font size for xs screens of 0px and up
-        sm: '12px',  // font size for sm screens of 600px and up
-        md: '14px',  // font size for md screens of 900px and up
-        lg: '16px',  // font size for lg screens of 1200px and up
-        xl: '18px',  // font size for xl screens of 1920px and up
-    },
     '&:focus': {
         outline: 'none',
       },
-})
-const largeInfoBoxTypography = (isPrototypeThree?: boolean): SxProps<Theme> => ({
-    fontSize: 13,
-    fontWeight: 700, 
-    color: isPrototypeThree ? '#0A84FF' : '#343323',
-     
-})
-const largeInfoBoxTypographyId: SxProps<Theme> = {
-    fontSize: 15,
-    fontWeight: 700,
-    color: '#343323',
-}
-
+    [theme.breakpoints.down('md')]: {
+        fontSize: 21,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 27,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+}})
 // Styles detectionList
 const filterButtons: SxProps<Theme> = {
     width: '79.785%', // calculated by width of container / 12 * grid size alloted and then what percentage of the grid it covers.
     borderRadius: '100px',
     borderColor: '#343323',
-    fontSize: '10px',
+    textTransform: 'none',
     '&:focus': {
         outline: 'none',
       },
-}
+      [theme.breakpoints.down('md')]: {
+        fontSize: 18,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 21,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+}}
 // SmallScreen Styles
 const smallScreen = (isSelected: boolean): SxProps<Theme> => ({ 
     width: '11.71vw',
@@ -138,27 +265,53 @@ const smallScreen = (isSelected: boolean): SxProps<Theme> => ({
      
 })
 
-const smallSceenInfoBox: SxProps<Theme> = { //change to adjust height of tex placement
+const smallScreenInfoBox: SxProps<Theme> = { //change to adjust height of tex placement
     color: 'black',
     height: '100%',
     Direction: 'row', 
     alignItems: 'flex-start', 
-    justifyContent: 'space-between' 
+    justifyContent: 'space-between'
 }
+
 
 const smallInfoBoxTypographyRight: SxProps<Theme> = { //might combine this and the left with a boolean
-    fontSize: 8,
-    fontWeight: 700,
-    
-        
-}
-const smallInfoBoxTypographyLeft: SxProps<Theme> = {
-    fontSize: 13,
-    fontWeight: 700,
-    aliign: 'left'
-        
-}
+    textAlign: 'right',
+    [theme.breakpoints.down('md')]: {
+        fontSize: 10.5,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 13,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 700,
+}}
+const smallInfoBoxTypographyLeft: SxProps<Theme> = { 
+    textAlign: 'left',
+    [theme.breakpoints.down('md')]: {
+        fontSize: 17,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 20,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+}}
 
+const smallInfoBoxCardContent: SxProps<Theme> = { 
+    [theme.breakpoints.down('md')]: {
+        mt: "-10px" 
+    },
+    [theme.breakpoints.up('lg')]: {
+        mt: "-6px" 
+    },
+    [theme.breakpoints.up('xl')]: {
+        mt: "-10px" 
+}}
 
 // TaskGoal Card Styles
 const taskGoalCard: SxProps<Theme> = {
@@ -169,6 +322,41 @@ const taskGoalCard: SxProps<Theme> = {
     height: '62.82vh',
     borderRadius: "16px",
 }
+const TaskGoalCategoryText: SxProps<Theme> = { 
+    [theme.breakpoints.down('md')]: {
+        fontSize: 21,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 27,
+        fontWeight: 700,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 700,
+}}
+const TaskGoalText: SxProps<Theme> = {
+    [theme.breakpoints.down('md')]: {
+        fontSize: 21,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 27,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 8,
+        fontWeight: 700,
+}}
+const TaskGoalFiberIcon: SxProps<Theme> = {
+    color: '#343323',
+    [theme.breakpoints.down('md')]: {
+        fontSize: 10,
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: 15,
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: 20,
+}}
 // ArrowComponent Styles
 const arrowComponent: SxProps<Theme> = {
     height: '100%', 
@@ -194,7 +382,9 @@ const screensList: SxProps<Theme> = {
 const Styles = {
     smallScreen: smallScreen,
     largeScreen: largeScreen,
-    largeScreenInfoBox: largeScreenInfoBox,
+    largeScreenInfoBoxLeft: largeScreenInfoBoxLeft,
+    largeScreenInfoBoxRightTop: largeScreenInfoBoxRightTop,
+    largeScreenInfoBoxRightBottom: largeScreenInfoBoxRightBottom,
     taskGoalCard: taskGoalCard,
     infoBoxButton: infoBoxButton,  
     arrowComponent: arrowComponent,
@@ -202,14 +392,22 @@ const Styles = {
     screensList: screensList,
     smallInfoBoxTypographyRight: smallInfoBoxTypographyRight,
     smallInfoBoxTypographyLeft: smallInfoBoxTypographyLeft,
-    largeInfoBoxTypography: largeInfoBoxTypography,
-    smallSceenInfoBox: smallSceenInfoBox,
-    largeInfoBoxTypographyId: largeInfoBoxTypographyId,
+    smallScreenInfoBox: smallScreenInfoBox,
     alertBox: alertBox,
     alertBoxEmpty: alertBoxEmpty,
     timer: timer,
     slider: slider,
     textField: textField,
+    theme: theme,
+    alertBoxRight: alertBoxRight,
+    alertBoxLeft: alertBoxLeft,
+    alertBoxTop: alertBoxTop,   
+    alertBoxBadge: alertBoxBadge,
+    smallInfoBoxCardContent: smallInfoBoxCardContent,
+    largeInfoBoxCardContent: largeInfoBoxCardContent,
+    TaskGoalText: TaskGoalText,
+    TaskGoalCategoryText: TaskGoalCategoryText,
+    TaskGoalFiberIcon: TaskGoalFiberIcon
 
 }
 

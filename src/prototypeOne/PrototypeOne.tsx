@@ -88,10 +88,10 @@ export default function PrototypeOne() {
 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeTwo', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+           // saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeThree', {state: userData}); 
         }
     },[questionnaireCompleted])

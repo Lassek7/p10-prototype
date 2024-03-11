@@ -35,7 +35,7 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, sele
     return ( // change test parameters to what we want in the screen if its empty
         <Card sx={Styles.largeScreen(prototypeThree)}>  
             <CardMedia component="img" sx={{ height: '80.59%' }} image={"https://source.unsplash.com/random"} alt='Image' /> 
-            <Divider />
+            
             <CardContent >
                 <LargeScreenInfoBoxComponent 
                     onDeleteClick={handleDeleteClick} 
@@ -56,8 +56,7 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, sele
         return (
         <Card sx={Styles.largeScreen(prototypeThree)}>  
         <CardMedia component="img" sx={{ height: '80.59%' }} image={selectedDetection.imageUrl} alt='Image' /> 
-        <Divider />
-        <CardContent >
+        <CardContent sx={Styles.largeInfoBoxCardContent} >
             <LargeScreenInfoBoxComponent 
                 onDeleteClick={handleDeleteClick} 
                 onInvestigateClick={handleInvestigateClick} 

@@ -140,7 +140,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                                     <Card onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{...Styles.smallScreen(isSelected === renderedDetectionList.imageId)}} >  
                                         <CardMedia component="img" sx={{height: '72.4%', objectFit: 'fit' }} image={renderedDetectionList.imageUrl} alt='Image' /> 
                                         <Divider />
-                                        <CardContent >
+                                        <CardContent sx={Styles.smallInfoBoxCardContent} >
                                              <SmallScreenInfoBoxComponent  prototypeOne={prototypeOne} imageId={renderedDetectionList.imageId} imageIcon={renderedDetectionList.imageIcon} imageDetectionTime={renderedDetectionList.imageDetectionTime} ImageDetectionDate={renderedDetectionList.ImageDetectionDate} />  
                                         </CardContent>
                                     </Card>

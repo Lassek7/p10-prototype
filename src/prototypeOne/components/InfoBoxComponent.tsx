@@ -38,21 +38,21 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
         largeScreen.onInvestigateClick(imageId)
     }
     return (
-        <Grid container sx={Styles.largeScreenInfoBox}>
+        <Grid container >
             <Grid item xs={!largeScreen.prototypeOne ? 3 : 1} >
-                <Grid container  direction="column" justifyContent="space-between" alignItems="flex-start"  style={{  height: '100%'}}>
+                <Grid container  direction="column"  alignItems="flex-start"  style={{  height: '100%'}}>
                     <Grid item >
-                        <Typography sx={Styles.largeInfoBoxTypographyId}>
+                        <Typography sx={Styles.largeScreenInfoBoxLeft()}>
                             {largeScreen.imageId}
                         </Typography>
                     </Grid>
                     {!largeScreen.prototypeOne ? (
                     <Grid item sx={{ marginBottom: -2,}}>
                         <Box display="flex" >
-                            <Typography  sx={Styles.largeInfoBoxTypography(largeScreen.prototypeThree)}>
+                            <Typography  sx={{...Styles.largeScreenInfoBoxLeft(largeScreen.prototypeThree), mt:"25.5%"}}>
                                 {largeScreen.imageIcon}
                             </Typography>
-                            <Typography  sx={Styles.largeInfoBoxTypography(largeScreen.prototypeThree)}>
+                            <Typography  sx={{...Styles.largeScreenInfoBoxLeft(largeScreen.prototypeThree), mt:"24%"}}>
                                 {largeScreen.imageDetectionContext}
                             </Typography>
                         </Box>
@@ -71,19 +71,19 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                     <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Investigate</Button>
                 </Grid>
             )}
-            {!largeScreen.prototypeOne && (
-                <Grid item xs={3}  sx={{  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end', marginBottom: -2}}>
-                    <Typography sx={Styles.largeInfoBoxTypography()}>
+            {!largeScreen.prototypeOne ? (
+                <Grid item xs={3}  sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+                    <Typography sx={Styles.largeScreenInfoBoxRightTop}>
                         {largeScreen.imageDetectionTime}
                     </Typography>
-                    <Typography  sx={Styles.largeInfoBoxTypography()}>
+                    <Typography  sx={Styles.largeScreenInfoBoxRightTop}>
                         {largeScreen.ImageDetectionDate}
                     </Typography>
-                    <Typography  sx={Styles.largeInfoBoxTypography()}>
+                    <Typography  sx={Styles.largeScreenInfoBoxRightBottom}>
                         {largeScreen.timeSinceDetection}
                     </Typography>
                 </Grid>
-            )}  
+            ):null}  
         </Grid>
     )
 }
@@ -91,21 +91,21 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
 export function SmallScreenInfoBoxComponent( smallScreen: smallScreen) {
     const { imageId, imageIcon, imageDetectionTime, ImageDetectionDate } = smallScreen;
     return (
-        <Grid container justifyContent="space-between">
-            <Grid item xs={4} textAlign={'left'}>
+        <Grid container sx={{direction: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
+            <Grid item xs={4}>
                 <Typography  sx={Styles.smallInfoBoxTypographyLeft}>
                     {imageId}
                 </Typography>
             </Grid>
-            {!smallScreen.prototypeOne && (
-            <Grid item xs={4} textAlign={'center'}>
-                <Typography >
+            {!smallScreen.prototypeOne ? (
+            <Grid item xs={4}>
+                <Typography sx={{textAlign:"center"}}>
                     {imageIcon}
                 </Typography>
             </Grid>
-            )}
-            {!smallScreen.prototypeOne && (
-            <Grid item xs={4} textAlign={'right'} >
+            ):null}
+            {!smallScreen.prototypeOne ? (
+            <Grid item xs={4} >
                 <Typography  sx={Styles.smallInfoBoxTypographyRight}>
                     {imageDetectionTime}
                 </Typography>
@@ -113,7 +113,7 @@ export function SmallScreenInfoBoxComponent( smallScreen: smallScreen) {
                     {ImageDetectionDate}
                 </Typography>
             </Grid>
-            )}
+            ):null}
         </Grid>
     )
 }
