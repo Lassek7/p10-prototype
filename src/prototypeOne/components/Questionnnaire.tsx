@@ -42,7 +42,7 @@ export default function Questionnaire({questionnaireName, setCompleted, question
   useEffect(() => {
     if (arrayToSave) {
         console.log(arrayToSave)
-       // saveToFile(arrayToSave, userName, questionnnaireTitle+" Questionnaire");
+        saveToFile(arrayToSave, userName, questionnnaireTitle+" Questionnaire");
       }
   },[arrayToSave]) 
 

@@ -102,7 +102,7 @@ export default function Exploration() {
                 <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} taskId={0}/>
             </Grid>
             <Grid item xs={12} md={6}>
-                <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
+                <LargeScreenComponent prototypeOne={true} prototypeThree={false} prototypeTwo={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
             </Grid>
             <Grid item xs={12}>
                 <ScreensList prototypeOne={true} setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>     

@@ -12,10 +12,7 @@ function createWindow () {
   const heightInPixels = Math.round(heightInInches * dpi);
 
   const win = new BrowserWindow({
-    width: widthInPixels,
-    height: heightInPixels,
-    minWidth: widthInPixels,
-    minHeight: heightInPixels,
+    fullscreen: true,
 
     webPreferences: {
       nodeIntegration: true,

@@ -88,10 +88,10 @@ export default function PrototypeOne() {
 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-            //saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeTwo', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-           // saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeThree', {state: userData}); 
         }
     },[questionnaireCompleted])
@@ -157,7 +157,7 @@ export default function PrototypeOne() {
                     <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} taskId={1}/>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <LargeScreenComponent prototypeOne={true} prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
+                    <LargeScreenComponent prototypeOne={true} prototypeThree={false} prototypeTwo={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
                     <Typography sx={Styles.timer}>
                             {minutes}:{remainingSeconds} 
                     </Typography>   

@@ -5,7 +5,6 @@ import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
 import { detections } from './components/mockDataDetections'
 import AlertBox from './components/AlertBox'
-//import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Styles from './prototypeOneStyles/styles'
 import TaskIntro from './components/TaskIntro'
@@ -237,7 +236,7 @@ const addNewItem2= () => { //remove when actually adding new items
                     <TaskGoalsComponent  prototypeThree={true} selectedDetection={selectedDetection} taskId={2}/>
                 </Grid>
                 <Grid item xs={4} md={4}>
-                    <LargeScreenComponent prototypeThree={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
+                    <LargeScreenComponent prototypeThree={true} prototypeTwo={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
                 </Grid>
                 <Grid item >
                     <AlertBox onAlertClick={handleAlertClick} allDetections={AllDetections} currentWeight={selectedDetection.detectionWeight} /> 

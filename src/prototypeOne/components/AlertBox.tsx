@@ -53,7 +53,7 @@ export default function AlertBox({ onAlertClick, allDetections, currentWeight}: 
                         {inactiveList[0].imageId}     
                     </Typography>
                 </Grid>
-                <Grid item xs={4} sx={{ height: '20%', mt:"7%"}}> 
+                <Grid item xs={4} sx={{...Styles.FilterIconAlertbox , height: '20%', mt:"7%"}}> 
                     {inactiveList[0].imageIcon} 
                 </Grid>
                 <Grid item xs={4} sx={{ height: '20%', mt:"4%"}}>

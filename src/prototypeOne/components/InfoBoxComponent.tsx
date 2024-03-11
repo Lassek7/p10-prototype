@@ -1,5 +1,5 @@
 
-import {Box, Button, Grid, Typography } from '@mui/material';
+import {Box, Button, Grid, Typography, Card, CardMedia } from '@mui/material';
 import Styles from '../prototypeOneStyles/styles';
 
 interface smallScreen {
@@ -15,6 +15,7 @@ interface smallScreen {
 interface largeScreen {
     showButtons?: boolean,
     prototypeOne?: boolean,
+    imageUrl: string,
     imageId: string,
     imageIcon: JSX.Element,
     imageDetectionContext?: string,
@@ -24,6 +25,7 @@ interface largeScreen {
     onDeleteClick: (ImageId: string) => void,
     onInvestigateClick: (imageId: string) => void,
     prototypeThree: boolean,
+    isPrototypeTwo: boolean,
     investigateRecommended: boolean,
 }
 
@@ -38,53 +40,59 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
         largeScreen.onInvestigateClick(imageId)
     }
     return (
-        <Grid container >
-            <Grid item xs={!largeScreen.prototypeOne ? 3 : 1} >
-                <Grid container  direction="column"  alignItems="flex-start"  style={{  height: '100%'}}>
-                    <Grid item >
-                        <Typography sx={Styles.largeScreenInfoBoxLeft()}>
+        <Card sx={Styles.largeScreen(largeScreen.prototypeThree)}>  
+            <Grid container  sx={{Direction: 'row', justifyContent:"space-between", alignItems:"center", height: "100%"}} >
+                <Grid item xs={12} sx={{height: '80%'}}>
+                    <CardMedia component="img" sx={{ height: '100%', objectFit: 'fit'}} image={largeScreen.imageUrl} alt='Image' /> 
+                </Grid>
+                
+                <Grid container xs={!largeScreen.prototypeOne ? 3 : 1} sx={{Direction: 'column', justifyContent:"space-between", alignItems: !largeScreen.prototypeOne ? "center" : "flex-start", height: "20%"}} >
+                    <Grid item xs={12}>
+                        <Typography sx={Styles.largeScreenInfoBoxLeftBottomTop(largeScreen.prototypeThree, largeScreen.isPrototypeTwo)}>
                             {largeScreen.imageId}
                         </Typography>
                     </Grid>
                     {!largeScreen.prototypeOne ? (
-                    <Grid item sx={{ marginBottom: -2,}}>
-                        <Box display="flex" >
-                            <Typography  sx={{...Styles.largeScreenInfoBoxLeft(largeScreen.prototypeThree), mt:"25.5%"}}>
-                                {largeScreen.imageIcon}
+                        <Grid item xs={12}>
+                            <Typography sx={{...Styles.largeScreenInfoBoxLeftBottom(largeScreen.prototypeThree), display: 'inline-flex', alignItems: 'center'}}>
+                            <Box sx={{...Styles.FilterIconLargeScreen, marginRight: '0.5rem', display: 'inline-flex', }}>{largeScreen.imageIcon}</Box>
+                            {largeScreen.imageDetectionContext}
                             </Typography>
-                            <Typography  sx={{...Styles.largeScreenInfoBoxLeft(largeScreen.prototypeThree), mt:"24%"}}>
-                                {largeScreen.imageDetectionContext}
-                            </Typography>
-                        </Box>
-                    </Grid>
+                        </Grid>
                     ):null}
                 </Grid>
+
+
+                {!largeScreen.prototypeOne ? (
+                    <Grid item xs={6} >
+                        <Button onClick={() =>handleDeleteClick(largeScreen.imageId)} variant={largeScreen.prototypeThree &&  !largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.isPrototypeTwo,  !largeScreen.investigateRecommended)}>Delete</Button>
+                        <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant={largeScreen.prototypeThree && largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.isPrototypeTwo, largeScreen.investigateRecommended)}>Investigate</Button>
+                    </Grid>
+                    ) : (
+                    <Grid item xs={11} >
+                        <Button onClick={() =>handleDeleteClick(largeScreen.imageId)}  variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.isPrototypeTwo)}>Delete</Button>
+                        <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.isPrototypeTwo)}>Investigate</Button>
+                    </Grid>
+                )}
+                {!largeScreen.prototypeOne ? (
+                    <Grid container xs={3} sx={{Direction: 'column', justifyContent: 'space-between', alignItems: 'center', height: "20%"}}>
+                        <Grid item xs={12} >
+                            <Typography sx={Styles.largeScreenInfoBoxRight}>
+                                {largeScreen.imageDetectionTime}
+                            </Typography>
+                            <Typography  sx={Styles.largeScreenInfoBoxRight}>
+                                {largeScreen.ImageDetectionDate}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} >
+                            <Typography  sx={Styles.largeScreenInfoBoxRight}>
+                                {largeScreen.timeSinceDetection}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                ):null}  
             </Grid>
-            {!largeScreen.prototypeOne ? (
-                <Grid item container sx={{ Direction: 'row', justifyContent:"center", alignItems:"center", marginTop: '1.5%'}}  xs={6} >
-                    <Button onClick={() =>handleDeleteClick(largeScreen.imageId)} variant={largeScreen.prototypeThree &&  !largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree,  !largeScreen.investigateRecommended)}>Delete</Button>
-                    <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant={largeScreen.prototypeThree && largeScreen.investigateRecommended? 'contained' : 'outlined'} sx={Styles.infoBoxButton(largeScreen.prototypeThree, largeScreen.investigateRecommended)}>Investigate</Button>
-                </Grid>
-                ) : (
-                <Grid item container sx={{ Direction: 'row', justifyContent:"center", alignItems:"center"}} xs={11} >
-                    <Button onClick={() =>handleDeleteClick(largeScreen.imageId)}  variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Delete</Button>
-                    <Button onClick={() =>handleInvestigateClick(largeScreen.imageId)} variant='outlined' sx={Styles.infoBoxButton(largeScreen.prototypeThree)}>Investigate</Button>
-                </Grid>
-            )}
-            {!largeScreen.prototypeOne ? (
-                <Grid item xs={3}  sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-                    <Typography sx={Styles.largeScreenInfoBoxRightTop}>
-                        {largeScreen.imageDetectionTime}
-                    </Typography>
-                    <Typography  sx={Styles.largeScreenInfoBoxRightTop}>
-                        {largeScreen.ImageDetectionDate}
-                    </Typography>
-                    <Typography  sx={Styles.largeScreenInfoBoxRightBottom}>
-                        {largeScreen.timeSinceDetection}
-                    </Typography>
-                </Grid>
-            ):null}  
-        </Grid>
+        </Card>
     )
 }
 
@@ -99,7 +107,7 @@ export function SmallScreenInfoBoxComponent( smallScreen: smallScreen) {
             </Grid>
             {!smallScreen.prototypeOne ? (
             <Grid item xs={4}>
-                <Typography sx={{textAlign:"center"}}>
+                <Typography sx={{...Styles.FilterIconsmallScreen, textAlign:"center"}}>
                     {imageIcon}
                 </Typography>
             </Grid>

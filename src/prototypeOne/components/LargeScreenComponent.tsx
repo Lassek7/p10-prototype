@@ -1,5 +1,3 @@
-import Styles from '../prototypeOneStyles/styles';
-import { Card, CardMedia, CardContent, Divider } from '@mui/material';
 import {LargeScreenInfoBoxComponent} from './InfoBoxComponent';
 import { Person } from '@mui/icons-material';
 
@@ -21,9 +19,10 @@ interface detectionsProps {
     onInvestigateClick: (imageId: string) => void,
     prototypeOne?: boolean,
     prototypeThree: boolean,
+    prototypeTwo: boolean
 }
 
-export default function LargeScreenComponent({prototypeOne, prototypeThree, selectedDetection, onDeleteClick, onInvestigateClick}: detectionsProps) {
+export default function LargeScreenComponent({prototypeOne, prototypeThree, prototypeTwo, selectedDetection, onDeleteClick, onInvestigateClick}: detectionsProps) {
     const handleDeleteClick = (imageId: string) => {
         onDeleteClick(imageId)
     }
@@ -33,11 +32,8 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, sele
 
     if (selectedDetection === undefined) {
     return ( // change test parameters to what we want in the screen if its empty
-        <Card sx={Styles.largeScreen(prototypeThree)}>  
-            <CardMedia component="img" sx={{ height: '80.59%' }} image={"https://source.unsplash.com/random"} alt='Image' /> 
-            
-            <CardContent >
                 <LargeScreenInfoBoxComponent 
+                    imageUrl={"https://source.unsplash.com/random"}
                     onDeleteClick={handleDeleteClick} 
                     onInvestigateClick={handleInvestigateClick} 
                     prototypeOne={prototypeOne} 
@@ -47,17 +43,14 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, sele
                     imageDetectionTime={"test"} 
                     ImageDetectionDate={"test"} 
                     timeSinceDetection={"test"} 
-                    prototypeThree={prototypeThree} 
+                    prototypeThree={prototypeThree}
+                    isPrototypeTwo={prototypeTwo} 
                     investigateRecommended={true}
                 />  
-            </CardContent>
-        </Card>
     ) } else {
         return (
-        <Card sx={Styles.largeScreen(prototypeThree)}>  
-        <CardMedia component="img" sx={{ height: '80.59%' }} image={selectedDetection.imageUrl} alt='Image' /> 
-        <CardContent sx={Styles.largeInfoBoxCardContent} >
             <LargeScreenInfoBoxComponent 
+                imageUrl={selectedDetection.imageUrl}
                 onDeleteClick={handleDeleteClick} 
                 onInvestigateClick={handleInvestigateClick} 
                 prototypeOne={prototypeOne} 
@@ -68,10 +61,9 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, sele
                 ImageDetectionDate={selectedDetection.ImageDetectionDate} 
                 timeSinceDetection={selectedDetection.timeSinceDetection} 
                 prototypeThree={prototypeThree} 
+                isPrototypeTwo={prototypeTwo}
                 investigateRecommended={selectedDetection.investigateRecommended}
             />  
-        </CardContent>
-    </Card>
     )
     }
 }

@@ -108,7 +108,36 @@ const alertBoxBadge: SxProps<Theme> = {
 
 }}
 
-
+const FilterIconLargeScreen: SxProps<Theme> = {
+    [theme.breakpoints.down('md')]: {
+        fontSize: "small",
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: "medium",
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: "Large",
+}}
+const FilterIconsmallScreen: SxProps<Theme> = {
+    [theme.breakpoints.down('md')]: {
+        fontSize: "small",
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: "medium",
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: "Large",
+}}
+const FilterIconAlertbox: SxProps<Theme> = {
+    [theme.breakpoints.down('md')]: {
+        fontSize: "small",
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: "medium",
+    },
+    [theme.breakpoints.up('xl')]: {
+        fontSize: "Large",
+}}
 // Timer Styles
 const timer: SxProps<Theme> = {
     color: '#343323', 
@@ -161,9 +190,10 @@ const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
     flexDirection: 'column' 
 })
 
-const largeScreenInfoBoxRightTop: SxProps<Theme> = {
+const largeScreenInfoBoxRight: SxProps<Theme> = {
     color: '#343323',
-    mr: "6%",
+    textAlign: "right",
+    mr: "6.8%",
     [theme.breakpoints.down('md')]: {
         fontSize: 18,
     },
@@ -174,23 +204,33 @@ const largeScreenInfoBoxRightTop: SxProps<Theme> = {
         fontSize: 8,
 }}
 
-const largeScreenInfoBoxRightBottom: SxProps<Theme> = {
+const largeScreenInfoBoxLeftBottomTop  = (isPrototypeThree: boolean, isPrototypeTwo: boolean): SxProps<Theme> => ({
     color: '#343323',
-    mr: "6%",
+    textAlign: "left",
+    ml: isPrototypeThree || isPrototypeTwo ?  "6.8%": "40%",
+    
     [theme.breakpoints.down('md')]: {
         fontSize: 18,
+        fontWeight: 600,
+        mt: isPrototypeThree || isPrototypeTwo? "" : "30%",
+
     },
     [theme.breakpoints.up('lg')]: {
         fontSize: 21,
+        fontWeight: 600,
+        mt: isPrototypeThree || isPrototypeTwo? "" : "30%",
+
     },
     [theme.breakpoints.up('xl')]: {
         fontSize: 8,
-}}
-const largeScreenInfoBoxLeft = (isPrototypeThree?: boolean): SxProps<Theme> => ({
-    ml: "4px",
+}})
+
+const largeScreenInfoBoxLeftBottom = (isPrototypeThree?: boolean): SxProps<Theme> => ({
     color: isPrototypeThree ? '#0A84FF' : '#343323',
+    textAlign: "left",
+    ml: "3%",
     [theme.breakpoints.down('md')]: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 600,
     },
     [theme.breakpoints.up('lg')]: {
@@ -200,24 +240,14 @@ const largeScreenInfoBoxLeft = (isPrototypeThree?: boolean): SxProps<Theme> => (
     [theme.breakpoints.up('xl')]: {
         fontSize: 8,
         fontWeight: 600,
-}
-})
-const largeInfoBoxCardContent: SxProps<Theme> = { 
-    [theme.breakpoints.down('md')]: {
-        mt: "-10px" 
-    },
-    [theme.breakpoints.up('lg')]: {
-        mt: "-6px" 
-    },
-    [theme.breakpoints.up('xl')]: {
-        mt: "-10px" 
-}}
+}})
 
-const infoBoxButton= (isPrototypeThree: boolean, investigateRecommended?: boolean): SxProps<Theme> => ({
+const infoBoxButton= (isPrototypeThree: boolean, isPrototypeTwo: boolean, investigateRecommended?: boolean): SxProps<Theme> => ({
     width: '8.17vw', 
     height: '5.5vh', 
     borderRadius: '100px', 
-    mr: "1vw", 
+    mr: isPrototypeThree || isPrototypeTwo ? "0.5vw": "2vw", 
+    ml: isPrototypeThree || isPrototypeTwo ? "0.5vw": "-1vw",
     textTransform: 'none',
     color: isPrototypeThree && investigateRecommended ? '#f5f5f5' : '#0A84FF', 
     borderColor: isPrototypeThree && investigateRecommended ? '#0A84FF' : '#343323',
@@ -382,9 +412,8 @@ const screensList: SxProps<Theme> = {
 const Styles = {
     smallScreen: smallScreen,
     largeScreen: largeScreen,
-    largeScreenInfoBoxLeft: largeScreenInfoBoxLeft,
-    largeScreenInfoBoxRightTop: largeScreenInfoBoxRightTop,
-    largeScreenInfoBoxRightBottom: largeScreenInfoBoxRightBottom,
+    largeScreenInfoBoxLeftBottom: largeScreenInfoBoxLeftBottom,
+    largeScreenInfoBoxRight: largeScreenInfoBoxRight,
     taskGoalCard: taskGoalCard,
     infoBoxButton: infoBoxButton,  
     arrowComponent: arrowComponent,
@@ -404,10 +433,13 @@ const Styles = {
     alertBoxTop: alertBoxTop,   
     alertBoxBadge: alertBoxBadge,
     smallInfoBoxCardContent: smallInfoBoxCardContent,
-    largeInfoBoxCardContent: largeInfoBoxCardContent,
     TaskGoalText: TaskGoalText,
     TaskGoalCategoryText: TaskGoalCategoryText,
-    TaskGoalFiberIcon: TaskGoalFiberIcon
+    TaskGoalFiberIcon: TaskGoalFiberIcon,
+    largeScreenInfoBoxLeftBottomTop: largeScreenInfoBoxLeftBottomTop,
+    FilterIconLargeScreen: FilterIconLargeScreen,
+    FilterIconsmallScreen: FilterIconsmallScreen,
+    FilterIconAlertbox: FilterIconAlertbox
 
 }
 

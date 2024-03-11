@@ -172,7 +172,7 @@ export default function PrototypeTwo() {
                     <TaskGoalsComponent  prototypeThree={false} selectedDetection={selectedDetection} taskId={3}/>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <LargeScreenComponent prototypeThree={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
+                    <LargeScreenComponent prototypeThree={false} prototypeTwo={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>
                     <Typography sx={Styles.timer}>
                             {minutes}:{remainingSeconds} 
                     </Typography>   
