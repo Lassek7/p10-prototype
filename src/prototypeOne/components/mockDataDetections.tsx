@@ -71,7 +71,7 @@ export const detections = [
     investigatePoints: 0,
     detectionWeight: 20,
     isUnseen: true,
-    taskGoalMatch: "Black backpack"
+    taskGoalMatch: "Black summer jacket"
 
 }
     ,

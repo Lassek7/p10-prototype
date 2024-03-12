@@ -127,13 +127,12 @@ export default function Questionnaire({questionnaireName, setCompleted, question
                         <TextField label={listOfQuestions[7].question} variant='outlined' multiline rows={3} sx={Styles.textField}  onChange={(e) => listOfQuestions[7].answer = e.target.value}/>   
                     </Grid>
                 </Grid>
-
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                    Submit & Continue
+                    </Button>
+                </DialogActions>
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                Submit & Continue
-                </Button>
-            </DialogActions>
         </Dialog>
     )
 }

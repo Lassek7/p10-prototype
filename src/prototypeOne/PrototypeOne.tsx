@@ -10,6 +10,7 @@ import TaskIntro from './components/TaskIntro'
 import Styles from './prototypeOneStyles/styles'
 import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
+import { mockDataTaskOneGoals } from './components/mockDataTaskGoals'
 
 interface detection {
     imageId: string,
@@ -24,7 +25,9 @@ interface detection {
     deletePoints: number,
     investigatePoints: number,
     detectionWeight: number,
-    isUnseen: boolean
+    isUnseen: boolean,
+    taskGoalMatch: string,
+
 }
 interface ArrayToSave {
     imageId: string,
@@ -146,7 +149,6 @@ export default function PrototypeOne() {
             }        
         }
         setRenderedDetectionList(newRenderedDetectionList);
-
     },[AllDetections])
 
     // use the styles data in the following for the actuan components then make this to a grid system
@@ -154,7 +156,7 @@ export default function PrototypeOne() {
         return(
             <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
                 <Grid item xs={12} md={6}>
-                    <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} taskId={1}/>
+                    <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} mockDataTaskGoals={mockDataTaskOneGoals}/>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <LargeScreenComponent prototypeOne={true} prototypeThree={false} prototypeTwo={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>

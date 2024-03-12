@@ -11,6 +11,7 @@ import Styles from './prototypeOneStyles/styles'
 import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import Debriefing from './components/Debriefing'
+import { mockDataTaskTwoGoals } from './components/mockDataTaskGoals'
 
 interface detection {
     imageId: string,
@@ -25,7 +26,8 @@ interface detection {
     deletePoints: number,
     investigatePoints: number,
     detectionWeight: number,
-    isUnseen: boolean
+    isUnseen: boolean,
+    taskGoalMatch: string,
 }
 
 interface ArrayToSave {
@@ -169,7 +171,7 @@ export default function PrototypeTwo() {
         return(
             <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
                 <Grid item xs={12} md={6}>
-                    <TaskGoalsComponent  prototypeThree={false} selectedDetection={selectedDetection} taskId={3}/>
+                    <TaskGoalsComponent  prototypeThree={false} selectedDetection={selectedDetection}  mockDataTaskGoals={mockDataTaskTwoGoals}/>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <LargeScreenComponent prototypeThree={false} prototypeTwo={true} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>

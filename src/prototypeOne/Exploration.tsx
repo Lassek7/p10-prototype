@@ -7,6 +7,7 @@ import { detections } from './components/mockDataDetections'
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
+import { mockDataTaskPracticeGoals } from './components/mockDataTaskGoals'
 
 export default function Exploration() {
 
@@ -23,7 +24,9 @@ export default function Exploration() {
         deletePoints: number,
         investigatePoints: number,
         detectionWeight: number,
-        isUnseen: boolean
+        isUnseen: boolean,
+        taskGoalMatch: string,
+
     }
  
     const location = useLocation()
@@ -99,7 +102,7 @@ export default function Exploration() {
         <Grid container className={`container ${!startTest ? 'blur-effect' : ''}`}>
             <TaskIntro taskId={0} setStartTest={setStartTest}/>
             <Grid item xs={12} md={6} >
-                <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} taskId={0}/>
+                <TaskGoalsComponent prototypeThree={false} selectedDetection={selectedDetection} mockDataTaskGoals={mockDataTaskPracticeGoals}/>
             </Grid>
             <Grid item xs={12} md={6}>
                 <LargeScreenComponent prototypeOne={true} prototypeThree={false} prototypeTwo={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>

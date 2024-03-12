@@ -12,6 +12,7 @@ import './prototypeOneStyles/blur.css'
 import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import Debriefing from './components/Debriefing'
+import { mockDataTaskThreeGoals } from './components/mockDataTaskGoals'
 
 interface detection {
     imageId: string,
@@ -26,7 +27,9 @@ interface detection {
     deletePoints: number,
     investigatePoints: number,
     detectionWeight: number,
-    isUnseen: boolean
+    isUnseen: boolean,
+    taskGoalMatch: string,
+
 }
 interface ArrayToSave {
     imageId: string,
@@ -178,9 +181,11 @@ export default function PrototypeThree() {
 
         } else if (recentlyDeleted.length !== 0) {
             setFilterChoices({Vehicle: false, Person: false, Item: false})
-            setSelectedDetection(AllDetections[0])
-            setIsSelected(AllDetections[0].imageId)
-            AllDetections[0].isUnseen = false
+            if (AllDetections.length > 0) {
+                setSelectedDetection(AllDetections[0])
+                setIsSelected(AllDetections[0].imageId)
+                AllDetections[0].isUnseen = false
+            }
         }
 
          setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
@@ -233,7 +238,7 @@ const addNewItem2= () => { //remove when actually adding new items
         return(
             <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
                 <Grid item xs={4} md={4}>
-                    <TaskGoalsComponent  prototypeThree={true} selectedDetection={selectedDetection} taskId={2}/>
+                    <TaskGoalsComponent  prototypeThree={true} selectedDetection={selectedDetection} mockDataTaskGoals={mockDataTaskThreeGoals}/>
                 </Grid>
                 <Grid item xs={4} md={4}>
                     <LargeScreenComponent prototypeThree={true} prototypeTwo={false} onDeleteClick={handleDeleteClick} onInvestigateClick={handleInvestigateClick} selectedDetection={selectedDetection}/>

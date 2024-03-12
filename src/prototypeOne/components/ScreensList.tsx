@@ -4,7 +4,7 @@ import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
 import { DryCleaning, Person, DirectionsCar} from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
-// current issue: filtering is selected when not shown. crashes when out of bounds
+
 interface detection {
     imageId: string,
     imageUrl: string,
@@ -18,7 +18,8 @@ interface detection {
     deletePoints: number,
     investigatePoints: number,
     detectionWeight: number,
-    isUnseen: boolean
+    isUnseen: boolean,
+    taskGoalMatch: string
 }
 interface ScreensListProps {
     setScreenIndex: (imageIndex: string) => void

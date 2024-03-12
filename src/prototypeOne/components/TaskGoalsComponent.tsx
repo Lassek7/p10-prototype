@@ -13,17 +13,28 @@ interface detection {
     ImageDetectionDate: string,
     timeSinceDetection: string,
     filterID?: string,
-    investigateRecommended: boolean
+    investigateRecommended: boolean,
+    taskGoalMatch: string
 }
 
 interface TaskGoalsProps {
     prototypeThree: boolean,
     selectedDetection: detection,
-    taskId: Number,
+    mockDataTaskGoals: Array<{taskId: string, taskName: string}>
 }
 
-export default function TaskGoalsComponent({selectedDetection, prototypeThree, taskId}: TaskGoalsProps) {
-    console.log(taskId)
+export default function TaskGoalsComponent({selectedDetection, prototypeThree, mockDataTaskGoals}: TaskGoalsProps) {
+
+    
+    function ListItems(taskName: string, prototypeThree: boolean, selectedDetection: detection){
+        return(
+        <ListItem sx={{ mt: -1.5, mb: -3 }}>
+            <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
+                <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
+            </ListItemIcon>
+            <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText, color: prototypeThree && selectedDetection?.taskGoalMatch === taskName ? '#0A84FF' : '#343323'}}} primary={taskName} />
+        </ListItem>
+    )}
     return (
         <Card sx={Styles.taskGoalCard}>
             <CardHeader title="Task Goals" align="left" titleTypographyProps={{sx:{...Styles.TaskGoalText}}} />
@@ -36,13 +47,9 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, t
                         <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Person' ? '#0A84FF' : '#343323'}}> Person</Box>
                         </Box>
                     </ListSubheader>
-                    
-                    <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                        <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                            <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
-                        </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText}}} primary="Itessdsdm x"  />
-                    </ListItem>
+                    {mockDataTaskGoals.filter(item => item.taskId === 'Person').map(item => (
+                        ListItems(item.taskName, prototypeThree, selectedDetection)
+                    ))}
                 </List>   
 
                 <List>
@@ -52,14 +59,9 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, t
                             <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}> Personal Items</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
-                    
-                    <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                        <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                            <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
-                        </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText}}} primary="Item x"  />
-                    </ListItem>
-                    
+                    {mockDataTaskGoals.filter(item => item.taskId === 'Personal Items').map(item => (
+                        ListItems(item.taskName, prototypeThree, selectedDetection)
+                    ))}
                 </List>   
 
                 <List>
@@ -69,14 +71,9 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, t
                             <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Vehicle</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
-                    
-                    <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                        <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                            <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
-                        </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText}}} primary="Item x"  />
-                    </ListItem>
-                    
+                    {mockDataTaskGoals.filter(item => item.taskId === 'Vehicle').map(item => (
+                        ListItems(item.taskName, prototypeThree, selectedDetection)
+                    ))}
                 </List>   
             </CardContent>    
          </Card>
