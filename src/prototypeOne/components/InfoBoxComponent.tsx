@@ -32,7 +32,10 @@ interface largeScreen {
 
 
 export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
-
+    /*const currentTime = new Date().toLocaleTimeString();
+    const detectionTime = imageDetectionTime;
+    const timeSinceDetection = currentTime.getTime() - detectionTime.getTime();*/
+    
     const handleDeleteClick = (imageId: string) => {
         largeScreen.onDeleteClick(imageId)
     }
@@ -43,7 +46,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
         <Card sx={Styles.largeScreen(largeScreen.prototypeThree)}>  
             <Grid container  sx={{Direction: 'row', justifyContent:"space-between", alignItems:"center", height: "100%"}} >
                 <Grid item xs={12} sx={{height: '80%'}}>
-                    <CardMedia component="img" sx={{ height: '100%', objectFit: 'fit'}} image={largeScreen.imageUrl} alt='Image' /> 
+                    <CardMedia component="img" sx={{ height: '100%', objectFit: 'fill'}} image={largeScreen.imageUrl} alt='Image' /> 
                 </Grid>
                 
                 <Grid container xs={!largeScreen.prototypeOne ? 3 : 1} sx={{Direction: 'column', justifyContent:"space-between", alignItems: !largeScreen.prototypeOne ? "center" : "flex-start", height: "20%"}} >

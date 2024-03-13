@@ -1,3 +1,6 @@
+/// <reference types="vite-plugin-svgr/client" />
+import Clothes from '../../assets/clothes.svg?react';
+
 import Styles from '../prototypeOneStyles/styles';
 import { Box, Card, CardContent, CardHeader, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
 import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
@@ -35,6 +38,7 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
             <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText, color: prototypeThree && selectedDetection?.taskGoalMatch === taskName ? '#0A84FF' : '#343323'}}} primary={taskName} />
         </ListItem>
     )}
+    
     return (
         <Card sx={Styles.taskGoalCard}>
             <CardHeader title="Task Goals" align="left" titleTypographyProps={{sx:{...Styles.TaskGoalText}}} />
@@ -55,7 +59,7 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
-                        <DryCleaning fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}/>
+                        <Clothes style={{fill: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323', width: 35, height: 35}}/>
                             <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Item' ? '#0A84FF' : '#343323'}}> Personal Items</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
@@ -67,11 +71,11 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
-                        <DirectionsCar fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}/>
-                            <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Vehicle</Box> {/* l = margin left */}
+                        <DirectionsCar fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Mode of transport' ? '#0A84FF' : '#343323'}}/>
+                            <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Mode of transport' ? '#0A84FF' : '#343323'}}> Mode of transport</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
-                    {mockDataTaskGoals.filter(item => item.taskId === 'Vehicle').map(item => (
+                    {mockDataTaskGoals.filter(item => item.taskId === 'Mode of transport').map(item => (
                         ListItems(item.taskName, prototypeThree, selectedDetection)
                     ))}
                 </List>   

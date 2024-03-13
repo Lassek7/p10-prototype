@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { detections } from './components/mockDataDetections'
+import { initialDetections } from './components/mockDataDetections'
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
@@ -33,10 +33,10 @@ export default function Exploration() {
     const userData = location.state
 
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
-    const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(initialDetections[0])
     const [startTest, setStartTest] = useState<boolean>(false)
-    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
-    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
+    const [AllDetections, setAllDetections] = useState<Array<detection>>(initialDetections) // used to remove detections from the list
+    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(initialDetections); // used to render the list
     const [isSelected, setIsSelected] = useState<string| null>(null);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
         {

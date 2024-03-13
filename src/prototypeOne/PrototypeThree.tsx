@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import {Grid, Typography} from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { detections } from './components/mockDataDetections'
+import { initialDetectionsThree, additionalDetectionsThree} from './components/mockDataDetections' // change to 3
 import AlertBox from './components/AlertBox'
 import { useNavigate, useLocation } from 'react-router-dom';
 import Styles from './prototypeOneStyles/styles'
@@ -13,6 +13,8 @@ import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import Debriefing from './components/Debriefing'
 import { mockDataTaskThreeGoals } from './components/mockDataTaskGoals'
+import { mockDetectionTimerPrototypeThree } from './components/mockDataDetectionTimer' // change to 3
+
 
 interface detection {
     imageId: string,
@@ -37,9 +39,19 @@ interface ArrayToSave {
     chosenAction: string,
 
 }
-
+interface detectionTimer {
+    addAt: number,
+}
 export default function PrototypeThree() {
-
+    function updateDetectionTimes(detections: Array<detection>): Array<detection> {
+        return detections.map(detection => ({
+          ...detection,
+          imageDetectionTime: new Date().toLocaleTimeString(),
+          ImageDetectionDate: new Date().toLocaleDateString(),
+        }));
+      }
+    
+    const detections = updateDetectionTimes(initialDetectionsThree);
     const location = useLocation()
     const userData = location.state
 
@@ -52,6 +64,8 @@ export default function PrototypeThree() {
     const [startTest, setStartTest] = useState<boolean>(false)
     const [startDebriefing, setStartDebriefing] = useState<boolean>(false)
     const [AllDetections, setAllDetections] = useState<Array<detection>>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)) 
+    const [newDetections] = useState<Array<detection>>(additionalDetectionsThree) // used to add detections to the list
+    const [addDetectionAt] = useState<Array<detectionTimer>>(mockDetectionTimerPrototypeThree) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
     const [isSelected, setIsSelected] = useState<string | null>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)[0].imageId);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
@@ -62,8 +76,23 @@ export default function PrototypeThree() {
         });
     const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([]); // used to save the list to a file
     const [seconds, setSeconds] = useState(240);
+    const [detectionTimer, setDetectionTimer] = useState(0)
+    const [detectionCount, setDetectionCount] = useState(0)
     const navigate = useNavigate();
 
+    function addnewDetection(newDetectionTimer: number, detectionCount: number) {
+        if(newDetectionTimer <= 214 && newDetectionTimer === addDetectionAt[detectionCount].addAt) {
+            setDetectionCount(detectionCount + 1)
+            const newDetection = updateDetectionTimes([newDetections[detectionCount]]);
+            setAllDetections(AllDetections => [...AllDetections, ...newDetection])
+        }
+    }
+
+    useEffect(() => {
+        const newDetectionTimer = detectionTimer + 1
+        setDetectionTimer(newDetectionTimer)
+        addnewDetection(newDetectionTimer, detectionCount)
+    }, [seconds])
 
     useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
         if (seconds > 0 && startTest && !pauseTest) { // add: if seconds === x, then run addNewItem
@@ -76,7 +105,7 @@ export default function PrototypeThree() {
         if (seconds === 0) {
             setOpenQuestionnaire(true);
         } 
-    }, [seconds, startTest]);
+    }, [seconds, startTest, pauseTest]);
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
@@ -166,7 +195,6 @@ export default function PrototypeThree() {
                 setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
                 return
             }
-
             const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
 
             setSelectedDetection(AllDetections[indexInNewList])
@@ -191,48 +219,6 @@ export default function PrototypeThree() {
          setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
 
     },[AllDetections])
-
-/*
-const addNewItem= () => { //remove when actually adding new items
-    // Add new items to the array
-    const newItem = {
-        imageId: "#21",
-        imageUrl: 'https://source.unsplash.com/random', //image: image1
-        imageIcon: <PersonIcon fontSize='small'/> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
-        imageDetectionContext: 'percentage match: 90%',
-        imageDetectionTime: '01:30:40',
-        ImageDetectionDate: '2021-10-10',
-        timeSinceDetection: '2 hours ago',
-        filterID: 'Person',
-        investigateRecommended: false,
-        deletePoints: 0,
-        investigatePoints: 1,
-        detectionWeight: 2,
-        isUnseen: true
-    
-    };
-    setAllDetections(prevDetections => [...prevDetections, newItem].sort((a, b) => a.detectionWeight - b.detectionWeight));
-};
-const addNewItem2= () => { //remove when actually adding new items
-    // Add new items to the array
-    const newItem = {
-        imageId: "#22",
-        imageUrl: 'https://source.unsplash.com/random', //image: image1
-        imageIcon: <PersonIcon fontSize='small'/> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
-        imageDetectionContext: 'percentage match: 90%',
-        imageDetectionTime: '01:30:40',
-        ImageDetectionDate: '2021-10-10',
-        timeSinceDetection: '2 hours ago',
-        filterID: 'Person',
-        investigateRecommended: false,
-        deletePoints: 0,
-        investigatePoints: 1,
-        detectionWeight: 10,
-        isUnseen: true 
-    
-    };
-    setAllDetections(prevDetections => [...prevDetections, newItem]);
-};*/
 
     if (startTest) {
         return(

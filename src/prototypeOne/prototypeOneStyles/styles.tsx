@@ -227,6 +227,7 @@ const largeScreenInfoBoxLeftBottomTop  = (isPrototypeThree: boolean, isPrototype
 
 const largeScreenInfoBoxLeftBottom = (isPrototypeThree?: boolean): SxProps<Theme> => ({
     color: isPrototypeThree ? '#0A84FF' : '#343323',
+    fill: isPrototypeThree ? '#0A84FF' : '#343323',
     textAlign: "left",
     ml: "3%",
     [theme.breakpoints.down('md')]: {
