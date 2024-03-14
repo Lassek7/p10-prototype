@@ -1,8 +1,10 @@
+/// <reference types="vite-plugin-svgr/client" />
+import Clothes from '../../assets/clothes.svg?react'; 
 import { Grid, Card, Box, CardHeader, Divider, Button, CardContent, CardMedia } from '@mui/material'
 import { SmallScreenInfoBoxComponent } from './InfoBoxComponent'
 import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
-import { DryCleaning, Person, DirectionsCar} from '@mui/icons-material';
+import { Person, DirectionsCar} from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
 
 interface detection {
@@ -107,7 +109,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                     <Grid item xs={1.5} md={1.5}>
                         <Button variant={filterChoices.Item ? 'contained' : 'outlined'} sx={{...Styles.filterButtons, color: filterChoices.Item ? '#FFFFFF' : '#343323'}} onClick={() => setFilterChoices(prev => ({...prev, Item: !prev.Item}))}>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <DryCleaning sx={{ mr: 1 }}/>
+                                <Clothes style={{ marginRight: 1 }} />
                                 Personal item
                             </Box>
                         </Button>                    
