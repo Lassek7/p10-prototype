@@ -36,7 +36,7 @@ export const mockDataTaskPracticeGoals = [
     taskName: "White bike",
 },
 {
-    taskId: "Mode of transport",
+    taskId: "Personal Items",
     taskName: "Black bike helmet",
 }]
 export const mockDataTaskOneGoals = [
@@ -77,7 +77,7 @@ export const mockDataTaskOneGoals = [
     taskName: "White bike",
 },
 {
-    taskId: "Mode of transport",
+    taskId: "Personal Items",
     taskName: "Black bike helmet",
 }]
 export const mockDataTaskTwoGoals = [
@@ -137,7 +137,7 @@ export const mockDataTaskThreeGoals = [
 },
 {
     taskId: "Person",
-    taskName: "smooth complexion",
+    taskName: "Smooth complexion",
 },
 {
     taskId: "Person",
@@ -161,7 +161,7 @@ export const mockDataTaskThreeGoals = [
 },
 {
     taskId: "Personal Items",
-    taskName: "Silver water bottle",
+    taskName: "Metal water bottle",
 }]
 
 

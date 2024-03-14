@@ -1,6 +1,7 @@
 
 import {Box, Button, Grid, Typography, Card, CardMedia } from '@mui/material';
 import Styles from '../prototypeOneStyles/styles';
+import { useEffect, useState } from 'react';
 
 interface smallScreen {
     prototypeOne?: boolean,
@@ -15,13 +16,13 @@ interface smallScreen {
 interface largeScreen {
     showButtons?: boolean,
     prototypeOne?: boolean,
-    imageUrl: string,
+    markedImageUrl: string,
     imageId: string,
     imageIcon: JSX.Element,
     imageDetectionContext?: string,
     imageDetectionTime: string,
     ImageDetectionDate: string,
-    timeSinceDetection?: string,
+    timeSinceDetection: string,
     onDeleteClick: (ImageId: string) => void,
     onInvestigateClick: (imageId: string) => void,
     prototypeThree: boolean,
@@ -32,10 +33,22 @@ interface largeScreen {
 
 
 export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
-    /*const currentTime = new Date().toLocaleTimeString();
-    const detectionTime = imageDetectionTime;
-    const timeSinceDetection = currentTime.getTime() - detectionTime.getTime();*/
-    
+
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState("00");
+
+    useEffect(() => {
+        const currentTime = new Date()
+        const detectionTime = new Date(largeScreen.timeSinceDetection)
+        let diff = currentTime.getTime() - detectionTime.getTime();
+        let minutes = Math.floor(diff / 60000); // 1 minute = 60000 milliseconds
+        setMinutes(minutes);
+        let seconds = ((diff % 60000) / 1000).toFixed(0).padStart(2, '0');
+        seconds = seconds.padStart(2, '0')
+        setSeconds(seconds);
+    },[largeScreen.imageId])
+  
+
     const handleDeleteClick = (imageId: string) => {
         largeScreen.onDeleteClick(imageId)
     }
@@ -46,7 +59,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
         <Card sx={Styles.largeScreen(largeScreen.prototypeThree)}>  
             <Grid container  sx={{Direction: 'row', justifyContent:"space-between", alignItems:"center", height: "100%"}} >
                 <Grid item xs={12} sx={{height: '80%'}}>
-                    <CardMedia component="img" sx={{ height: '100%', objectFit: 'fill'}} image={largeScreen.imageUrl} alt='Image' /> 
+                    <CardMedia component="img" sx={{ height: '100%', objectFit: 'fill'}} image={largeScreen.markedImageUrl} alt='Image' /> 
                 </Grid>
                 
                 <Grid container xs={!largeScreen.prototypeOne ? 3 : 1} sx={{Direction: 'column', justifyContent:"space-between", alignItems: !largeScreen.prototypeOne ? "center" : "flex-start", height: "20%"}} >
@@ -57,7 +70,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                     </Grid>
                     {!largeScreen.prototypeOne ? (
                         <Grid item xs={12}>
-                            <Typography sx={{...Styles.largeScreenInfoBoxLeftBottom(largeScreen.prototypeThree), display: 'inline-flex', alignItems: 'center'}}>
+                            <Typography sx={{...Styles.largeScreenInfoBoxLeftBottom(largeScreen.prototypeThree), display: 'inline-flex', alignItems: 'left'}}>
                             <Box sx={{...Styles.FilterIconLargeScreen, marginRight: '0.5rem', display: 'inline-flex', }}>{largeScreen.imageIcon}</Box>
                             {largeScreen.imageDetectionContext}
                             </Typography>
@@ -81,7 +94,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                     <Grid container xs={3} sx={{Direction: 'column', justifyContent: 'space-between', alignItems: 'center', height: "20%"}}>
                         <Grid item xs={12} >
                             <Typography sx={Styles.largeScreenInfoBoxRight}>
-                                {largeScreen.imageDetectionTime}
+                                {largeScreen.imageDetectionTime.toString()}
                             </Typography>
                             <Typography  sx={Styles.largeScreenInfoBoxRight}>
                                 {largeScreen.ImageDetectionDate}
@@ -89,7 +102,7 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                         </Grid>
                         <Grid item xs={12} >
                             <Typography  sx={Styles.largeScreenInfoBoxRight}>
-                                {largeScreen.timeSinceDetection}
+                                {minutes >= 1 ? minutes > 1 ? minutes + " minutes ago" : minutes + " minute ago" : seconds + " seconds ago"}
                             </Typography>
                         </Grid>
                     </Grid>

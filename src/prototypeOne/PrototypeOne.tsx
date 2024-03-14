@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import { Grid, Typography } from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { initialDetections, additionalDetections } from './components/mockDataDetections'
+import { initialDetections, additionalDetections } from './components/mockDataDetectionsOne'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './prototypeOneStyles/blur.css'
 import TaskIntro from './components/TaskIntro'
@@ -16,6 +16,7 @@ import { mockDetectionTimerPrototypeOne } from './components/mockDataDetectionTi
 interface detection {
     imageId: string,
     imageUrl: string,
+    markedImageUrl: string,
     imageIcon: JSX.Element;
     imageDetectionContext: string,
     imageDetectionTime: string,
@@ -28,6 +29,7 @@ interface detection {
     detectionWeight: number,
     isUnseen: boolean,
     taskGoalMatch: string,
+
 }
 
 interface ArrayToSave {
@@ -69,8 +71,7 @@ export default function PrototypeOne() {
     const navigate = useNavigate();
     
     function addnewDetection(newDetectionTimer: number, detectionCount: number) {
-        if(detectionCount+1 < newDetections.length && newDetectionTimer === addDetectionAt[detectionCount]?.addAt) {
-            console.log(detectionCount, newDetectionTimer)
+        if(detectionCount+1 <= newDetections.length && newDetectionTimer === addDetectionAt[detectionCount]?.addAt) {
             setDetectionCount(detectionCount + 1)
             setAllDetections(AllDetections => [...AllDetections, newDetections[detectionCount]])
         }
@@ -115,10 +116,10 @@ export default function PrototypeOne() {
 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-        //    saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeTwo', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-        //    saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeThree', {state: userData}); 
         }
     },[questionnaireCompleted])

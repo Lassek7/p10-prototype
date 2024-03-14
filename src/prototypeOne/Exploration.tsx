@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { initialDetections } from './components/mockDataDetections'
+import { initialDetections } from './components/mockDataDetectionsOne'
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
@@ -14,6 +14,7 @@ export default function Exploration() {
     interface detection {
         imageId: string,
         imageUrl: string,
+        markedImageUrl: string
         imageIcon: JSX.Element,
         imageDetectionContext: string,
         imageDetectionTime: string,

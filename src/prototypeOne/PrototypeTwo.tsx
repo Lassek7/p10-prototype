@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import { Grid, Typography } from '@mui/material'
 import { useState, useEffect, useCallback} from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { initialDetectionsTwo, additionalDetectionsTwo } from './components/mockDataDetections' //change to 2
+import { initialDetectionsTwo, additionalDetectionsTwo } from './components/MockDetectionsPrototypeTwo' //change to 2
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
@@ -18,6 +18,7 @@ import { mockDetectionTimerPrototypeTwo } from './components/mockDataDetectionTi
 interface detection {
     imageId: string,
     imageUrl: string,
+    markedImageUrl: string,
     imageIcon: JSX.Element,
     imageDetectionContext: string,
     imageDetectionTime: string,
@@ -46,22 +47,23 @@ export default function PrototypeTwo() {
           ...detection,
           imageDetectionTime: new Date().toLocaleTimeString(),
           ImageDetectionDate: new Date().toLocaleDateString(),
+          timeSinceDetection: new Date().toString(),
         }));
       }
     
-    const detections = updateDetectionTimes(initialDetectionsTwo.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+    const detections = updateDetectionTimes(initialDetectionsTwo);
     const location = useLocation()
     const userData = location.state
 
     const [pauseTest, setPauseTest] = useState<boolean>(false)
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
-    const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(detections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", "")))[0])
     const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
     const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [testSetup, _] = useState<number>(userData.version)
     const [startTest, setStartTest] = useState<boolean>(false)
     const [startDebriefing, setStartDebriefing] = useState<boolean>(false)
-    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
+    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", "")))) 
     const [newDetections] = useState<Array<detection>>(additionalDetectionsTwo) // used to add detections to the list
     const [addDetectionAt] = useState<Array<detectionTimer>>(mockDetectionTimerPrototypeTwo) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -79,7 +81,7 @@ export default function PrototypeTwo() {
     const navigate = useNavigate();
     
     function addnewDetection(newDetectionTimer: number, detectionCount: number) {
-        if(newDetectionTimer <= 214 && newDetectionTimer === addDetectionAt[detectionCount].addAt) {
+        if(detectionCount+1 <= newDetections.length && newDetectionTimer === addDetectionAt[detectionCount].addAt) {
             setDetectionCount(detectionCount + 1)
             const newDetection = updateDetectionTimes([newDetections[detectionCount]]);
             setAllDetections(AllDetections => [...AllDetections, ...newDetection])
@@ -126,10 +128,10 @@ export default function PrototypeTwo() {
     }, []); 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-        //    saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
             navigate('/prototypeThree', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-        //    saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
             setStartDebriefing(true);
         }
     },[questionnaireCompleted])
@@ -144,7 +146,7 @@ export default function PrototypeTwo() {
         setRecentlyDeleted(removedDetection)        
         
         let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
-        setAllDetections(newAllDetections);
+        setAllDetections(newAllDetections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
             points: removedDetection[0].deletePoints,
@@ -158,7 +160,7 @@ export default function PrototypeTwo() {
         setRecentlyDeleted(removedDetection)
 
         let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
-        setAllDetections(newAllDetections);
+        setAllDetections(newAllDetections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
             points: removedDetection[0].deletePoints,

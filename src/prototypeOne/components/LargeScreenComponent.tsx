@@ -4,6 +4,7 @@ import { Person } from '@mui/icons-material';
 interface detection {
     imageId: string,
     imageUrl: string,
+    markedImageUrl: string,
     imageIcon: JSX.Element,
     imageDetectionContext: string,
     imageDetectionTime: string,
@@ -33,7 +34,7 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, prot
     if (selectedDetection === undefined) {
     return ( // change test parameters to what we want in the screen if its empty
                 <LargeScreenInfoBoxComponent 
-                    imageUrl={"https://source.unsplash.com/random"}
+                    markedImageUrl={"https://source.unsplash.com/random"}
                     onDeleteClick={handleDeleteClick} 
                     onInvestigateClick={handleInvestigateClick} 
                     prototypeOne={prototypeOne} 
@@ -50,7 +51,7 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, prot
     ) } else {
         return (
             <LargeScreenInfoBoxComponent 
-                imageUrl={selectedDetection.imageUrl}
+                markedImageUrl={selectedDetection.markedImageUrl}
                 onDeleteClick={handleDeleteClick} 
                 onInvestigateClick={handleInvestigateClick} 
                 prototypeOne={prototypeOne} 

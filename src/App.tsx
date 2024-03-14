@@ -19,7 +19,7 @@ const loginClick = (version: number) => {
     occupation: occupation,
     version: version
   } 
-  //saveToFile([userData], participantId, participantId);
+  saveToFile([userData], participantId, participantId);
     
   if (version === 1) {
     navigate('/Exploration', {state: userData});

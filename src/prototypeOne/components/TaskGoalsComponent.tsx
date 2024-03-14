@@ -3,7 +3,7 @@ import Clothes from '../../assets/clothes.svg?react';
 
 import Styles from '../prototypeOneStyles/styles';
 import { Box, Card, CardContent, CardHeader, Divider, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
-import { DryCleaning, Person, DirectionsCar } from '@mui/icons-material';
+import { Person, DirectionsCar } from '@mui/icons-material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 //import { mockTaskDescriptions } from './mockTaskDescriptions';
 

@@ -8,6 +8,7 @@ import Styles from '../prototypeOneStyles/styles'
 interface detection {
     imageId: string,
     imageUrl: string,
+    markedImageUrl: string,
     imageIcon: JSX.Element,
     imageDetectionContext: string,
     imageDetectionTime: string,

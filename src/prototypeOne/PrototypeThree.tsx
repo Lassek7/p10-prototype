@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import {Grid, Typography} from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { initialDetectionsThree, additionalDetectionsThree} from './components/mockDataDetections' // change to 3
+import { initialDetectionsThree, additionalDetectionsThree} from './components/mockDataDetectionsPrototypeThree' 
 import AlertBox from './components/AlertBox'
 import { useNavigate, useLocation } from 'react-router-dom';
 import Styles from './prototypeOneStyles/styles'
@@ -13,12 +13,12 @@ import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import Debriefing from './components/Debriefing'
 import { mockDataTaskThreeGoals } from './components/mockDataTaskGoals'
-import { mockDetectionTimerPrototypeThree } from './components/mockDataDetectionTimer' // change to 3
-
+import { mockDetectionTimerPrototypeThree } from './components/mockDataDetectionTimer' 
 
 interface detection {
     imageId: string,
     imageUrl: string,
+    markedImageUrl: string,
     imageIcon: JSX.Element,
     imageDetectionContext: string,
     imageDetectionTime: string,
@@ -48,6 +48,7 @@ export default function PrototypeThree() {
           ...detection,
           imageDetectionTime: new Date().toLocaleTimeString(),
           ImageDetectionDate: new Date().toLocaleDateString(),
+          timeSinceDetection: new Date().toString(),
         }));
       }
     
@@ -81,7 +82,7 @@ export default function PrototypeThree() {
     const navigate = useNavigate();
 
     function addnewDetection(newDetectionTimer: number, detectionCount: number) {
-        if(newDetectionTimer <= 214 && newDetectionTimer === addDetectionAt[detectionCount].addAt) {
+        if(detectionCount+1 <= newDetections.length && newDetectionTimer === addDetectionAt[detectionCount].addAt) {
             setDetectionCount(detectionCount + 1)
             const newDetection = updateDetectionTimes([newDetections[detectionCount]]);
             setAllDetections(AllDetections => [...AllDetections, ...newDetection])
