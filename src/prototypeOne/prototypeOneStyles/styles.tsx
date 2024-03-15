@@ -111,9 +111,11 @@ const alertBoxBadge: SxProps<Theme> = {
 const FilterIconLargeScreen: SxProps<Theme> = {
     [theme.breakpoints.down('md')]: {
         fontSize: "small",
+        mt: "-3%"
     },
     [theme.breakpoints.up('lg')]: {
         fontSize: "medium",
+        mt: "2%"
     },
     [theme.breakpoints.up('xl')]: {
         fontSize: "Large",
@@ -204,7 +206,7 @@ const largeScreenInfoBoxRight: SxProps<Theme> = {
         fontSize: 8,
 }}
 
-const largeScreenInfoBoxLeftBottomTop  = (isPrototypeThree: boolean, isPrototypeTwo: boolean): SxProps<Theme> => ({
+const largeScreenInfoBoxLeftTop  = (isPrototypeThree: boolean, isPrototypeTwo: boolean): SxProps<Theme> => ({
     color: '#343323',
     textAlign: "left",
     ml: isPrototypeThree || isPrototypeTwo ?  "6.8%": "40%",
@@ -229,7 +231,6 @@ const largeScreenInfoBoxLeftBottom = (isPrototypeThree?: boolean): SxProps<Theme
     color: isPrototypeThree ? '#0A84FF' : '#343323',
     fill: isPrototypeThree ? '#0A84FF' : '#343323',
     textAlign: "left",
-    ml: "3%",
     [theme.breakpoints.down('md')]: {
         fontSize: 15,
         fontWeight: 600,
@@ -437,7 +438,7 @@ const Styles = {
     TaskGoalText: TaskGoalText,
     TaskGoalCategoryText: TaskGoalCategoryText,
     TaskGoalFiberIcon: TaskGoalFiberIcon,
-    largeScreenInfoBoxLeftBottomTop: largeScreenInfoBoxLeftBottomTop,
+    largeScreenInfoBoxLeftTop: largeScreenInfoBoxLeftTop,
     FilterIconLargeScreen: FilterIconLargeScreen,
     FilterIconsmallScreen: FilterIconsmallScreen,
     FilterIconAlertbox: FilterIconAlertbox

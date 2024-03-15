@@ -44,6 +44,8 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
             <CardHeader title="Task Goals" align="left" titleTypographyProps={{sx:{...Styles.TaskGoalText}}} />
             <Divider sx={{borderBottomWidth: 3}}/>
             <CardContent>
+
+                {mockDataTaskGoals.filter(item => item.taskId === 'Person').length != 0 ? (
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
@@ -55,7 +57,9 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
                         ListItems(item.taskName, prototypeThree, selectedDetection)
                     ))}
                 </List>   
+                ): null}
 
+                {mockDataTaskGoals.filter(item => item.taskId === 'Personal Items').length != 0 ? (
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
@@ -67,7 +71,9 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
                         ListItems(item.taskName, prototypeThree, selectedDetection)
                     ))}
                 </List>   
+                ): null} 
 
+                {mockDataTaskGoals.filter(item => item.taskId === 'Mode of transport').length != 0 ? (
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
@@ -78,7 +84,8 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
                     {mockDataTaskGoals.filter(item => item.taskId === 'Mode of transport').map(item => (
                         ListItems(item.taskName, prototypeThree, selectedDetection)
                     ))}
-                </List>   
+                </List>  
+                ): null} 
             </CardContent>    
          </Card>
     )

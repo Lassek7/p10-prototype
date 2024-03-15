@@ -1,43 +1,8 @@
 export const mockDataTaskPracticeGoals = [
-{
-    taskId: "Person",
-    taskName: "Maria Kingsley",
-},
-{
-    taskId: "Person",
-    taskName: "18 years old",
-},
-{
-    taskId: "Person",
-    taskName: "Female",
-},
-{
-    taskId: "Person",
-    taskName: "Light complexion",
-},
-{
-    taskId: "Person",
-    taskName: "Long blonde hair",
-},
+
 {
     taskId: "Personal Items",
-    taskName: "Black winter jacket",
-},
-{
-    taskId: "Personal Items",
-    taskName: "Blue jeans",
-},
-{
-    taskId: "Personal Items",
-    taskName: "Black gloves",
-},
-{
-    taskId: "Mode of transport",
-    taskName: "White bike",
-},
-{
-    taskId: "Personal Items",
-    taskName: "Black bike helmet",
+    taskName: "Black and White bike helmet",
 }]
 export const mockDataTaskOneGoals = [
 {

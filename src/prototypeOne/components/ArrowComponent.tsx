@@ -11,7 +11,7 @@ interface ArrowComponentProps {
 
 export function ArrowComponentLeft({onMouseDown, onMouseUp }: ArrowComponentProps) {
     return (
-        <Card  onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{...Styles.arrowComponent,boxShadow: "1px 1px 4px 0px #909090"}}> 
+        <Card  onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{...Styles.arrowComponent,boxShadow: "1px 1px 4px 0px #909090", zIndex: 2}}> 
             <KeyboardDoubleArrowLeftIcon fontSize='large' sx={{color: '#343323', alignItems: 'center'}}/>
         </Card>
     )
@@ -20,7 +20,7 @@ export function ArrowComponentLeft({onMouseDown, onMouseUp }: ArrowComponentProp
 
 export  function ArrowComponentRight({  onMouseDown, onMouseUp }: ArrowComponentProps) {
     return (
-        <Card onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{...Styles.arrowComponent, boxShadow: "-1px 1px 4px 0px #909090"}}> 
+        <Card onMouseDown={onMouseDown} onMouseUp={onMouseUp} sx={{...Styles.arrowComponent, boxShadow: "-1px 1px 4px 0px #909090", zIndex: 2}}> 
             <KeyboardDoubleArrowRightIcon fontSize='large' sx={{color: '#343323', alignItems: 'center'}}/>
         </Card>
     )

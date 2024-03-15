@@ -3,7 +3,7 @@ export const mockTaskDescriptions = [
     {
         taskId: 0,
         taskName: "Practice Task",
-        taskDescription: "During this experiment you will take the role as the monitor operator and be given three tasks with different levels of assistance. Prior to each task you will have time to read and get familiar with the scenario and task goals. After each task you will be asked to fill in a NASA-TLX sheet. \n\n\n You will now be given a practice task."
+        taskDescription: "During this experiment you will take the role as the monitor operator and be given three tasks with different levels of assistance. Prior to each task you will have time to read and get familiar with the scenario and task goals. After each task you will be asked to answer a few questions. \n\n\n You will now be given a practice task."
     }
     ,
     {

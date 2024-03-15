@@ -57,13 +57,13 @@ export default function PrototypeTwo() {
 
     const [pauseTest, setPauseTest] = useState<boolean>(false)
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
-    const [selectedDetection, setSelectedDetection] = useState<detection>(detections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", "")))[0])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
     const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
     const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [testSetup, _] = useState<number>(userData.version)
     const [startTest, setStartTest] = useState<boolean>(false)
     const [startDebriefing, setStartDebriefing] = useState<boolean>(false)
-    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", "")))) 
+    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [newDetections] = useState<Array<detection>>(additionalDetectionsTwo) // used to add detections to the list
     const [addDetectionAt] = useState<Array<detectionTimer>>(mockDetectionTimerPrototypeTwo) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
@@ -128,10 +128,10 @@ export default function PrototypeTwo() {
     }, []); 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
             navigate('/prototypeThree', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
             setStartDebriefing(true);
         }
     },[questionnaireCompleted])
@@ -146,7 +146,7 @@ export default function PrototypeTwo() {
         setRecentlyDeleted(removedDetection)        
         
         let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
-        setAllDetections(newAllDetections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+        setAllDetections(newAllDetections);
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
             points: removedDetection[0].deletePoints,
@@ -160,7 +160,7 @@ export default function PrototypeTwo() {
         setRecentlyDeleted(removedDetection)
 
         let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
-        setAllDetections(newAllDetections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+        setAllDetections(newAllDetections);
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
             points: removedDetection[0].deletePoints,
@@ -171,7 +171,7 @@ export default function PrototypeTwo() {
 
     useEffect(() => { // controls filtering of the list
         const newRenderedDetectionList = AllDetections.filter(AllDetections => !filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item  || filterChoices[AllDetections.filterID]);
-        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+        setRenderedDetectionList(newRenderedDetectionList);
     }, [filterChoices]); // whenever the filterChoices change, this effect will run
 
     useEffect(() => {
@@ -181,7 +181,7 @@ export default function PrototypeTwo() {
             const indexInOldList = renderedDetectionList.findIndex(detection => detection.imageId === recentlyDeleted[0]?.imageId) // finds the location of the old item
 
             if (indexInOldList === -1) {
-                setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+                setRenderedDetectionList(newRenderedDetectionList);
                 return
             }
             const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
@@ -203,7 +203,7 @@ export default function PrototypeTwo() {
                 setIsSelected(AllDetections[0].imageId)
             }  
         }
-         setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+         setRenderedDetectionList(newRenderedDetectionList);
 
     },[AllDetections])
 
@@ -222,7 +222,7 @@ export default function PrototypeTwo() {
                 <Grid item xs={12}>
                     <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
                 </Grid>
-                <Questionnaire questionnaireName={"Prototype 2"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
+                <Questionnaire questionnaireName={"Test 2"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
                 {startDebriefing ? (<Debriefing userName={userData.participantId} debriefingActive/>) : null}
 
             </Grid>

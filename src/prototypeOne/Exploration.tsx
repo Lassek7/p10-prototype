@@ -9,36 +9,38 @@ import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
 import { mockDataTaskPracticeGoals } from './components/mockDataTaskGoals'
 
+
+interface detection {
+    imageId: string,
+    imageUrl: string,
+    markedImageUrl: string
+    imageIcon: JSX.Element,
+    imageDetectionContext: string,
+    imageDetectionTime: string,
+    ImageDetectionDate: string,
+    timeSinceDetection: string,
+    filterID: string,
+    investigateRecommended: boolean,
+    deletePoints: number,
+    investigatePoints: number,
+    detectionWeight: number,
+    isUnseen: boolean,
+    taskGoalMatch: string,
+
+}
+
+
 export default function Exploration() {
+    const detections = initialDetections
 
-    interface detection {
-        imageId: string,
-        imageUrl: string,
-        markedImageUrl: string
-        imageIcon: JSX.Element,
-        imageDetectionContext: string,
-        imageDetectionTime: string,
-        ImageDetectionDate: string,
-        timeSinceDetection: string,
-        filterID: string,
-        investigateRecommended: boolean,
-        deletePoints: number,
-        investigatePoints: number,
-        detectionWeight: number,
-        isUnseen: boolean,
-        taskGoalMatch: string,
-
-    }
- 
     const location = useLocation()
     const userData = location.state
-
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
-    const [selectedDetection, setSelectedDetection] = useState<detection>(initialDetections[0])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
     const [startTest, setStartTest] = useState<boolean>(false)
-    const [AllDetections, setAllDetections] = useState<Array<detection>>(initialDetections) // used to remove detections from the list
-    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(initialDetections); // used to render the list
-    const [isSelected, setIsSelected] = useState<string| null>(null);
+    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) // used to remove detections from the list
+    const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
+    const [isSelected, setIsSelected] =  useState<string | null>(detections[0].imageId);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
         {
             Vehicle: false,
@@ -77,7 +79,6 @@ export default function Exploration() {
 
     }, [AllDetections]);
 
-
     useEffect(() => {
         const newRenderedDetectionList = AllDetections
 
@@ -89,11 +90,7 @@ export default function Exploration() {
 
             setSelectedDetection(AllDetections[indexInNewList])
             setIsSelected(AllDetections[indexInNewList].imageId)
-        } else {
-            if (AllDetections.length > 0) {
-                setIsSelected(AllDetections[0].imageId)
-            }        
-        }
+        } 
         setRenderedDetectionList(newRenderedDetectionList);
 
     },[AllDetections])

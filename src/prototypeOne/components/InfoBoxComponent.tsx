@@ -64,12 +64,12 @@ export function LargeScreenInfoBoxComponent( largeScreen: largeScreen) {
                 
                 <Grid container xs={!largeScreen.prototypeOne ? 3 : 1} sx={{Direction: 'column', justifyContent:"space-between", alignItems: !largeScreen.prototypeOne ? "center" : "flex-start", height: "20%"}} >
                     <Grid item xs={12}>
-                        <Typography sx={Styles.largeScreenInfoBoxLeftBottomTop(largeScreen.prototypeThree, largeScreen.isPrototypeTwo)}>
+                        <Typography sx={Styles.largeScreenInfoBoxLeftTop(largeScreen.prototypeThree, largeScreen.isPrototypeTwo)}>
                             {largeScreen.imageId}
                         </Typography>
                     </Grid>
                     {!largeScreen.prototypeOne ? (
-                        <Grid item xs={12}>
+                        <Grid item xs={8}>
                             <Typography sx={{...Styles.largeScreenInfoBoxLeftBottom(largeScreen.prototypeThree), display: 'inline-flex', alignItems: 'left'}}>
                             <Box sx={{...Styles.FilterIconLargeScreen, marginRight: '0.5rem', display: 'inline-flex', }}>{largeScreen.imageIcon}</Box>
                             {largeScreen.imageDetectionContext}

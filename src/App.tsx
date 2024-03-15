@@ -19,7 +19,7 @@ const loginClick = (version: number) => {
     occupation: occupation,
     version: version
   } 
-  saveToFile([userData], participantId, participantId);
+  //saveToFile([userData], participantId, participantId);
     
   if (version === 1) {
     navigate('/Exploration', {state: userData});
@@ -34,16 +34,16 @@ const loginClick = (version: number) => {
   return (
     <Grid container justifyContent={"center"} rowSpacing={3} >
       <Grid item xs={12}>
-        <TextField id="participantId" label="Participant" variant="standard" value={participantId} onChange={(e) => setParticipantId(e.target.value)} />
+        <TextField id="participantId" label="Name" variant="standard" value={participantId} onChange={(e) => setParticipantId(e.target.value)} />
       </Grid>
       <Grid item xs={12}>
         <TextField id="age" label="Age" variant="standard" value={age} onChange={(e) => setAge(e.target.value)} />
       </Grid>     
       <Grid item xs={12}>
-        <TextField id="gender" label="gender" variant="standard" value={gender} onChange={(e) => setgender(e.target.value)} />
+        <TextField id="gender" label="Gender" variant="standard" value={gender} onChange={(e) => setgender(e.target.value)} />
       </Grid>
       <Grid item xs={12}>
-        <TextField id="occupation" label="occupation" variant="standard" value={occupation} onChange={(e) => setoccupation(e.target.value)} />
+        <TextField id="occupation" label="Occupation" variant="standard" value={occupation} onChange={(e) => setoccupation(e.target.value)} />
       </Grid>       
       <Grid item xs={12}>
         <Button onClick={()=>{loginClick(1)}} variant="contained" color="primary" > Prototype v1.0</Button>

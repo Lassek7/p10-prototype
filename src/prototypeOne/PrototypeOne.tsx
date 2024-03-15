@@ -42,7 +42,7 @@ interface detectionTimer {
 }
 
 export default function PrototypeOne() {  
-    const detections = initialDetections.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", "")));
+    const detections = initialDetections;
 
     const location = useLocation()
     const userData = location.state
@@ -116,10 +116,10 @@ export default function PrototypeOne() {
 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeTwo', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 1 test');
             navigate('/prototypeThree', {state: userData}); 
         }
     },[questionnaireCompleted])
@@ -175,7 +175,7 @@ export default function PrototypeOne() {
                 setIsSelected(AllDetections[indexInNewList].imageId)
               }
         } }
-        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => Number(b.imageId.replace("#", "")) - Number(a.imageId.replace("#", ""))));
+        setRenderedDetectionList(newRenderedDetectionList);
     },[AllDetections])
 
     // use the styles data in the following for the actuan components then make this to a grid system
@@ -194,7 +194,7 @@ export default function PrototypeOne() {
                 <Grid item xs={12}>
                     <ScreensList prototypeOne={true} setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
                 </Grid>
-                <Questionnaire questionnaireName={"Prototype 1"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
+                <Questionnaire questionnaireName={"Test 1"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
             </Grid>
     )} else {
         return(

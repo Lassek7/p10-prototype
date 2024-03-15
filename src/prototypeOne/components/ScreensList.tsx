@@ -6,6 +6,7 @@ import { ArrowComponentLeft, ArrowComponentRight } from './ArrowComponent'
 import { useRef, useState, useEffect } from 'react'
 import { Person, DirectionsCar} from '@mui/icons-material';
 import Styles from '../prototypeOneStyles/styles'
+import React from 'react';
 
 interface detection {
     imageId: string,
@@ -40,6 +41,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
     const listRef = useRef<HTMLDivElement>(null);
     const [scrollDirection, setScrollDirection] = useState<'leftOnce' | 'rightOnce' |'left' | 'right' | null>(null);
     const timeoutId = useRef<number | null>(null);
+    const refs = renderedDetectionList.map(() => React.createRef<HTMLDivElement>());
 
     
     const scrollListOnce = (direction: 'leftOnce' | 'rightOnce') => {
@@ -57,6 +59,22 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
             }
         }
     } 
+    function isElementVisible(element: HTMLElement, scrollableArea: HTMLElement) {
+        const { left, right } = element.getBoundingClientRect();
+        const { left: parentLeft, right: parentRight } = scrollableArea.getBoundingClientRect();
+    
+        return left >= parentLeft && right <= parentRight;
+    }
+    
+    useEffect(() => {
+        const index = renderedDetectionList.findIndex(detection => detection.imageId === isSelected);
+        const element = refs[index].current;
+        const scrollableArea = listRef.current;
+    
+        if (element && scrollableArea && !isElementVisible(element, scrollableArea)) {
+            element.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        }
+    }, [isSelected]);
 
     const continousScrollList = () => {
         if (listRef.current && scrollDirection) {
@@ -87,7 +105,6 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
             setScreenIndex(imageId)
             renderedDetectionList[imageIndex].isUnseen = false
         }
-
     }   
 
     return (
@@ -102,15 +119,15 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                         <Button variant={filterChoices.Vehicle ? 'contained' : 'outlined'} sx={{...Styles.filterButtons, color: filterChoices.Vehicle ? '#FFFFFF' : '#343323'}} onClick={() => setFilterChoices(prev => ({...prev, Vehicle: !prev.Vehicle}))}>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                 <DirectionsCar sx={{ mr: 1 }}/>
-                                Vehicle
+                                Transport
                             </Box>
                         </Button>
                     </Grid>
                     <Grid item xs={1.5} md={1.5}>
                         <Button variant={filterChoices.Item ? 'contained' : 'outlined'} sx={{...Styles.filterButtons, color: filterChoices.Item ? '#FFFFFF' : '#343323'}} onClick={() => setFilterChoices(prev => ({...prev, Item: !prev.Item}))}>
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Clothes style={{ marginRight: 1 }} />
-                                Personal item
+                                <Clothes style={{ marginRight: 1, fill: filterChoices.Item ? '#FFFFFF' : '#343323' }} />
+                                Items
                             </Box>
                         </Button>                    
                     </Grid>
@@ -138,9 +155,9 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
                     <Grid item xs={12} md={0.4} sx={{display: 'flex' }}>
                         <ArrowComponentLeft  onMouseDown={() => { scrollListOnce('leftOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('left'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
                     </Grid>
-                    <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row',overflowX: "scroll"}}>
+                    <Grid item xs={12} md={11.2} ref={listRef} sx={{display: 'flex', flexDirection: 'row-reverse', overflowX: "scroll",justifyContent: renderedDetectionList.length > 6 ? "right" : "left"}}>
                             {renderedDetectionList.map((renderedDetectionList, index) => (
-                                <Box key={index} >
+                                <Box key={index} ref={refs[index]} >
                                     <Card onClick={() => handleScreenClick(renderedDetectionList.imageId, index)} sx={{...Styles.smallScreen(isSelected === renderedDetectionList.imageId)}} >  
                                         <CardMedia component="img" sx={{height: '72.4%', objectFit: 'fit' }} image={renderedDetectionList.imageUrl} alt='Image' /> 
                                         <Divider />

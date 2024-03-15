@@ -129,10 +129,10 @@ export default function PrototypeThree() {
 
     useEffect(() => {
         if (testSetup === 2 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
             navigate('/prototypeTwo', {state: userData}); //Change to task description
         } else if (testSetup === 1 && questionnaireCompleted) {
-            saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
+            //saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
             setStartDebriefing(true)
         }
     },[questionnaireCompleted])
@@ -239,7 +239,7 @@ export default function PrototypeThree() {
                 <Grid item xs={12}>
                     <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
                 </Grid>
-                <Questionnaire questionnaireName={"Prototype 3"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
+                <Questionnaire questionnaireName={"Test 3"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
                 {startDebriefing ? (<Debriefing userName={userData.participantId} debriefingActive/>) : null}
             </Grid>
     )} else {
