@@ -25,6 +25,16 @@ const alertBox: SxProps<Theme> = {
     display: 'flex',
     flexDirection: 'column'
 }
+const alertBoxInform: SxProps<Theme> = {
+    color: '#343323',
+    backgroundColor: '#F1F2F2',
+    position: 'absolute', 
+    width: '15.10vw', 
+    height: '26.136vh',
+    borderRadius: "16px",
+    display: 'flex',
+    flexDirection: 'column'
+}
 const alertBoxEmpty: SxProps<Theme> = {
     color: '#343323',
     backgroundColor: '#F1F2F2',
@@ -147,6 +157,26 @@ const timer: SxProps<Theme> = {
     top: "1.55vh", 
     right: "6.5vw"
 }
+// taskintro Styles
+const taskIntro: SxProps<Theme> = {
+    fontSize: 18,
+    color:"#343323"
+
+}
+
+//taskimage Styles
+const taskimage: SxProps<Theme> = {
+    [theme.breakpoints.down('md')]: {
+        marginLeft: "-17%",
+        height:"30vh"
+    },
+    [theme.breakpoints.up('lg')]: {
+        marginLeft: "-12%",
+        height:"26vh"
+    },
+    [theme.breakpoints.up('xl')]: {
+        marginLeft: "5%",
+}}
 
 // Slider Styles
 const slider: SxProps<Theme> = {   
@@ -274,7 +304,7 @@ const filterButtons: SxProps<Theme> = {
     '&:focus': {
         outline: 'none',
       },
-      [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('md')]: {
         fontSize: 18,
     },
     [theme.breakpoints.up('lg')]: {
@@ -441,7 +471,10 @@ const Styles = {
     largeScreenInfoBoxLeftTop: largeScreenInfoBoxLeftTop,
     FilterIconLargeScreen: FilterIconLargeScreen,
     FilterIconsmallScreen: FilterIconsmallScreen,
-    FilterIconAlertbox: FilterIconAlertbox
+    FilterIconAlertbox: FilterIconAlertbox,
+    taskIntro: taskIntro,
+    alertBoxInform: alertBoxInform,
+    taskimage: taskimage,
 
 }
 

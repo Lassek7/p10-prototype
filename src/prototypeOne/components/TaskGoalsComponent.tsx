@@ -33,7 +33,7 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
         return(
         <ListItem sx={{ mt: -1.5, mb: -3 }}>
             <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                <FiberManualRecordIcon sx={Styles.TaskGoalFiberIcon} />
+                <FiberManualRecordIcon sx={{...Styles.TaskGoalFiberIcon, color: prototypeThree && selectedDetection?.taskGoalMatch === taskName ? '#0A84FF' : '#343323'}} />
             </ListItemIcon>
             <ListItemText primaryTypographyProps={{sx:{ ...Styles.TaskGoalText, color: prototypeThree && selectedDetection?.taskGoalMatch === taskName ? '#0A84FF' : '#343323'}}} primary={taskName} />
         </ListItem>
@@ -77,8 +77,8 @@ export default function TaskGoalsComponent({selectedDetection, prototypeThree, m
                 <List>
                     <ListSubheader>
                         <Box display="flex" alignItems="center">
-                        <DirectionsCar fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Mode of transport' ? '#0A84FF' : '#343323'}}/>
-                            <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Mode of transport' ? '#0A84FF' : '#343323'}}> Mode of transport</Box> {/* l = margin left */}
+                        <DirectionsCar fontSize='large' sx={{color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}/>
+                            <Box ml={1} sx={{...Styles.TaskGoalCategoryText, color: prototypeThree && selectedDetection?.filterID === 'Vehicle' ? '#0A84FF' : '#343323'}}> Mode of transport</Box> {/* l = margin left */}
                         </Box>
                     </ListSubheader>
                     {mockDataTaskGoals.filter(item => item.taskId === 'Mode of transport').map(item => (

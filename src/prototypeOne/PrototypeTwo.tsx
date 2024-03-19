@@ -128,10 +128,10 @@ export default function PrototypeTwo() {
     }, []); 
     useEffect(() => {
         if (testSetup === 1 && questionnaireCompleted) {
-            //saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
             navigate('/prototypeThree', {state: userData}); 
         } else if (testSetup === 2 && questionnaireCompleted) {
-            //saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 2 test');
             setStartDebriefing(true);
         }
     },[questionnaireCompleted])
@@ -188,21 +188,7 @@ export default function PrototypeTwo() {
 
             setSelectedDetection(AllDetections[indexInNewList])
             setIsSelected(AllDetections[indexInNewList].imageId)
-        } else if (newRenderedDetectionList.length !== 0  && recentlyDeleted.length !== 0){
-            console.log("i crash here2" )
-
-            setIsSelected(newRenderedDetectionList[0].imageId)  
-            setSelectedDetection(AllDetections[AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[0].imageId)])
-
-        } else if (recentlyDeleted.length !== 0) {
-            console.log("i crash here3" )
-
-            setFilterChoices({Vehicle: false, Person: false, Item: false})
-            if (AllDetections.length > 0) {
-                setSelectedDetection(AllDetections[0])
-                setIsSelected(AllDetections[0].imageId)
-            }  
-        }
+        } 
          setRenderedDetectionList(newRenderedDetectionList);
 
     },[AllDetections])

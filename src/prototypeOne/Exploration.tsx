@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { initialDetections } from './components/mockDataDetectionsOne'
+import { explorationDetections } from './components/mockDataDetectionsExploration'
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
@@ -31,7 +31,7 @@ interface detection {
 
 
 export default function Exploration() {
-    const detections = initialDetections
+    const detections = explorationDetections
 
     const location = useLocation()
     const userData = location.state

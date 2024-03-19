@@ -4,45 +4,45 @@ import PersonIcon from '@mui/icons-material/Person';
 
 //correct no marker
 import blackBackPack93 from "../../assets/images/Task 2 No Visual Markers/correct/black backpack 93.png"
-import blackBackPack96 from "../../assets/images/Task 2 No Visual Markers/correct/black backpack 96.png"
+import blackBackPack26 from "../../assets/images/Task 2 No Visual Markers/correct/black backpack 26.png"
 import blackBackPack92 from "../../assets/images/Task 2 No Visual Markers/correct/black backpack 92.png"
-import blackHikingBoots97 from "../../assets/images/Task 2 No Visual Markers/correct/black hiking boots 97.png"
+import blackHikingBoots47 from "../../assets/images/Task 2 No Visual Markers/correct/black hiking boots 47.png"
 import blackHikingBoots91 from "../../assets/images/Task 2 No Visual Markers/correct/black hiking boots 91.png"
-import blackRainJacket96 from "../../assets/images/Task 2 No Visual Markers/correct/black rain jacket 96.png"
+import blackRainJacket36 from "../../assets/images/Task 2 No Visual Markers/correct/black rain jacket 36.png"
 import blackRainPants97 from "../../assets/images/Task 2 No Visual Markers/correct/black rain pants 97.png"
 import blackRainPants94 from "../../assets/images/Task 2 No Visual Markers/correct/black rain pants 94.png"
 import transparentWaterBottle95 from "../../assets/images/Task 2 No Visual Markers/correct/transparent water bottle 95.png"
 import transparentWaterBottle92 from "../../assets/images/Task 2 No Visual Markers/correct/transparent water bottle 92.png"
 //correct with marker
 import markedBlackBackPack93 from "../../assets/images/Task 2 Visual Markers/correct/black backpack 93.png"
-import markedBlackBackPack96 from "../../assets/images/Task 2 Visual Markers/correct/black backpack 96.png"
+import markedBlackBackPack26 from "../../assets/images/Task 2 Visual Markers/correct/black backpack 26.png"
 import markedBlackBackPack92 from "../../assets/images/Task 2 Visual Markers/correct/black backpack 92.png"
-import markedBlackHikingBoots97 from "../../assets/images/Task 2 Visual Markers/correct/black hiking boots 97.png"
+import markedBlackHikingBoots47 from "../../assets/images/Task 2 Visual Markers/correct/black hiking boots 47.png"
 import markedBlackHikingBoots91 from "../../assets/images/Task 2 Visual Markers/correct/black hiking boots 91.png"
-import markedBlackRainJacket96 from "../../assets/images/Task 2 Visual Markers/correct/black rain jacket 96.png"
+import markedBlackRainJacket36 from "../../assets/images/Task 2 Visual Markers/correct/black rain jacket 36.png"
 import markedBlackRainPants97 from "../../assets/images/Task 2 Visual Markers/correct/black rain pants 97.png"
 import markedBlackRainPants94 from "../../assets/images/Task 2 Visual Markers/correct/black rain pants 94.png"
 import markedTransparentWaterBottle95 from "../../assets/images/Task 2 Visual Markers/correct/transparent water bottle 95.png"
 import markedTransparentWaterBottle92 from "../../assets/images/Task 2 Visual Markers/correct/transparent water bottle 92.png"
 //incorrect no marker
-import blackBackPackIncorrect3 from "../../assets/images/Task 2 No Visual Markers/incorrect/black backpack 3.png"
-import blackHikingBootsIncorrect2 from "../../assets/images/Task 2 No Visual Markers/incorrect/black hiking boots 2.png"
+import blackBackPackIncorrect63 from "../../assets/images/Task 2 No Visual Markers/incorrect/black backpack 63.png"
+import blackHikingBootsIncorrect72 from "../../assets/images/Task 2 No Visual Markers/incorrect/black hiking boots 72.png"
 import blackHikingBootsIncorrect4 from "../../assets/images/Task 2 No Visual Markers/incorrect/black hiking boots 4.png"
 import blackRainJacketIncorrect6 from "../../assets/images/Task 2 No Visual Markers/incorrect/black rain jacket 6.png"
 import blackRainJacketIncorrect16 from "../../assets/images/Task 2 No Visual Markers/incorrect/black rain jacket 16.png"
-import blackRainPantsIncorrect2 from "../../assets/images/Task 2 No Visual Markers/incorrect/black rain pants 2.png"
+import blackRainPantsIncorrect59 from "../../assets/images/Task 2 No Visual Markers/incorrect/black rain pants 59.png"
 import blackRainPantsIncorrect11 from "../../assets/images/Task 2 No Visual Markers/incorrect/black rain pants 11.png"
 import transparentWaterBottleIncorrect2 from "../../assets/images/Task 2 No Visual Markers/incorrect/transparent water bottle 2.png"
 import transparentWaterBottleIncorrect3 from "../../assets/images/Task 2 No Visual Markers/incorrect/transparent water bottle 3.png"
 import transparentWaterBottleIncorrect5 from "../../assets/images/Task 2 No Visual Markers/incorrect/transparent water bottle 5.png"
 
 //incorrect with marker
-import markedBlackBackPackIncorrect3 from "../../assets/images/Task 2 Visual Markers/incorrect/black backpack 3.png"
-import markedBlackHikingBootsIncorrect2 from "../../assets/images/Task 2 Visual Markers/incorrect/black hiking boots 2.png"
+import markedBlackBackPackIncorrect63 from "../../assets/images/Task 2 Visual Markers/incorrect/black backpack 63.png"
+import markedBlackHikingBootsIncorrect72 from "../../assets/images/Task 2 Visual Markers/incorrect/black hiking boots 72.png"
 import markedBlackHikingBootsIncorrect4 from "../../assets/images/Task 2 Visual Markers/incorrect/black hiking boots 4.png"
 import markedBlackRainJacketIncorrect6 from "../../assets/images/Task 2 Visual Markers/incorrect/black rain jacket 6.png"
 import markedBlackRainJacketIncorrect16 from "../../assets/images/Task 2 Visual Markers/incorrect/black rain jacket 16.png"
-import markedBlackRainPantsIncorrect2 from "../../assets/images/Task 2 Visual Markers/incorrect/black rain pants 2.png"
+import markedBlackRainPantsIncorrect59 from "../../assets/images/Task 2 Visual Markers/incorrect/black rain pants 59.png"
 import markedBlackRainPantsIncorrect11 from "../../assets/images/Task 2 Visual Markers/incorrect/black rain pants 11.png"
 import markedTransparentWaterBottleIncorrect2 from "../../assets/images/Task 2 Visual Markers/incorrect/transparent water bottle 2.png"
 import markedTransparentWaterBottleIncorrect3 from "../../assets/images/Task 2 Visual Markers/incorrect/transparent water bottle 3.png"
@@ -115,11 +115,11 @@ export const initialDetectionsTwo = [
     ,
     {
     imageId: "#2",
-    markedImageUrl: markedBlackRainJacket96,
-    imageUrl: blackRainJacket96,
+    markedImageUrl: markedBlackRainJacket36,
+    imageUrl: blackRainJacket36,
     imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 96%',
-    imageDetectionTime: '09:30:40',
+    imageDetectionContext: 'Match: 36%',
+    imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
@@ -210,11 +210,11 @@ export const initialDetectionsTwo = [
     ,
     {
     imageId: "#7",
-    markedImageUrl: markedBlackBackPackIncorrect3,
-    imageUrl: blackBackPackIncorrect3,
+    markedImageUrl: markedBlackBackPackIncorrect63,
+    imageUrl: blackBackPackIncorrect63,
     imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 03%',
-    imageDetectionTime: '07:30:40',
+    imageDetectionContext: 'Match: 63%',
+    imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
@@ -228,11 +228,11 @@ export const initialDetectionsTwo = [
     ,
     {
     imageId: "#8",
-    markedImageUrl: markedBlackBackPack96,
-    imageUrl: blackBackPack96,
+    markedImageUrl: markedBlackBackPack26,
+    imageUrl: blackBackPack26,
     imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 96%',
-    imageDetectionTime: '18:30:40',
+    imageDetectionContext: 'Match: 26%',
+    imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
@@ -397,11 +397,11 @@ export const additionalDetectionsTwo = [
         ,
         {
         imageId: "#17",
-        markedImageUrl: markedBlackHikingBoots97,
-        imageUrl: blackHikingBoots97,
+        markedImageUrl: markedBlackHikingBoots47,
+        imageUrl: blackHikingBoots47,
         imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 97%½',
-        imageDetectionTime: '07:30:40',
+        imageDetectionContext: 'Match: 47%',
+        imageDetectionTime: '',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
@@ -525,11 +525,11 @@ export const additionalDetectionsTwo = [
         ,
         {
         imageId: "#24",
-        markedImageUrl: markedBlackRainPantsIncorrect2,
-        imageUrl: blackRainPantsIncorrect2,
+        markedImageUrl: markedBlackRainPantsIncorrect59,
+        imageUrl: blackRainPantsIncorrect59,
         imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 02%',
-        imageDetectionTime: '20:30:40',
+        imageDetectionContext: 'Match: 59%',
+        imageDetectionTime: '',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
@@ -672,11 +672,11 @@ export const additionalDetectionsTwo = [
         ,
         {
         imageId: "#32",
-        markedImageUrl: markedBlackHikingBootsIncorrect2,
-        imageUrl: blackHikingBootsIncorrect2,
+        markedImageUrl: markedBlackHikingBootsIncorrect72,
+        imageUrl: blackHikingBootsIncorrect72,
         imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 02%',
-        imageDetectionTime: '09:30:40',
+        imageDetectionContext: 'Match: 72%',
+        imageDetectionTime: '',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',

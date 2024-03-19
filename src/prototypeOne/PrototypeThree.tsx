@@ -14,6 +14,7 @@ import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import Debriefing from './components/Debriefing'
 import { mockDataTaskThreeGoals } from './components/mockDataTaskGoals'
 import { mockDetectionTimerPrototypeThree } from './components/mockDataDetectionTimer' 
+import AlertInform from './components/alertInform'
 
 interface detection {
     imageId: string,
@@ -58,17 +59,17 @@ export default function PrototypeThree() {
 
     const [pauseTest, setPauseTest] = useState<boolean>(false)
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
-    const [selectedDetection, setSelectedDetection] = useState<detection>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)[0])
+    const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
     const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
     const [openQuestionnaire, setOpenQuestionnaire] = useState<boolean>(false)
     const [testSetup, _] = useState<number>(userData.version)
     const [startTest, setStartTest] = useState<boolean>(false)
     const [startDebriefing, setStartDebriefing] = useState<boolean>(false)
-    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)) 
+    const [AllDetections, setAllDetections] = useState<Array<detection>>(detections) 
     const [newDetections] = useState<Array<detection>>(additionalDetectionsThree) // used to add detections to the list
     const [addDetectionAt] = useState<Array<detectionTimer>>(mockDetectionTimerPrototypeThree) 
     const [renderedDetectionList, setRenderedDetectionList] = useState<Array<detection>>(detections); // used to render the list
-    const [isSelected, setIsSelected] = useState<string | null>(detections.sort((a, b) => a.detectionWeight - b.detectionWeight)[0].imageId);
+    const [isSelected, setIsSelected] = useState<string | null>(detections[0].imageId);
     const [filterChoices, setFilterChoices] = useState<{[key: string]: boolean}>(
         {
             Vehicle: false,
@@ -79,6 +80,7 @@ export default function PrototypeThree() {
     const [seconds, setSeconds] = useState(240);
     const [detectionTimer, setDetectionTimer] = useState(0)
     const [detectionCount, setDetectionCount] = useState(0)
+    const [AlertInformSeen, setAlertInformSeen] = useState<boolean>(false)
     const navigate = useNavigate();
 
     function addnewDetection(newDetectionTimer: number, detectionCount: number) {
@@ -96,7 +98,7 @@ export default function PrototypeThree() {
     }, [seconds])
 
     useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
-        if (seconds > 0 && startTest && !pauseTest) { // add: if seconds === x, then run addNewItem
+        if (seconds > 0 && startTest && AlertInformSeen && !pauseTest) { // add: if seconds === x, then run addNewItem
             const timerId = setTimeout(() => {
                 setSeconds(seconds - 1);
             }, 1000);
@@ -106,7 +108,7 @@ export default function PrototypeThree() {
         if (seconds === 0) {
             setOpenQuestionnaire(true);
         } 
-    }, [seconds, startTest, pauseTest]);
+    }, [seconds, startTest, pauseTest, AlertInformSeen]);
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
@@ -129,10 +131,10 @@ export default function PrototypeThree() {
 
     useEffect(() => {
         if (testSetup === 2 && questionnaireCompleted) {
-            //saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
             navigate('/prototypeTwo', {state: userData}); //Change to task description
         } else if (testSetup === 1 && questionnaireCompleted) {
-            //saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
+            saveToFile(arrayToSave, userData.participantId, 'Prototype 3 test');
             setStartDebriefing(true)
         }
     },[questionnaireCompleted])
@@ -155,13 +157,14 @@ export default function PrototypeThree() {
         setRecentlyDeleted(removedDetection)
 
         let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
-        setAllDetections(newAllDetections.sort((a, b) => a.detectionWeight - b.detectionWeight));
+        setAllDetections(newAllDetections);
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
             points: removedDetection[0].deletePoints,
             chosenAction: 'Delete'
         }
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
+        console.log(arrayToSave)
     }, [AllDetections]);
 
 
@@ -171,7 +174,7 @@ export default function PrototypeThree() {
         setRecentlyDeleted(removedDetection)
 
         let newAllDetections = AllDetections.filter(detection => detection.imageId !== imageId);
-        setAllDetections(newAllDetections.sort((a, b) => a.detectionWeight - b.detectionWeight));
+        setAllDetections(newAllDetections);
 
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
@@ -183,7 +186,7 @@ export default function PrototypeThree() {
     
     useEffect(() => { // controls filtering of the list
         const newRenderedDetectionList = AllDetections.filter(AllDetections => !filterChoices.Vehicle && !filterChoices.Person && !filterChoices.Item  || filterChoices[AllDetections.filterID]);
-        setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
+        setRenderedDetectionList(newRenderedDetectionList);
     }, [filterChoices]); // whenever the filterChoices change, this effect will run
 
     useEffect(() => {
@@ -193,7 +196,7 @@ export default function PrototypeThree() {
             const indexInOldList = renderedDetectionList.findIndex(detection => detection.imageId === recentlyDeleted[0]?.imageId) // finds the location of the old item
 
             if (indexInOldList === -1) {
-                setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
+                setRenderedDetectionList(newRenderedDetectionList);
                 return
             }
             const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
@@ -201,27 +204,13 @@ export default function PrototypeThree() {
             setSelectedDetection(AllDetections[indexInNewList])
             setIsSelected(AllDetections[indexInNewList].imageId)            
             AllDetections[indexInNewList].isUnseen = false
-
             
-        } else if (newRenderedDetectionList.length !== 0 && recentlyDeleted.length !== 0){
-            setIsSelected(newRenderedDetectionList[0].imageId)
-            setSelectedDetection(AllDetections[AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[0].imageId)])
-            AllDetections[0].isUnseen = false
-
-        } else if (recentlyDeleted.length !== 0) {
-            setFilterChoices({Vehicle: false, Person: false, Item: false})
-            if (AllDetections.length > 0) {
-                setSelectedDetection(AllDetections[0])
-                setIsSelected(AllDetections[0].imageId)
-                AllDetections[0].isUnseen = false
-            }
-        }
-
-         setRenderedDetectionList(newRenderedDetectionList.sort((a, b) => a.detectionWeight - b.detectionWeight));
+        } 
+         setRenderedDetectionList(newRenderedDetectionList);
 
     },[AllDetections])
 
-    if (startTest) {
+    if (startTest && AlertInformSeen) {
         return(
             <Grid container className={`container ${!startTest || openQuestionnaire ? 'blur-effect' : ''}`}>
                 <Grid item xs={4} md={4}>
@@ -239,12 +228,17 @@ export default function PrototypeThree() {
                 <Grid item xs={12}>
                     <ScreensList setScreenIndex={handleSmallScreenClick} filterChoices={filterChoices} setFilterChoices={setFilterChoices} setRenderedDetectionList={setRenderedDetectionList} renderedDetectionList={renderedDetectionList} setIsSelected={setIsSelected} isSelected={isSelected}/>    
                 </Grid>
+
                 <Questionnaire questionnaireName={"Test 3"} setCompleted={setQuestionnaireCompleted} questionnaireActive={openQuestionnaire} userName={userData.participantId}/>
                 {startDebriefing ? (<Debriefing userName={userData.participantId} debriefingActive/>) : null}
             </Grid>
-    )} else {
+    )} else if (!startTest){
         return(
             <TaskIntro taskId={3} setStartTest={setStartTest}/>
+        )
+    } else {
+        return (
+            <AlertInform setAlertInformSeen={setAlertInformSeen} />
         )
     }
 }

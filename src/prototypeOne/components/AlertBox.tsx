@@ -21,7 +21,6 @@ interface alertBoxProps {
     onAlertClick: (imageId: string) => void
 }
 
-
 export default function AlertBox({ onAlertClick, allDetections, currentWeight}: alertBoxProps) {
    
     const handleAlertClick = (imageId: string) => {

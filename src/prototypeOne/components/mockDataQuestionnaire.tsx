@@ -31,7 +31,7 @@ export const mockQuestionnaire = [
     },
     {
         questionId: 7,
-        question: "Was there anything in particular you found for example stressful, helpful/useful, missing/lacking, or confusing? Do you have any ideas for improvements?",
+        question: "Was there anything you found particularly easy, stressful, or confusing?",
         answer: "",
     },
     {

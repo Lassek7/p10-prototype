@@ -67,7 +67,14 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
     }
     
     useEffect(() => {
+
+        
+
         const index = renderedDetectionList.findIndex(detection => detection.imageId === isSelected);
+        if (index === -1) {
+            setFilterChoices({Vehicle: false, Item: false, Person: false})
+            return;
+        }
         const element = refs[index].current;
         const scrollableArea = listRef.current;
     

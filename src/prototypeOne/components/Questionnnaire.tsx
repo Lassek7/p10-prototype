@@ -42,20 +42,20 @@ export default function Questionnaire({questionnaireName, setCompleted, question
   useEffect(() => {
     if (arrayToSave) {
         console.log(arrayToSave)
-        //saveToFile(arrayToSave, userName, questionnnaireTitle+" Questionnaire");
+        saveToFile(arrayToSave, userName, questionnnaireTitle+" Questionnaire");
       }
   },[arrayToSave]) 
 
 
 
   const LabelTop = ({ text, align }: { text: string, align: 'left' | 'right' }) => (
-    <Grid item xs={align === "left" ? 5.8 : 5} mb={-5} sx={{ marginLeft: align === 'left' ? 6 : 0, marginRight: align === 'right' ? 2 : 0 }}>
+    <Grid item xs={align === "left" ? 5.8 : 5} mb={-10} sx={{ marginLeft: align === 'left' ? 6 : 0, marginRight: align === 'right' ? 2 : 0 }}>
       <Typography textAlign={align}>{text}</Typography>
     </Grid>
   );
 
   const LabelBottom = ({ text, align }: { text: string, align: 'left' | 'right' }) => (
-    <Grid item xs={align === "left" ? 5.8 : 5} mt={-5} sx={{ marginLeft: align === 'left' ? 6 : 0, marginRight: align === 'right' ? 2 : 0 }}>
+    <Grid item xs={align === "left" ? 5.8 : 5} mt={-10} sx={{ marginLeft: align === 'left' ? 6 : 0, marginRight: align === 'right' ? 2 : 0 }}>
       <Typography textAlign={align}>{text}</Typography>
     </Grid>
   );
@@ -64,7 +64,7 @@ export default function Questionnaire({questionnaireName, setCompleted, question
         open={open} onClose={(_, reason) => 
         {if (reason !== 'backdropClick') { handleClose()}}}>
             <DialogContent>
-                <Grid container direction={"row"} rowSpacing={5}>
+                <Grid container direction={"row"} rowSpacing={10}>
                     <Grid item xs={12}>
                         <DialogTitle>
                         {questionnnaireTitle}

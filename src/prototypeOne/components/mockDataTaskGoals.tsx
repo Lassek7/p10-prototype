@@ -7,23 +7,19 @@ export const mockDataTaskPracticeGoals = [
 export const mockDataTaskOneGoals = [
 {
     taskId: "Person",
-    taskName: "Walter White",
+    taskName: "Anna",
 },
 {
     taskId: "Person",
-    taskName: "45 years old",
+    taskName: "Adult female",
 },
 {
     taskId: "Person",
-    taskName: "Male",
+    taskName: "light skin tone",
 },
 {
     taskId: "Person",
-    taskName: "Dry complexion",
-},
-{
-    taskId: "Person",
-    taskName: "Bald",
+    taskName: "Light hair in a ponytail",
 },
 {
     taskId: "Personal Items",
@@ -48,23 +44,19 @@ export const mockDataTaskOneGoals = [
 export const mockDataTaskTwoGoals = [
 {
     taskId: "Person",
-    taskName: "Maria Kingsley",
+    taskName: "Maria",
 },
 {
     taskId: "Person",
-    taskName: "21 years old",
+    taskName: "Adult female",
 },
 {
     taskId: "Person",
-    taskName: "Female",
+    taskName: "Dark skin tone",
 },
 {
     taskId: "Person",
-    taskName: "Light complexion",
-},
-{
-    taskId: "Person",
-    taskName: "Long blonde hair",
+    taskName: "Long brown braided hair",
 },
 {
     taskId: "Personal Items",
@@ -86,27 +78,23 @@ export const mockDataTaskTwoGoals = [
     taskId: "Personal Items",
     taskName: "Transparent water bottle",
 },
+{
+    taskId: "Mode of transport",
+    taskName: "On foot",
+},
 ]
 export const mockDataTaskThreeGoals = [
 {
     taskId: "Person",
-    taskName: "Anna Wesley",
+    taskName: "Walter",
 },
 {
     taskId: "Person",
-    taskName: "26 years old",
+    taskName: "Adult male",
 },
 {
     taskId: "Person",
-    taskName: "Female",
-},
-{
-    taskId: "Person",
-    taskName: "Smooth complexion",
-},
-{
-    taskId: "Person",
-    taskName: "Short brown hair",
+    taskName: "Short dark hair",
 },
 {
     taskId: "Personal Items",
@@ -127,6 +115,10 @@ export const mockDataTaskThreeGoals = [
 {
     taskId: "Personal Items",
     taskName: "Metal water bottle",
+},
+{
+    taskId: "Mode of transport",
+    taskName: "White car",
 }]
 
 

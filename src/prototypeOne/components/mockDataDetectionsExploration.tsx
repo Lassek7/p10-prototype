@@ -1,9 +1,34 @@
+/// <reference types="vite-plugin-svgr/client" />
+import Clothes from '../../assets/clothes.svg?react'; 
+
+import blackAndWhiteBikeHelmet6 from '../../assets/images/Practice Task/black-white bike helmet 6.png';
+import blackAndWhiteBikeHelmet9 from '../../assets/images/Practice Task/black-white bike helmet 9.png';
+import practiceItem1 from '../../assets/images/Practice Task/practice item 1.png';
+import practiceItem2 from '../../assets/images/Practice Task/practice item 2.png';
+import practiceItem3 from '../../assets/images/Practice Task/practice item 3.png';
+import practiceItem4 from '../../assets/images/Practice Task/practice item 4.png';
+import practiceItem5 from '../../assets/images/Practice Task/practice item 5.png';
+import practiceItem7 from '../../assets/images/Practice Task/practice item 7.png';
+import practiceItem8 from '../../assets/images/Practice Task/practice item 8.png';
+import practiceItem10 from '../../assets/images/Practice Task/practice item 10.png';
+
+import markedBlackAndWhiteBikeHelmet6 from '../../assets/images/Practice Task No Visual Markers/black-white bike helmet 6.png';
+import markedBlackAndWhiteBikeHelmet9 from '../../assets/images/Practice Task No Visual Markers/black-white bike helmet 9.png';
+import markedPracticeItem1 from '../../assets/images/Practice Task No Visual Markers/practice item 1.png';
+import markedPracticeItem2 from '../../assets/images/Practice Task No Visual Markers/practice item 2.png';
+import markedPracticeItem3 from '../../assets/images/Practice Task No Visual Markers/practice item 3.png';
+import markedPracticeItem4 from '../../assets/images/Practice Task No Visual Markers/practice item 4.png';
+import markedPracticeItem5 from '../../assets/images/Practice Task No Visual Markers/practice item 5.png';
+import markedPracticeItem7 from '../../assets/images/Practice Task No Visual Markers/practice item 7.png';
+import markedPracticeItem8 from '../../assets/images/Practice Task No Visual Markers/practice item 8.png';
+import markedPracticeItem10 from '../../assets/images/Practice Task No Visual Markers/practice item 10.png';
+
 export const explorationDetections = [
     {
     imageId: "#1",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: "træje", //image: image1
-    imageIcon: "<Clothes />" , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+    markedImageUrl: practiceItem1,
+    imageUrl: markedPracticeItem1, //image: image1
+    imageIcon: <Clothes /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
     imageDetectionContext: '',
     imageDetectionTime: '01:30:40',
     ImageDetectionDate: '',
@@ -20,9 +45,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#2",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: "træje",
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem2,
+    imageUrl: markedPracticeItem2,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: '',
     imageDetectionTime: '09:30:40',
     ImageDetectionDate: '',
@@ -39,9 +64,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#3",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem3,
+    imageUrl: markedPracticeItem3,
+    imageIcon: <Clothes />,
     imageDetectionContext: '',
     imageDetectionTime: '14:30:40',
     ImageDetectionDate: '',
@@ -58,9 +83,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#4",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem4,
+    imageUrl: markedPracticeItem4,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: '',
     imageDetectionTime: '20:30:40',
     ImageDetectionDate: '',
@@ -77,9 +102,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#5",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem5,
+    imageUrl: markedPracticeItem5,
+    imageIcon: <Clothes />,
     imageDetectionContext: '',
     imageDetectionTime: '17:50:40',
     ImageDetectionDate: '',
@@ -96,9 +121,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#6",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: blackAndWhiteBikeHelmet6,
+    imageUrl: markedBlackAndWhiteBikeHelmet6,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: '',
     imageDetectionTime: '05:30:40',
     ImageDetectionDate: '',
@@ -115,9 +140,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#7",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem7,
+    imageUrl: markedPracticeItem7,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: '',
     imageDetectionTime: '07:30:40',
     ImageDetectionDate: '',
@@ -133,9 +158,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#8",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem8,
+    imageUrl: markedPracticeItem8,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: '',
     imageDetectionTime: '18:30:40',
     ImageDetectionDate: '',
@@ -151,9 +176,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#9",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: blackAndWhiteBikeHelmet9,
+    imageUrl: markedBlackAndWhiteBikeHelmet9,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: '',
     imageDetectionTime: '22:30:40',
     ImageDetectionDate: '',
@@ -169,9 +194,9 @@ export const explorationDetections = [
     ,
     {
     imageId: "#10",
-    markedImageUrl: "https://source.unsplash.com/random",
-    imageUrl: 'https://source.unsplash.com/random',
-    imageIcon: "<Clothes />" ,
+    markedImageUrl: practiceItem10,
+    imageUrl: markedPracticeItem10,
+    imageIcon: <Clothes /> ,
     imageDetectionContext: 'efefs',
     imageDetectionTime: '00:30:40',
     ImageDetectionDate: '',
