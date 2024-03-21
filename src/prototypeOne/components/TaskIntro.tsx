@@ -29,7 +29,7 @@ export default function TaskIntro(taskDescription: taskDescription) {
   function ListItems(taskName: string){
     return(
     <ListItem sx={{ mt: -1.5, mb: -3 }}>
-        <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
+        <ListItemIcon sx={{ ml: 7, minWidth: '25px' }}>
             <FiberManualRecordIcon sx={{color: '#343323', fontSize: 10}} />
         </ListItemIcon>
         <ListItemText primaryTypographyProps={{sx:{ ...Styles.taskIntro}}} primary={taskName} />
@@ -56,7 +56,7 @@ if (taskDescription.taskId === 0) {
                 </DialogTitle>
                 <DialogContent>
 
-                <DialogContentText sx={{color:"#343323", alignContent:"left"}}>
+                <DialogContentText sx={{marginLeft:5, marginRight:5, color:"#343323", alignContent:"left", overflowWrap: 'break-word', wordWrap: 'break-word'}}>
                     In our Master’s Thesis, we work with drone swarms, which are groups of drones that communicate and act together to complete a task without people controlling them at all times. We are looking into how drone swarms can assist in search and rescue missions where a person has gone missing. To find the missing person, a monitor operator will look through all the images from the drone swarm to find the person or their items.
                 </DialogContentText>
                 </DialogContent>
@@ -64,7 +64,7 @@ if (taskDescription.taskId === 0) {
                 <CardMedia component="img" image={introImage} sx={{...Styles.taskimage, objectFit:"contain", display: 'block'}}/>
             
                 <DialogContent>
-                <DialogContentText sx={{color:"#343323"}}>
+                <DialogContentText sx={{marginLeft:"5%", marginRight:7, color:"#343323"}}>
                     {mockTaskDescriptions[taskDescription.taskId].taskDescription.split('\n').map((line, index) => (
                         <React.Fragment key={index}>
                         {line}
@@ -91,13 +91,13 @@ if (taskDescription.taskId === 0) {
                         {mockTaskDescriptions[taskDescription.taskId].taskName}
                     </DialogTitle>
 
-                    <DialogContentText sx={{color:"#343323"}}>
+                    <DialogContentText sx={{marginLeft:"5%", marginRight:7, color:"#343323", overflowWrap: 'break-word', wordWrap: 'break-word'}}>
                         {mockTaskDescriptions[taskDescription.taskId].taskDescription}
                     </DialogContentText>
 
                     <DialogContentText mt={2} sx={{color:"#343323"}}>
                         <List>
-                            <DialogContentText sx={{color:"#343323"}}> Person: </DialogContentText>
+                            <DialogContentText sx={{marginLeft:"5%", color:"#343323"}}> Person: </DialogContentText>
                             {currentTask.filter((item: TaskGoal) => item.taskId === 'Person').map((item: TaskGoal) => (
                                 ListItems(item.taskName)
                             ))}
@@ -106,7 +106,7 @@ if (taskDescription.taskId === 0) {
 
                     <DialogContentText  mt={1} sx={{color:"#343323"}}>
                         <List>
-                            <DialogContentText sx={{color:"#343323"}}> Personal Items: </DialogContentText>
+                            <DialogContentText sx={{marginLeft:"5%", color:"#343323"}}> Personal Items: </DialogContentText>
                             {currentTask.filter((item: TaskGoal) => item.taskId === 'Personal Items').map((item: TaskGoal) => (
                                 ListItems(item.taskName)
                             ))}
@@ -115,13 +115,13 @@ if (taskDescription.taskId === 0) {
 
                     <DialogContentText mt={1} sx={{color:"#343323"}}>
                         <List>
-                        <DialogContentText sx={{color:"#343323"}}> Mode of Transport: </DialogContentText>
+                        <DialogContentText sx={{marginLeft:"5%", color:"#343323"}}> Mode of Transport: </DialogContentText>
                         {currentTask.filter((item: TaskGoal) => item.taskId === 'Mode of transport').map((item: TaskGoal) => (
                             ListItems(item.taskName)
                         ))}
                         </List>     
                     </DialogContentText>
-                    <DialogContentText  mt={4} sx={{color: '#343323' }}>
+                    <DialogContentText  mt={4} sx={{marginLeft:"5%", marginRight:7,color: '#343323', overflowWrap: 'break-word', wordWrap: 'break-word' }}>
                         {taskDescription.taskId === 3 || taskDescription.taskId === 2 ? 
                             "In the following task you will be able to see how confident the AI is that it found something of relevance to the task goals. Your job as the monitor operator is to:" 
                             : 
@@ -132,27 +132,26 @@ if (taskDescription.taskId === 0) {
                     <DialogContentText sx={{color:"#343323"}}>
                         <List>
                             <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                                <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                                    <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
-                                </ListItemIcon>
-                                <ListItemText primary={"Be as accurate as possible"}  />
-                            </ListItem>
-                            <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                                <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
+                                <ListItemIcon sx={{ ml: 7, minWidth: '25px' }}>
                                     <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
                                 </ListItemIcon>
                                 <ListItemText primary={mockTaskDescriptions[taskDescription.taskId].operatorAssignmentOne}  />
                             </ListItem>
                             <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                                <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
+                                <ListItemIcon sx={{ ml: 7, minWidth: '25px' }}>
                                     <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
                                 </ListItemIcon>
                                 <ListItemText primary={mockTaskDescriptions[taskDescription.taskId].operatorAssignmentTwo}  />
                             </ListItem>
+                            <ListItem sx={{ mt: -1.5, mb: -3 }}>
+                                <ListItemIcon sx={{ ml: 7, minWidth: '25px' }}>
+                                    <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
+                                </ListItemIcon>
+                                <ListItemText primary={"Be as accurate as possible."}  />
+                            </ListItem>
                         </List>
                     </DialogContentText>
-                </DialogContent>
-                <DialogActions>
+                    <DialogActions>
                     <Button onClick={handleClose} color="primary">
                     {taskDescription.taskId === 3 ? 
                             "Continue" 
@@ -160,7 +159,8 @@ if (taskDescription.taskId === 0) {
                             "Start task"
                         }
                     </Button>
-                </DialogActions>
+                    </DialogActions>
+                </DialogContent>
             </Dialog>
           </div>
         )

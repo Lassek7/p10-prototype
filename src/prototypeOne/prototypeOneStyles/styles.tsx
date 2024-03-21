@@ -166,11 +166,11 @@ const taskIntro: SxProps<Theme> = {
 //taskimage Styles
 const taskimage: SxProps<Theme> = {
     [theme.breakpoints.down('md')]: {
-        marginLeft: "-17%",
+        marginLeft: "-12%",
         height:"30vh"
     },
     [theme.breakpoints.up('lg')]: {
-        marginLeft: "-12%",
+        marginLeft: "-7%",
         height:"26vh"
     },
     [theme.breakpoints.up('xl')]: {

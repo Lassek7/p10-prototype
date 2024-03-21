@@ -11,7 +11,7 @@ export const mockDataTaskOneGoals = [
 },
 {
     taskId: "Person",
-    taskName: "light skin tone",
+    taskName: "Light skin tone",
 },
 {
     taskId: "Person",
