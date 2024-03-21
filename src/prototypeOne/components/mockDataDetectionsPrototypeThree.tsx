@@ -130,10 +130,9 @@ export const initialDetectionsThree = [
     investigateRecommended: true,
     deletePoints: 1,
     investigatePoints: -1,
-    detectionWeight: 53,
+    detectionWeight: 21,
     isUnseen: true,
     taskGoalMatch: "Black summer jacket"
-
 }
     ,
     {
@@ -149,7 +148,7 @@ export const initialDetectionsThree = [
     investigateRecommended: true,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 22,
+    detectionWeight: 37,
     isUnseen: true,
     taskGoalMatch: "Metal water bottle"
 
@@ -168,7 +167,7 @@ export const initialDetectionsThree = [
     investigateRecommended: true,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 1,
+    detectionWeight: 36,
     isUnseen: true,
     taskGoalMatch: "Metal water bottle"
 
@@ -176,39 +175,39 @@ export const initialDetectionsThree = [
     ,
     {
     imageId: "#5",
-    imageUrl: blackSummerJacket32,
-    markedImageUrl: markedBlackSummerJacket32,
+    imageUrl: orangeTShirtAmbiguous53,
+    markedImageUrl: markedOrangeTShirtAmbiguous53,
     imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 32%',
+    imageDetectionContext: 'Match: 53%',
     imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
     investigateRecommended: true,
-    deletePoints: -1,
-    investigatePoints: 1,
-    detectionWeight: 23,
+    deletePoints: 0,
+    investigatePoints: 0,
+    detectionWeight: 16,
     isUnseen: true,
-    taskGoalMatch: "Black summer jacket"
+    taskGoalMatch: "Orange t-shirt"
 
 }
     ,
     {
     imageId: "#6",
-    imageUrl: blackSummerJacket46,
-    markedImageUrl: markedBlackSummerJacket46,
+    imageUrl: orangeTShirtAmbiguous90,
+    markedImageUrl: markedOrangeTShirtAmbiguous90,
     imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 46%',
+    imageDetectionContext: 'Match: 90%',
     imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
     investigateRecommended: true,
-    deletePoints: -1,
-    investigatePoints: 1,
-    detectionWeight: 40,
+    deletePoints: 0,
+    investigatePoints: 0,
+    detectionWeight: 9,
     isUnseen: true,
-    taskGoalMatch: "Black summer jacket"
+    taskGoalMatch: "Orange t-shirt"
 
 }
     ,
@@ -225,25 +224,25 @@ export const initialDetectionsThree = [
     investigateRecommended: true,
     deletePoints: 1,
     investigatePoints: -1,
-    detectionWeight: 5,
+    detectionWeight: 17,
     isUnseen: true,
     taskGoalMatch: "Orange t-shirt"
 }
     ,
     {
     imageId: "#8",
-    imageUrl: blackSneakersAmbiguous95,
-    markedImageUrl: markedBlackSneakersAmbiguous95,
-    imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 95%',
+    imageUrl: blackSneakers96, //image: image1
+    markedImageUrl: markedBlackSneakers96,
+    imageIcon: <Clothes /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+    imageDetectionContext: 'Match: 96%',
     imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
     investigateRecommended: true,
-    deletePoints: 0,
-    investigatePoints: 0,
-    detectionWeight: 15,
+    deletePoints: -1,
+    investigatePoints: 1,
+    detectionWeight: 6,
     isUnseen: true,
     taskGoalMatch: "Black sneakers"
 }
@@ -261,7 +260,7 @@ export const initialDetectionsThree = [
     investigateRecommended: true,
     deletePoints: 0,
     investigatePoints: 23,
-    detectionWeight: 10,
+    detectionWeight: 25,
     isUnseen: true,
     taskGoalMatch: "Black summer jacket"
 }
@@ -279,7 +278,7 @@ export const initialDetectionsThree = [
     investigateRecommended: true,
     deletePoints: 1,
     investigatePoints: -1,
-    detectionWeight: 0,
+    detectionWeight: 20,
     isUnseen: true,
     taskGoalMatch: "Orange t-shirt"
 }
@@ -299,7 +298,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 14,
+        detectionWeight: 4,
         isUnseen: true,
         taskGoalMatch: "White car"
     
@@ -318,7 +317,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 15,
+        detectionWeight: 11,
         isUnseen: true,
         taskGoalMatch: "Orange t-shirt"
     
@@ -326,20 +325,20 @@ export const additionalDetectionsThree = [
         ,
         {
         imageId: "#13",
-        imageUrl: orangeTShirtAmbiguous90,
-        markedImageUrl: markedOrangeTShirtAmbiguous90,
+        imageUrl: blackSummerJacket46,
+        markedImageUrl: markedBlackSummerJacket46,
         imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 90%',
+        imageDetectionContext: 'Match: 46%',
         imageDetectionTime: '',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
         investigateRecommended: true,
-        deletePoints: 0,
-        investigatePoints: 0,
-        detectionWeight: 2,
+        deletePoints: -1,
+        investigatePoints: 1,
+        detectionWeight: 26,
         isUnseen: true,
-        taskGoalMatch: "Orange t-shirt"
+        taskGoalMatch: "Black summer jacket"
     
     }
         ,
@@ -356,7 +355,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 70,
+        detectionWeight: 29,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -375,7 +374,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 65,
+        detectionWeight: 5,
         isUnseen: true,
         taskGoalMatch: "Orange t-shirt"
     
@@ -394,7 +393,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 25,
+        detectionWeight: 40,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     
@@ -431,7 +430,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 74,
+        detectionWeight: 38,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     }
@@ -449,7 +448,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 23,
+        detectionWeight: 19,
         isUnseen: true,
         taskGoalMatch: "Orange t-shirt"
     }
@@ -467,30 +466,31 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 75,
+        detectionWeight: 2,
         isUnseen: true,
         taskGoalMatch: ""
     },
     {
+ 
         imageId: "#21",
-        imageUrl: blackSneakers96, //image: image1
-        markedImageUrl: markedBlackSneakers96,
-        imageIcon: <Clothes /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
-        imageDetectionContext: 'Match: 96%',
+        imageUrl: blackSneakersAmbiguous95,
+        markedImageUrl: markedBlackSneakersAmbiguous95,
+        imageIcon: <Clothes /> ,
+        imageDetectionContext: 'Match: 95%',
         imageDetectionTime: '',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
         investigateRecommended: true,
-        deletePoints: -1,
-        investigatePoints: 1,
-        detectionWeight: 34,
+        deletePoints: 0,
+        investigatePoints: 0,
+        detectionWeight: 7,
         isUnseen: true,
         taskGoalMatch: "Black sneakers"
     
     }
-        ,
-        {
+    ,
+    {
         imageId: "#22",
         imageUrl: blackSneakers94,
         markedImageUrl: markedBlackSneakers94,
@@ -503,10 +503,9 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 25,
+        detectionWeight: 8,
         isUnseen: true,
         taskGoalMatch: "Black sneakers"
-    
     }
         ,
         {
@@ -522,7 +521,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 11,
+        detectionWeight: 39,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     
@@ -541,7 +540,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 20,
+        detectionWeight: 18,
         isUnseen: true,
         taskGoalMatch: "Orange t-shirt"
     
@@ -549,20 +548,21 @@ export const additionalDetectionsThree = [
         ,
         {
         imageId: "#25",
-        imageUrl: orangeTShirtAmbiguous53,
-        markedImageUrl: markedOrangeTShirtAmbiguous53,
+        imageUrl: blackSummerJacket32,
+        markedImageUrl: markedBlackSummerJacket32,
         imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 53%',
+        imageDetectionContext: 'Match: 32%',
         imageDetectionTime: '',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
         investigateRecommended: true,
-        deletePoints: 0,
-        investigatePoints: 0,
-        detectionWeight: 90,
+        deletePoints: -1,
+        investigatePoints: 1,
+        detectionWeight: 27,
         isUnseen: true,
-        taskGoalMatch: "Orange t-shirt"
+        taskGoalMatch: "Black summer jacket"
+    
     
     }
         ,
@@ -579,7 +579,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 36,
+        detectionWeight: 31,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     
@@ -598,7 +598,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 48,
+        detectionWeight: 3,
         isUnseen: true,
         taskGoalMatch: "White car"
     }
@@ -616,7 +616,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 11,
+        detectionWeight: 13,
         isUnseen: true,
         taskGoalMatch: "Black sneakers"
     }
@@ -634,7 +634,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 43,
+        detectionWeight: 28,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     }
@@ -652,7 +652,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 98,
+        detectionWeight: 1,
         isUnseen: true,
         taskGoalMatch: ""
     },
@@ -669,9 +669,9 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 12,
+        detectionWeight: 33,
         isUnseen: true,
-        taskGoalMatch: "Metal Water Bottle"
+        taskGoalMatch: "Metal water bottle"
     
     }
         ,
@@ -688,7 +688,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 0,
+        detectionWeight: 24,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -707,7 +707,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 17,
+        detectionWeight: 12,
         isUnseen: true,
         taskGoalMatch: "Black sneakers"
     
@@ -726,7 +726,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 77,
+        detectionWeight: 22,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -745,7 +745,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 0,
+        detectionWeight: 30,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     
@@ -764,7 +764,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 36,
+        detectionWeight: 35,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     
@@ -783,7 +783,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 70,
+        detectionWeight: 32,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     }
@@ -821,7 +821,7 @@ export const additionalDetectionsThree = [
         investigatePoints: 0,
         detectionWeight: 14,
         isUnseen: true,
-        taskGoalMatch: "black sneakers"
+        taskGoalMatch: "Black sneakers"
     }
         ,
         {
@@ -837,7 +837,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 0,
+        detectionWeight: 15,
         isUnseen: true,
         taskGoalMatch: "Black sneakers"
     }

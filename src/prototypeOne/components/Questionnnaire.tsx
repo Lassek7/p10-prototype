@@ -65,7 +65,7 @@ export default function Questionnaire({questionnaireName, setCompleted, question
         {if (reason !== 'backdropClick') { handleClose()}}}>
             <DialogContent>
                 <Grid container direction={"row"} rowSpacing={10}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} mb={-6}>
                         <DialogTitle>
                         {questionnnaireTitle}
                         </DialogTitle>
@@ -123,7 +123,7 @@ export default function Questionnaire({questionnaireName, setCompleted, question
                     <Grid item xs={12}>
                         <TextField label={listOfQuestions[6].question} variant='outlined' multiline rows={3} sx={Styles.textField} onChange={(e) => listOfQuestions[6].answer = e.target.value}/>   
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} mt={-3}>
                         <TextField label={listOfQuestions[7].question} variant='outlined' multiline rows={3} sx={Styles.textField}  onChange={(e) => listOfQuestions[7].answer = e.target.value}/>   
                     </Grid>
                 </Grid>

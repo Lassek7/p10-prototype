@@ -24,7 +24,7 @@ return (
     <DialogContent >
         <CardMedia component="img" image={alertboxImage} />
     <DialogContentText mt={2} sx={{color:"#343323"}}>
-        In the following task you will be provided with an interactible/clickable Alertbox.
+        In the following task you will be provided with an clickable alertbox.
     </DialogContentText>
     </DialogContent>
     <DialogActions>

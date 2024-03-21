@@ -153,20 +153,20 @@ export const initialDetectionsTwo = [
     ,
     {
     imageId: "#4",
-    markedImageUrl: markedBlackBackPackAmbiguous72,
-    imageUrl: blackBackPackAmbiguous72,
+    markedImageUrl: markedTransparentWaterBottle92,
+    imageUrl: transparentWaterBottle92,
     imageIcon: <Clothes /> ,
-    imageDetectionContext: 'Match: 72%',
-    imageDetectionTime: '20:30:40',
+    imageDetectionContext: 'Match: 92%',
+    imageDetectionTime: '09:30:40',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
-    deletePoints: 0,
-    investigatePoints: 0,
-    detectionWeight: 20,
-    isUnseen: true,
-    taskGoalMatch: "Black summer jacket"
+    investigateRecommended: false,
+    deletePoints: -1,
+    investigatePoints: 1,
+    detectionWeight: 0,
+    isUnseen: false,
+    taskGoalMatch: "Black rain pants"
 
 }
     ,
@@ -359,8 +359,8 @@ export const additionalDetectionsTwo = [
         ,
         {
         imageId: "#15",
-        markedImageUrl: blackHikingBootsIncorrect4,
-        imageUrl: markedBlackHikingBootsIncorrect4,
+        markedImageUrl: markedBlackHikingBootsIncorrect4,
+        imageUrl: blackHikingBootsIncorrect4,
         imageIcon: <Clothes /> ,
         imageDetectionContext: 'Match: 04%',
         imageDetectionTime: '17:50:40',
@@ -468,40 +468,39 @@ export const additionalDetectionsTwo = [
     },
     {
         imageId: "#21",
-        markedImageUrl: markedTransparentWaterBottle95,
-        imageUrl: transparentWaterBottle95, 
-        imageIcon: <Clothes /> , 
-        imageDetectionContext: 'Match: 95%',
-        imageDetectionTime: '01:30:40',
+        markedImageUrl: markedBlackRainJacketAmbiguous63,
+        imageUrl: blackRainJacketAmbiguous63,
+        imageIcon: <Clothes /> ,
+        imageDetectionContext: 'Match: 63%',
+        imageDetectionTime: '22:30:40',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
-        deletePoints: -1,
-        investigatePoints: 1,
-        detectionWeight: 10,
+        investigateRecommended: false,
+        deletePoints: 0,
+        investigatePoints: 0,
+        detectionWeight: 100,
         isUnseen: true,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Black backpack"
     
     }
         ,
         {
         imageId: "#22",
-        markedImageUrl: markedTransparentWaterBottle92,
-        imageUrl: transparentWaterBottle92,
+        markedImageUrl: markedBlackBackPackAmbiguous72,
+        imageUrl: blackBackPackAmbiguous72,
         imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 92%',
-        imageDetectionTime: '09:30:40',
+        imageDetectionContext: 'Match: 72%',
+        imageDetectionTime: '20:30:40',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
-        deletePoints: -1,
-        investigatePoints: 1,
-        detectionWeight: 0,
-        isUnseen: false,
-        taskGoalMatch: "Black rain pants"
-    
+        investigateRecommended: true,
+        deletePoints: 0,
+        investigatePoints: 0,
+        detectionWeight: 20,
+        isUnseen: true,
+        taskGoalMatch: "Black summer jacket"
     }
         ,
         {
@@ -618,20 +617,20 @@ export const additionalDetectionsTwo = [
         ,
         {
         imageId: "#29",
-        markedImageUrl: markedBlackRainJacketAmbiguous63,
-        imageUrl: blackRainJacketAmbiguous63,
-        imageIcon: <Clothes /> ,
-        imageDetectionContext: 'Match: 63%',
-        imageDetectionTime: '22:30:40',
+        markedImageUrl: markedTransparentWaterBottle95,
+        imageUrl: transparentWaterBottle95, 
+        imageIcon: <Clothes /> , 
+        imageDetectionContext: 'Match: 95%',
+        imageDetectionTime: '01:30:40',
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
-        deletePoints: 0,
-        investigatePoints: 0,
-        detectionWeight: 100,
+        investigateRecommended: true,
+        deletePoints: -1,
+        investigatePoints: 1,
+        detectionWeight: 10,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain pants"
     }
         ,
         {

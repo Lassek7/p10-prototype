@@ -31,7 +31,7 @@ export default function Debriefing({debriefingActive}: debriefing){
             </DialogContent>
             <DialogContent>
                 <DialogContentText style={{ width: '600px' }}>
-                    We would like to thank you again for participating and remember to claim the reward before leaving :-)
+                    We would like to ask you a few questions before you leave and thank you again for participating :-)
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

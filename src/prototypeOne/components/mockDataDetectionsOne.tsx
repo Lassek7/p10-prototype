@@ -135,21 +135,22 @@ export const initialDetections = [
 }
     ,
     {
+
     imageId: "#3",
-    imageUrl: blackAndWhiteHelmetTwo,
-    markedImageUrl: markedBlackAndWhiteHelmetTwo, //image: image1
+    imageUrl: blackGlovesFourAmbiguous,
+    markedImageUrl: markedBlackGlovesFourAmbiguous, 
     imageIcon: <Clothes /> ,
     imageDetectionContext: '',
-    imageDetectionTime: '',
+    imageDetectionTime: '22:30:40',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
-    deletePoints: -1,
-    investigatePoints: 1,
-    detectionWeight: 14,
+    investigateRecommended: false,
+    deletePoints: 0,
+    investigatePoints: 0,
+    detectionWeight: 100,
     isUnseen: true,
-    taskGoalMatch: ""
+    taskGoalMatch: "Black backpack"
 
 }
     ,
@@ -246,22 +247,22 @@ export const initialDetections = [
     taskGoalMatch: "Black backpack"
 }
     ,
-    {
+{
     imageId: "#9",
-    imageUrl: blackGlovesFourAmbiguous,
-    markedImageUrl: markedBlackGlovesFourAmbiguous, 
+    imageUrl: blackAndWhiteHelmetTwo,
+    markedImageUrl: markedBlackAndWhiteHelmetTwo, //image: image1
     imageIcon: <Clothes /> ,
     imageDetectionContext: '',
-    imageDetectionTime: '22:30:40',
+    imageDetectionTime: '',
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: false,
-    deletePoints: 0,
-    investigatePoints: 0,
-    detectionWeight: 100,
+    investigateRecommended: true,
+    deletePoints: -1,
+    investigatePoints: 1,
+    detectionWeight: 14,
     isUnseen: true,
-    taskGoalMatch: "Black backpack"
+    taskGoalMatch: ""
 }
     ,
     {

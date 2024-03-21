@@ -79,7 +79,10 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
         const scrollableArea = listRef.current;
     
         if (element && scrollableArea && !isElementVisible(element, scrollableArea)) {
-            element.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            const cantReachCenterRight = index >= refs.length - 3;
+            const cantReachCenterLeft = index <= 3;
+            console.log(cantReachCenterRight, cantReachCenterLeft)
+            element.scrollIntoView({ behavior: 'smooth', inline: cantReachCenterRight ? 'end' : cantReachCenterLeft ? 'start' : 'center'});
         }
     }, [isSelected]);
 
@@ -118,7 +121,7 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
         <Card sx={Styles.screensList}>
             <Grid container sx={{height: '100%'}}>
             {!prototypeOne ? (
-                <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25.09%'}}>
+                <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25%'}}>
                     <Grid item xs={7.5} md={7.5} >
                         <CardHeader title="All detections" align="left" />
                     </Grid>
@@ -149,16 +152,16 @@ export default function ScreensList({ prototypeOne, setScreenIndex, setIsSelecte
 
                 </Grid>
                 ) : (
-                    <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25.09%'}}>
+                    <Grid container justifyContent={'space-between'}  alignItems={'center'} sx={{display: 'flex', height: '25%'}}>
                         <Grid item xs={12} md={12} >
                             <CardHeader title="All detections" align="left"  />
                         </Grid>
                     </Grid>
                 )}  
                     <Grid item xs={12}  >
-                         <Divider sx={{borderBottomWidth: 3}}/>
+                         <Divider sx={{borderBottomWidth: 3, height:"1%"}}/>
                     </Grid>  
-                <Grid container sx={{display: 'flex', height: '76.0%'}}>
+                <Grid container sx={{display: 'flex', height: '74%'}}>
                     <Grid item xs={12} md={0.4} sx={{display: 'flex' }}>
                         <ArrowComponentLeft  onMouseDown={() => { scrollListOnce('leftOnce'); timeoutId.current = window.setTimeout(() => setScrollDirection('left'), 100); }} onMouseUp={() => { if (timeoutId.current !== null) window.clearTimeout(timeoutId.current); setScrollDirection(null); }} />
                     </Grid>

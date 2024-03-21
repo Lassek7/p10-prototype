@@ -57,7 +57,7 @@ if (taskDescription.taskId === 0) {
                 <DialogContent>
 
                 <DialogContentText sx={{color:"#343323", alignContent:"left"}}>
-                    In our Master’s Thesis, we work with drone swarms which are groups of drones that communicate and act together to complete a task without people controlling them all the time. We are looking into how drone swarms can assist in search and rescue missions where a person has gone missing. To find the missing person, a monitor operator will look through all the images from the drone swarm to look for the person or their items. 
+                    In our Master’s Thesis, we work with drone swarms, which are groups of drones that communicate and act together to complete a task without people controlling them at all times. We are looking into how drone swarms can assist in search and rescue missions where a person has gone missing. To find the missing person, a monitor operator will look through all the images from the drone swarm to find the person or their items.
                 </DialogContentText>
                 </DialogContent>
 
@@ -115,18 +115,28 @@ if (taskDescription.taskId === 0) {
 
                     <DialogContentText mt={1} sx={{color:"#343323"}}>
                         <List>
-                        <DialogContentText sx={{color:"#343323"}}> Mode of transport: </DialogContentText>
+                        <DialogContentText sx={{color:"#343323"}}> Mode of Transport: </DialogContentText>
                         {currentTask.filter((item: TaskGoal) => item.taskId === 'Mode of transport').map((item: TaskGoal) => (
                             ListItems(item.taskName)
                         ))}
                         </List>     
                     </DialogContentText>
-                    <DialogContentText mt={4} sx={{color:"#343323"}}>
-                        Your job as the monitor operator is to:
+                    <DialogContentText  mt={4} sx={{color: '#343323' }}>
+                        {taskDescription.taskId === 3 || taskDescription.taskId === 2 ? 
+                            "In the following task you will be able to see how confident the AI is that it found something of relevance to the task goals. Your job as the monitor operator is to:" 
+                            : 
+                            "Your job as the monitor operator is to:"
+                        }
                     </DialogContentText>
 
                     <DialogContentText sx={{color:"#343323"}}>
                         <List>
+                            <ListItem sx={{ mt: -1.5, mb: -3 }}>
+                                <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
+                                    <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
+                                </ListItemIcon>
+                                <ListItemText primary={"Be as accurate as possible"}  />
+                            </ListItem>
                             <ListItem sx={{ mt: -1.5, mb: -3 }}>
                                 <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
                                     <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
@@ -139,19 +149,16 @@ if (taskDescription.taskId === 0) {
                                 </ListItemIcon>
                                 <ListItemText primary={mockTaskDescriptions[taskDescription.taskId].operatorAssignmentTwo}  />
                             </ListItem>
-                            {taskDescription.taskId === 3 ? (
-                            <ListItem sx={{ mt: -1.5, mb: -3 }}>
-                                <ListItemIcon sx={{ ml: 2, minWidth: '25px' }}>
-                                    <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
-                                </ListItemIcon>
-                                <ListItemText primary={mockTaskDescriptions[taskDescription.taskId].operatorAssignmentTwo}  />
-                            </ListItem>):null}
                         </List>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                    start Task
+                    {taskDescription.taskId === 3 ? 
+                            "Continue" 
+                            : 
+                            "Start task"
+                        }
                     </Button>
                 </DialogActions>
             </Dialog>

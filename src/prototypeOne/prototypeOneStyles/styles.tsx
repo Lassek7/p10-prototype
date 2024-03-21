@@ -15,7 +15,6 @@ const theme = createTheme({
 //Alert Box Styles
 const alertBox: SxProps<Theme> = {
     color: '#343323',
-    backgroundColor: '#F1F2F2',
     position: 'absolute', 
     top: "5.55vh", 
     right: "6.12vw", 
@@ -159,7 +158,7 @@ const timer: SxProps<Theme> = {
 }
 // taskintro Styles
 const taskIntro: SxProps<Theme> = {
-    fontSize: 18,
+    fontSize: "1rem",
     color:"#343323"
 
 }
@@ -211,7 +210,6 @@ const textField: SxProps<Theme> = {
 // Large Screen Styles
 const largeScreen = (isPrototypeThree: boolean): SxProps<Theme> => ({
     color: '#f5f5f5',
-    backgroundColor: '#F1F2F2',
     position: 'absolute', 
     top: "5.55vh", 
     left: isPrototypeThree ? "30.47vw" : "39.47vw",
@@ -378,7 +376,7 @@ const smallInfoBoxCardContent: SxProps<Theme> = {
 // TaskGoal Card Styles
 const taskGoalCard: SxProps<Theme> = {
     position: 'absolute', 
-    top: "1.56vh", 
+    top: "2.775vh", 
     left: "1.56vw", 
     width: '22.69vw', 
     height: '62.82vh',

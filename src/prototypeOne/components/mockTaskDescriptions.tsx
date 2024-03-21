@@ -9,7 +9,7 @@ export const mockTaskDescriptions = [
     {
         taskId: 1,
         taskName: "Task 1",
-        taskDescription: "You are looking for Anna who was attending an event at another school in the city but never returned home in the evening. She was last seen departing from the school riding a bike in the late afternoon wearing. You are looking for the following:",
+        taskDescription: "You are looking for Anna who was attending an event at another school in the city but never returned home in the evening. She was last seen departing from the school riding a bike in the late afternoon. You are looking for the following:",
         taskObjectiveOne: "Black winter jacket",
         taskObjectiveTwo: "Blue jeans",
         taskObjectiveThree: "Black gloves",
