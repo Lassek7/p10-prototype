@@ -12,6 +12,7 @@ import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import { mockDataTaskOneGoals } from './components/mockDataTaskGoals'
 import { mockDetectionTimerPrototypeOne } from './components/mockDataDetectionTimer'
+import PersonIcon from '@mui/icons-material/Person';
 
 interface detection {
     imageId: string,
@@ -46,7 +47,7 @@ export default function PrototypeOne() {
 
     const location = useLocation()
     const userData = location.state
-    const [pauseTest, setPauseTest] = useState<boolean>(false)
+    const [pauseTest, setPauseTest] = useState<boolean>(true)
     const [recentlyDeleted, setRecentlyDeleted] = useState<Array<detection>>([])
     const [selectedDetection, setSelectedDetection] = useState<detection>(detections[0])
     const [questionnaireCompleted, setQuestionnaireCompleted] = useState<boolean>(false)
@@ -65,7 +66,7 @@ export default function PrototypeOne() {
             Item: false
         });
     const [arrayToSave, setArrayToSave] = useState<Array<ArrayToSave>>([]); // used to save the list to a file
-    const [seconds, setSeconds] = useState(240);
+    const [seconds, setSeconds] = useState(210);
     const [detectionTimer, setDetectionTimer] = useState(0)
     const [detectionCount, setDetectionCount] = useState(0)
     const navigate = useNavigate();
@@ -156,6 +157,8 @@ export default function PrototypeOne() {
             points: removedDetection[0].deletePoints,
             chosenAction: 'Investigate'
         }
+        console.log(newAllDetections)
+
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
     }, [AllDetections]);
 
@@ -166,15 +169,38 @@ export default function PrototypeOne() {
             const indexInOldList = renderedDetectionList.findIndex(detection => detection.imageId === recentlyDeleted[0]?.imageId) // finds the location of the old item
             
             if (indexInOldList != -1) {
-            const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
-            console.log(recentlyDeleted,"i crash here" )
-            console.log(indexInNewList,"i crash here" )
+                const indexInNewList: number = indexInOldList >= newRenderedDetectionList.length ? AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[newRenderedDetectionList.length-1].imageId) : AllDetections.findIndex(detection => detection.imageId === newRenderedDetectionList[indexInOldList].imageId) // if the index is out of bounds, set it to the last item in the list
 
-            if (indexInNewList >= 0 && indexInNewList < AllDetections.length) {
-                setSelectedDetection(AllDetections[indexInNewList])
-                setIsSelected(AllDetections[indexInNewList].imageId)
-              }
-        } }
+                if (indexInNewList >= 0 && indexInNewList < AllDetections.length) {
+                    setSelectedDetection(AllDetections[indexInNewList])
+                    setIsSelected(AllDetections[indexInNewList].imageId)
+                }
+            } 
+        }
+        if(AllDetections.length === 1){
+            setSelectedDetection(AllDetections[0])
+            setIsSelected(AllDetections[0].imageId)
+        }
+        if(AllDetections.length <= 0) {
+            const placeholderDetection = {
+                imageId: "#1",
+                imageUrl: "https://source.unsplash.com/random",
+                markedImageUrl: "https://source.unsplash.com/random", //image: image1
+                imageIcon: <PersonIcon /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+                imageDetectionContext: ' ',
+                imageDetectionTime: ' ',
+                ImageDetectionDate: ' ',
+                timeSinceDetection: ' ',
+                filterID: 'Item',
+                investigateRecommended: false,
+                deletePoints: 1,
+                investigatePoints: -1,
+                detectionWeight: 10,
+                isUnseen: true,
+                taskGoalMatch: ""
+            }
+            setSelectedDetection(placeholderDetection)
+        }
         setRenderedDetectionList(newRenderedDetectionList);
     },[AllDetections])
 

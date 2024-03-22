@@ -35,7 +35,7 @@ export const mockDataTaskOneGoals = [
 },
 {
     taskId: "Personal Items",
-    taskName: "Black bike helmet",
+    taskName: "Black and white bike helmet",
 }]
 export const mockDataTaskTwoGoals = [
 {

@@ -123,7 +123,7 @@ if (taskDescription.taskId === 0) {
                     </DialogContentText>
                     <DialogContentText  mt={4} sx={{marginLeft:"5%", marginRight:7,color: '#343323', overflowWrap: 'break-word', wordWrap: 'break-word' }}>
                         {taskDescription.taskId === 3 || taskDescription.taskId === 2 ? 
-                            "In the following task you will be able to see how confident the AI is that it found something of relevance to the task goals. Your job as the monitor operator is to:" 
+                            "In the following task you will be able to see how confident the AI is that it found something of relevance to the task goals and you will also be given a filter option to sort the detections. Your job as the monitor operator is to:" 
                             : 
                             "Your job as the monitor operator is to:"
                         }
@@ -143,6 +143,14 @@ if (taskDescription.taskId === 0) {
                                 </ListItemIcon>
                                 <ListItemText primary={mockTaskDescriptions[taskDescription.taskId].operatorAssignmentTwo}  />
                             </ListItem>
+                            {taskDescription.taskId === 3 ? (
+                                <ListItem sx={{ mt: -1.5, mb: -3 }}>
+                                    <ListItemIcon sx={{ ml: 7, minWidth: '25px' }}>
+                                        <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Consider the blue buttons suggesting the recommended action."}  />
+                                </ListItem>
+                            ):null}
                             <ListItem sx={{ mt: -1.5, mb: -3 }}>
                                 <ListItemIcon sx={{ ml: 7, minWidth: '25px' }}>
                                     <FiberManualRecordIcon sx={{ fontSize: '10px', color: '#343323' }} />

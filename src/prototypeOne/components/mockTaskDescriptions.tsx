@@ -13,7 +13,7 @@ export const mockTaskDescriptions = [
         taskObjectiveOne: "Black winter jacket",
         taskObjectiveTwo: "Blue jeans",
         taskObjectiveThree: "Black gloves",
-        taskObjectiveFour: "Black bike helmet",
+        taskObjectiveFour: "Black and white bike helmet",
         taskObjectiveFive: "White bike",
         operatorAssignmentOne: "Investigate the detections which could be relevant to the task goals.",
         operatorAssignmentTwo: "Delete the detections which are clearly irrelevant to the task goals.",

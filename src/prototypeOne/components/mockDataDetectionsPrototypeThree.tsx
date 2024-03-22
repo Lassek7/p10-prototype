@@ -112,7 +112,7 @@ export const initialDetectionsThree = [
     deletePoints: -1,
     investigatePoints: 1,
     detectionWeight: 10,
-    isUnseen: true,
+    isUnseen: false,
     taskGoalMatch: "Black sneakers"
 
 }
@@ -145,10 +145,10 @@ export const initialDetectionsThree = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 37,
+    detectionWeight: 21,
     isUnseen: true,
     taskGoalMatch: "Metal water bottle"
 
@@ -164,10 +164,10 @@ export const initialDetectionsThree = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 36,
+    detectionWeight: 21,
     isUnseen: true,
     taskGoalMatch: "Metal water bottle"
 
@@ -183,7 +183,7 @@ export const initialDetectionsThree = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 0,
     investigatePoints: 0,
     detectionWeight: 16,
@@ -221,7 +221,7 @@ export const initialDetectionsThree = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 1,
     investigatePoints: -1,
     detectionWeight: 17,
@@ -257,10 +257,10 @@ export const initialDetectionsThree = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 0,
     investigatePoints: 23,
-    detectionWeight: 25,
+    detectionWeight: 21,
     isUnseen: true,
     taskGoalMatch: "Black summer jacket"
 }
@@ -275,7 +275,7 @@ export const initialDetectionsThree = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 1,
     investigatePoints: -1,
     detectionWeight: 20,
@@ -333,10 +333,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 26,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -352,10 +352,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 29,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -390,10 +390,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 40,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     
@@ -409,10 +409,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 34,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     }
@@ -427,10 +427,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 38,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     }
@@ -445,7 +445,7 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
         detectionWeight: 19,
@@ -518,10 +518,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 39,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     
@@ -537,7 +537,7 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
         detectionWeight: 18,
@@ -556,10 +556,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 27,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -579,7 +579,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 31,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     
@@ -595,7 +595,7 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Vehicle',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: -1,
         investigatePoints: 1,
         detectionWeight: 3,
@@ -631,10 +631,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 28,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     }
@@ -669,7 +669,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 33,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Metal water bottle"
     
@@ -685,10 +685,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 24,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -726,7 +726,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 22,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     
@@ -745,7 +745,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 30,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     
@@ -761,10 +761,10 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 35,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     
@@ -783,7 +783,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 32,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black sports bag"
     }
@@ -801,7 +801,7 @@ export const additionalDetectionsThree = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 23,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black summer jacket"
     }
@@ -834,7 +834,7 @@ export const additionalDetectionsThree = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
         detectionWeight: 15,

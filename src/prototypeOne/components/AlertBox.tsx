@@ -39,10 +39,6 @@ export default function AlertBox({ onAlertClick, allDetections, currentWeight}: 
                             Alert
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}> 
-                        <Badge color="error" badgeContent={inactiveList.length} showZero sx={Styles.alertBoxBadge}>                     
-                        </Badge>  
-                    </Grid>
                 </Grid>
                 <Grid item xs={12} sx={{height: '57%'}}>
                     <CardMedia component="img" sx={{ height: '100%', objectFit: 'fit' }} image={inactiveList[0].imageUrl} alt='Image' />

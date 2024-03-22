@@ -107,9 +107,9 @@ export const initialDetectionsTwo = [
     investigateRecommended: true,
     deletePoints: -1,
     investigatePoints: 1,
-    detectionWeight: 10,
-    isUnseen: true,
-    taskGoalMatch: "Black rain pants"
+    detectionWeight: 21,
+    isUnseen: false,
+    taskGoalMatch: "Black backpack"
 
 }
     ,
@@ -126,9 +126,9 @@ export const initialDetectionsTwo = [
     investigateRecommended: false,
     deletePoints: -1,
     investigatePoints: 1,
-    detectionWeight: 0,
-    isUnseen: false,
-    taskGoalMatch: "Black rain pants"
+    detectionWeight: 21,
+    isUnseen: true,
+    taskGoalMatch: "Black rain jacket"
 
 }
     ,
@@ -145,9 +145,9 @@ export const initialDetectionsTwo = [
     investigateRecommended: true,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 14,
+    detectionWeight: 21,
     isUnseen: true,
-    taskGoalMatch: "Black rain pants"
+    taskGoalMatch: "Black backpack"
 
 }
     ,
@@ -161,12 +161,12 @@ export const initialDetectionsTwo = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: false,
+    investigateRecommended: true,
     deletePoints: -1,
     investigatePoints: 1,
-    detectionWeight: 0,
-    isUnseen: false,
-    taskGoalMatch: "Black rain pants"
+    detectionWeight: 14,
+    isUnseen: true,
+    taskGoalMatch: "Transparent water bottle"
 
 }
     ,
@@ -180,12 +180,12 @@ export const initialDetectionsTwo = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 1,
     investigatePoints: -1,
-    detectionWeight: 33,
+    detectionWeight: 21,
     isUnseen: true,
-    taskGoalMatch: "Black backpack"
+    taskGoalMatch: "Black rain jacket"
 
 }
     ,
@@ -199,12 +199,12 @@ export const initialDetectionsTwo = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 1,
+    detectionWeight: 21,
     isUnseen: true,
-    taskGoalMatch: "Black backpack"
+    taskGoalMatch: "Transparent water bottle"
 
 }
     ,
@@ -221,7 +221,7 @@ export const initialDetectionsTwo = [
     investigateRecommended: false,
     deletePoints: 1,
     investigatePoints: -1,
-    detectionWeight: 14,
+    detectionWeight: 21,
     isUnseen: true,
     taskGoalMatch: "Black backpack"
 }
@@ -239,7 +239,7 @@ export const initialDetectionsTwo = [
     investigateRecommended: false,
     deletePoints: -1,
     investigatePoints: 1,
-    detectionWeight: 99,
+    detectionWeight: 21,
     isUnseen: true,
     taskGoalMatch: "Black backpack"
 }
@@ -257,9 +257,9 @@ export const initialDetectionsTwo = [
     investigateRecommended: false,
     deletePoints: 0,
     investigatePoints: 0,
-    detectionWeight: 100,
+    detectionWeight: 21,
     isUnseen: true,
-    taskGoalMatch: "Black backpack"
+    taskGoalMatch: "Black rain jacket"
 }
     ,
     {
@@ -272,12 +272,12 @@ export const initialDetectionsTwo = [
     ImageDetectionDate: '',
     timeSinceDetection: '',
     filterID: 'Item',
-    investigateRecommended: true,
+    investigateRecommended: false,
     deletePoints: 1,
     investigatePoints: -1,
-    detectionWeight: 9,
+    detectionWeight: 21,
     isUnseen: true,
-    taskGoalMatch: "Black backpack"
+    taskGoalMatch: "Transparent water bottle"
 }];
 
 export const additionalDetectionsTwo = [
@@ -294,7 +294,7 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 10,
+        detectionWeight: 6,
         isUnseen: true,
         taskGoalMatch: "Black rain pants"
     
@@ -310,12 +310,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
+        investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 0,
+        detectionWeight: 12,
         isUnseen: false,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Black rain jacket"
     
     }
         ,
@@ -332,9 +332,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 14,
+        detectionWeight: 5,
         isUnseen: true,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Black hiking boots"
     
     }
         ,
@@ -348,12 +348,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 20,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black summer jacket"
+        taskGoalMatch: "Black backpack"
     
     }
         ,
@@ -367,12 +367,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 33,
+        detectionWeight: 13,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black hiking boots"
     
     }
         ,
@@ -386,12 +386,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 1,
+        detectionWeight: 10,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black hikinh boots"
     
     }
         ,
@@ -408,9 +408,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: false,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 14,
+        detectionWeight: 9,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black hiking boots"
     }
         ,
         {
@@ -423,12 +423,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Person',
-        investigateRecommended: false,
+        investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 99,
+        detectionWeight: 1,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Person"
     }
         ,
         {
@@ -444,9 +444,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 100,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     }
         ,
         {
@@ -459,12 +459,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 9,
+        detectionWeight: 12,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain pants"
     },
     {
         imageId: "#21",
@@ -476,12 +476,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
+        investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 100,
+        detectionWeight: 17,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     
     }
         ,
@@ -498,9 +498,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 20,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black summer jacket"
+        taskGoalMatch: "Black backpack"
     }
         ,
         {
@@ -516,9 +516,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 14,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Transparent water bottle"
     
     }
         ,
@@ -535,9 +535,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 20,
+        detectionWeight: 8,
         isUnseen: true,
-        taskGoalMatch: "Black summer jacket"
+        taskGoalMatch: "Black rain pants"
     
     }
         ,
@@ -551,12 +551,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 33,
+        detectionWeight: 20,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     
     }
         ,
@@ -573,9 +573,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 1,
+        detectionWeight: 3,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain pants"
     
     }
         ,
@@ -592,9 +592,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 14,
+        detectionWeight: 19,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     }
         ,
         {
@@ -610,9 +610,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 99,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Transparent water bottle"
     }
         ,
         {
@@ -628,9 +628,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 10,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Transparent water bottle"
     }
         ,
         {
@@ -646,9 +646,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 9,
+        detectionWeight: 16,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     },
     {
         imageId: "#31",
@@ -663,9 +663,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 10,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Black backpack"
     
     }
         ,
@@ -679,12 +679,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
+        investigateRecommended: true,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 0,
+        detectionWeight: 7,
         isUnseen: false,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Black hiking boots"
     
     }
         ,
@@ -698,12 +698,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 14,
+        detectionWeight: 11,
         isUnseen: true,
-        taskGoalMatch: "Black rain pants"
+        taskGoalMatch: "Black hiking boots"
     
     }
         ,
@@ -720,9 +720,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: -1,
         investigatePoints: 1,
-        detectionWeight: 20,
+        detectionWeight: 4,
         isUnseen: true,
-        taskGoalMatch: "Black summer jacket"
+        taskGoalMatch: "Black rain pants"
     
     }
         ,
@@ -739,9 +739,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 33,
+        detectionWeight: 2,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Person"
     
     }
         ,
@@ -755,12 +755,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 1,
         investigatePoints: -1,
-        detectionWeight: 1,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Transparent water bottle"
     
     }
         ,
@@ -774,12 +774,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
+        investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 14,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Transparent water bottle"
     }
         ,
         {
@@ -792,10 +792,10 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: false,
+        investigateRecommended: true,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 99,
+        detectionWeight: 21,
         isUnseen: true,
         taskGoalMatch: "Black backpack"
     }
@@ -813,9 +813,9 @@ export const additionalDetectionsTwo = [
         investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 100,
+        detectionWeight: 21,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     }
         ,
         {
@@ -828,12 +828,12 @@ export const additionalDetectionsTwo = [
         ImageDetectionDate: '',
         timeSinceDetection: '',
         filterID: 'Item',
-        investigateRecommended: true,
+        investigateRecommended: false,
         deletePoints: 0,
         investigatePoints: 0,
-        detectionWeight: 9,
+        detectionWeight: 18,
         isUnseen: true,
-        taskGoalMatch: "Black backpack"
+        taskGoalMatch: "Black rain jacket"
     }
     
     
