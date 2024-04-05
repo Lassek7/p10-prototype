@@ -3,7 +3,7 @@ import ScreensList from './components/ScreensList'
 import { Grid, Typography } from '@mui/material'
 import { useState, useEffect, useCallback} from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { initialDetectionsTwo, additionalDetectionsTwo } from './components/MockDetectionsPrototypeTwo'
+import { initialDetectionsTwo, additionalDetectionsTwo } from './components/MockData/mockDataDetectionsPrototypeTwo'
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
@@ -11,9 +11,11 @@ import Styles from './prototypeOneStyles/styles'
 import Questionnaire from './components/Questionnnaire'
 import { saveToFile } from './globalFunctions.tsx/saveToFile'
 import Debriefing from './components/Debriefing'
-import { mockDataTaskTwoGoals } from './components/mockDataTaskGoals'
-import { mockDetectionTimerPrototypeTwo } from './components/mockDataDetectionTimer'
-import PersonIcon from '@mui/icons-material/Person';
+import { mockDataTaskTwoGoals } from './components/MockData/mockDataTaskGoals'
+import { mockDetectionTimerPrototypeTwo } from './components/MockData/mockDataDetectionTimer'
+import PersonIcon from '@mui/icons-material/Person'
+import noDetections from "../assets/images/noDetections.png"
+
 
 
 interface detection {
@@ -95,7 +97,7 @@ export default function PrototypeTwo() {
         addnewDetection(newDetectionTimer, detectionCount)
     }, [seconds])
     
-    useEffect(() => { // timer for prototype, needs to add go to next part. actually maybe move out of here and one up to have a common timer? otherwise send a true out and up. timerDone = true
+    useEffect(() => { 
         if (seconds > 0 && startTest && !pauseTest) {
             const timerId = setTimeout(() => {
                 setSeconds(seconds - 1);
@@ -114,15 +116,11 @@ export default function PrototypeTwo() {
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.key === '9') {
+            if (event.key === '½') {
                 setPauseTest(prevPauseTest => !prevPauseTest)
-            }else if (event.key === '8') {
-                setSeconds(10)
             }
         };
-        // Add the event listener when the component mounts
             window.addEventListener('keydown', handleKeyPress);
-        // Remove the event listener when the component unmounts
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
@@ -167,7 +165,7 @@ export default function PrototypeTwo() {
         const saveDetectionAction = {
             imageId: removedDetection[0].imageId,
             imageContext: removedDetection[0].imageDetectionContext,
-            points: removedDetection[0].deletePoints,
+            points: removedDetection[0].investigatePoints,
             chosenAction: 'Investigate'
         }
         setArrayToSave(arrayToSave => [...arrayToSave, saveDetectionAction]);
@@ -200,20 +198,20 @@ export default function PrototypeTwo() {
         }
         if(AllDetections.length <= 0) {
             const placeholderDetection = {
-                imageId: "#1",
-                imageUrl: "https://source.unsplash.com/random",
-                markedImageUrl: "https://source.unsplash.com/random", //image: image1
-                imageIcon: <PersonIcon /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+                imageId: "",
+                imageUrl: noDetections,
+                markedImageUrl: noDetections, 
+                imageIcon: <PersonIcon /> , 
                 imageDetectionContext: ' ',
                 imageDetectionTime: ' ',
                 ImageDetectionDate: ' ',
                 timeSinceDetection: ' ',
-                filterID: 'Item',
+                filterID: '',
                 investigateRecommended: false,
-                deletePoints: 1,
-                investigatePoints: -1,
-                detectionWeight: 10,
-                isUnseen: true,
+                deletePoints: 0,
+                investigatePoints: 0,
+                detectionWeight: 0,
+                isUnseen: false,
                 taskGoalMatch: ""
             }
             setSelectedDetection(placeholderDetection)

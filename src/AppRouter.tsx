@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom"
-import PrototypeThree from './prototypeOne/PrototypeThree';
-import PrototypeTwo from './prototypeOne/PrototypeTwo';
-import PrototypeOne from './prototypeOne/PrototypeOne';
-import Exploration from './prototypeOne/Exploration';
+import PrototypeThree from './prototype/PrototypeThree';
+import PrototypeTwo from './prototype/PrototypeTwo';
+import PrototypeOne from './prototype/PrototypeOne';
+import Exploration from './prototype/Exploration';
 import App from './App';
 
 const AppRouter = () => {

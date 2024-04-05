@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button, List, ListItem, ListItemText, ListItemIcon, CardMedia} from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { mockTaskDescriptions } from './mockTaskDescriptions';
-import { mockDataTaskOneGoals, mockDataTaskTwoGoals, mockDataTaskThreeGoals } from './mockDataTaskGoals';
+import { mockTaskDescriptions } from './MockData/mockTaskDescriptions';
+import { mockDataTaskOneGoals, mockDataTaskTwoGoals, mockDataTaskThreeGoals } from './MockData/mockDataTaskGoals';
 import Styles from '../prototypeOneStyles/styles';
 import introImage from '../../assets/images/intro image.png';
     

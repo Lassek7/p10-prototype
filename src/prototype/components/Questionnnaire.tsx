@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, TextField, Grid, Typography} from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Slider } from '@mui/material';
-import { mockQuestionnaire } from './mockDataQuestionnaire';  
+import { mockQuestionnaire } from './MockData/mockDataQuestionnaire';  
 import Styles from '../prototypeOneStyles/styles';  
 import { saveToFile } from '../globalFunctions.tsx/saveToFile';
 

@@ -57,7 +57,7 @@ export default function LargeScreenComponent({prototypeOne, prototypeThree, prot
                 prototypeOne={prototypeOne} 
                 imageId={selectedDetection.imageId} 
                 imageIcon={selectedDetection.imageIcon} 
-                imageDetectionContext={selectedDetection.imageDetectionContext} 
+                imageDetectionContext={"Match: "+ selectedDetection.imageDetectionContext} 
                 imageDetectionTime={selectedDetection.imageDetectionTime} 
                 ImageDetectionDate={selectedDetection.ImageDetectionDate} 
                 timeSinceDetection={selectedDetection.timeSinceDetection} 

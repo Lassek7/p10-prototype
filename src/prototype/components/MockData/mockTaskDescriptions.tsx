@@ -31,6 +31,8 @@ export const mockTaskDescriptions = [
         taskObjectiveFive: "Transparent water bottle",
         operatorAssignmentOne: "Investigate the detections which could be relevant to the task goals.",
         operatorAssignmentTwo: "Delete the detections which are clearly irrelevant to the task goals.",
+        operatorAssignmentThree: "It is recommended to pay attention to alerts.",
+
         
     }
     ,

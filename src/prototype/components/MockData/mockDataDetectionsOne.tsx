@@ -99,8 +99,8 @@ export const initialDetections = [
     {
     imageId: "#1",
     imageUrl: blackGlovesOneIncorrect,
-    markedImageUrl: markedBlackGlovesOneIncorrect, //image: image1
-    imageIcon: <Clothes /> , // needs to be adjustable in the code and might need a new prop for filtered if it cant be done icon based
+    markedImageUrl: markedBlackGlovesOneIncorrect, 
+    imageIcon: <Clothes /> , 
     imageDetectionContext: ' ',
     imageDetectionTime: ' ',
     ImageDetectionDate: ' ',

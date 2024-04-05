@@ -3,11 +3,11 @@ import ScreensList from './components/ScreensList'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useCallback } from 'react'
 import LargeScreenComponent from './components/LargeScreenComponent'
-import { explorationDetections } from './components/mockDataDetectionsExploration'
+import { explorationDetections } from './components/MockData/mockDataDetectionsExploration'
 import { useNavigate, useLocation } from 'react-router-dom'
 import TaskIntro from './components/TaskIntro'
 import './prototypeOneStyles/blur.css'
-import { mockDataTaskPracticeGoals } from './components/mockDataTaskGoals'
+import { mockDataTaskPracticeGoals } from './components/MockData/mockDataTaskGoals'
 
 
 interface detection {
@@ -95,7 +95,6 @@ export default function Exploration() {
 
     },[AllDetections])
 
-    // use the styles data in the following for the actuan components then make this to a grid system
     return(
         <Grid container className={`container ${!startTest ? 'blur-effect' : ''}`}>
             <TaskIntro taskId={0} setStartTest={setStartTest}/>

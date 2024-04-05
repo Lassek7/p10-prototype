@@ -2,7 +2,7 @@ import './App.css'
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField, Grid } from '@mui/material';
 import { useState} from 'react';
-import { saveToFile } from './prototypeOne/globalFunctions.tsx/saveToFile';
+import { saveToFile } from './prototype/globalFunctions.tsx/saveToFile';
 
 function App() {
 const [participantId, setParticipantId] = useState<string>("")
