@@ -1,27 +1,27 @@
 /// <reference types="vite-plugin-svgr/client" />
-import Clothes from '../../assets/clothes.svg?react'; 
+import Clothes from '../../../assets/clothes.svg?react'; 
 
-import blackAndWhiteBikeHelmet6 from '../../assets/images/Practice Task/black-white bike helmet 6.png';
-import blackAndWhiteBikeHelmet9 from '../../assets/images/Practice Task/black-white bike helmet 9.png';
-import practiceItem1 from '../../assets/images/Practice Task/practice item 1.png';
-import practiceItem2 from '../../assets/images/Practice Task/practice item 2.png';
-import practiceItem3 from '../../assets/images/Practice Task/practice item 3.png';
-import practiceItem4 from '../../assets/images/Practice Task/practice item 4.png';
-import practiceItem5 from '../../assets/images/Practice Task/practice item 5.png';
-import practiceItem7 from '../../assets/images/Practice Task/practice item 7.png';
-import practiceItem8 from '../../assets/images/Practice Task/practice item 8.png';
-import practiceItem10 from '../../assets/images/Practice Task/practice item 10.png';
+import blackAndWhiteBikeHelmet6 from '../../../assets/images/Practice Task/black-white bike helmet 6.png';
+import blackAndWhiteBikeHelmet9 from '../../../assets/images/Practice Task/black-white bike helmet 9.png';
+import practiceItem1 from '../../../assets/images/Practice Task/practice item 1.png';
+import practiceItem2 from '../../../assets/images/Practice Task/practice item 2.png';
+import practiceItem3 from '../../../assets/images/Practice Task/practice item 3.png';
+import practiceItem4 from '../../../assets/images/Practice Task/practice item 4.png';
+import practiceItem5 from '../../../assets/images/Practice Task/practice item 5.png';
+import practiceItem7 from '../../../assets/images/Practice Task/practice item 7.png';
+import practiceItem8 from '../../../assets/images/Practice Task/practice item 8.png';
+import practiceItem10 from '../../../assets/images/Practice Task/practice item 10.png';
 
-import markedBlackAndWhiteBikeHelmet6 from '../../assets/images/Practice Task No Visual Markers/black-white bike helmet 6.png';
-import markedBlackAndWhiteBikeHelmet9 from '../../assets/images/Practice Task No Visual Markers/black-white bike helmet 9.png';
-import markedPracticeItem1 from '../../assets/images/Practice Task No Visual Markers/practice item 1.png';
-import markedPracticeItem2 from '../../assets/images/Practice Task No Visual Markers/practice item 2.png';
-import markedPracticeItem3 from '../../assets/images/Practice Task No Visual Markers/practice item 3.png';
-import markedPracticeItem4 from '../../assets/images/Practice Task No Visual Markers/practice item 4.png';
-import markedPracticeItem5 from '../../assets/images/Practice Task No Visual Markers/practice item 5.png';
-import markedPracticeItem7 from '../../assets/images/Practice Task No Visual Markers/practice item 7.png';
-import markedPracticeItem8 from '../../assets/images/Practice Task No Visual Markers/practice item 8.png';
-import markedPracticeItem10 from '../../assets/images/Practice Task No Visual Markers/practice item 10.png';
+import markedBlackAndWhiteBikeHelmet6 from '../../../assets/images/Practice Task No Visual Markers/black-white bike helmet 6.png';
+import markedBlackAndWhiteBikeHelmet9 from '../../../assets/images/Practice Task No Visual Markers/black-white bike helmet 9.png';
+import markedPracticeItem1 from '../../../assets/images/Practice Task No Visual Markers/practice item 1.png';
+import markedPracticeItem2 from '../../../assets/images/Practice Task No Visual Markers/practice item 2.png';
+import markedPracticeItem3 from '../../../assets/images/Practice Task No Visual Markers/practice item 3.png';
+import markedPracticeItem4 from '../../../assets/images/Practice Task No Visual Markers/practice item 4.png';
+import markedPracticeItem5 from '../../../assets/images/Practice Task No Visual Markers/practice item 5.png';
+import markedPracticeItem7 from '../../../assets/images/Practice Task No Visual Markers/practice item 7.png';
+import markedPracticeItem8 from '../../../assets/images/Practice Task No Visual Markers/practice item 8.png';
+import markedPracticeItem10 from '../../../assets/images/Practice Task No Visual Markers/practice item 10.png';
 
 export const explorationDetections = [
     {

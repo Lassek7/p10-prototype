@@ -90,6 +90,7 @@ export default function PrototypeOne() {
         if (seconds === 0) {
             setOpenQuestionnaire(true);
         }
+        
     }, [seconds, startTest, pauseTest]);
 
     const minutes = Math.floor(seconds / 60);
@@ -105,8 +106,11 @@ export default function PrototypeOne() {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === '½') {
                 setPauseTest(prevPauseTest => !prevPauseTest)
+            } else if (event.key === '8') {
+                setSeconds(10)
             }
         };
+
         // Add the event listener when the component mounts
             window.addEventListener('keydown', handleKeyPress);
         // Remove the event listener when the component unmounts

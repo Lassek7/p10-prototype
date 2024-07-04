@@ -119,6 +119,8 @@ export default function PrototypeThree() {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === '½') {
                 setPauseTest(prevPauseTest => !prevPauseTest)
+            } else if (event.key === '8') {
+                setSeconds(10)
             }
         };
         // Add the event listener when the component mounts
